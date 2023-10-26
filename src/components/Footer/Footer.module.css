@@ -21,9 +21,7 @@
 }
 
 .footerBottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
 }
 
 .manufyLink {
@@ -38,8 +36,23 @@
 .linksList {
   display: flex;
   gap: 32px;
+  justify-content: center;
 }
 
 .footerLink {
   color: #fff;
+}
+
+@media screen and (min-width: 1200px) {
+  .footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .linksList {
+    margin-top: 16px;
+  }
 }
