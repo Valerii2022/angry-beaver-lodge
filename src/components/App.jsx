@@ -1,7 +1,9 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from 'pages/Home/HomePage';
-import Content from 'pages/Content/Content';
+import Gallery from 'pages/Gallery/Gallery';
 import Layout from './Layout/Layout';
+import Contact from 'pages/Contact/Contact';
+import Order from 'pages/Order/Order';
 
 const App = () => {
   return (
@@ -9,7 +11,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="content" element={<Content />} />
+          <Route path="gallery" element={<Gallery />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="order" element={<Order />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />

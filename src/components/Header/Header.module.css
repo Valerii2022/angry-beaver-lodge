@@ -1,9 +1,29 @@
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.container {
+  padding: 26px 8px;
+  text-align: right;
 }
 
-.container {
-  padding: 15px;
+.navigation {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.orderBtnWrap {
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 2px solid rgba(0, 0, 0, 1);
+  margin: 0 8px;
+}
+
+.link {
+  text-decoration: none;
+  color: #000000;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.cartValue {
+  display: inline-block;
+  margin-left: 4px;
 }

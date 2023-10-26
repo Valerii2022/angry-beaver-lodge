@@ -1,5 +1,45 @@
+.footer {
+  padding: 48px 0 56px 0;
+  color: #fff;
+  background-color: #000000;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
+
 .container {
+  margin: 0 auto;
+  max-width: 1110px;
+  padding: 0 15px;
+}
+
+.socialIconList {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.manufyLink {
+  color: #fff;
+  margin-right: 4px;
+}
+
+.manufyLink:hover {
+  text-decoration: underline;
+}
+
+.linksList {
+  display: flex;
+  gap: 32px;
+}
+
+.footerLink {
+  color: #fff;
 }
