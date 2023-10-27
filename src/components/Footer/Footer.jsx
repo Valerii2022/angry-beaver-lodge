@@ -9,13 +9,37 @@ const Footer = () => {
       <div className={css.container}>
         <ul className={css.socialIconList}>
           <li>
-            <FacebookIcon width={30} height={30} />
+            <a
+              className={css.socialIconLink}
+              href="https://uk-ua.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="facebook"
+            >
+              <FacebookIcon width={30} height={30} />
+            </a>
           </li>
           <li>
-            <InstagramIcon width={26} height={30} />
+            <a
+              className={css.socialIconLink}
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="instagram"
+            >
+              <InstagramIcon width={26} height={30} />
+            </a>
           </li>
           <li>
-            <YelpIcon width={23} height={30} />
+            <a
+              className={css.socialIconLink}
+              href="https://www.yelp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="yelp"
+            >
+              <YelpIcon width={23} height={30} />
+            </a>
           </li>
         </ul>
         <div className={css.footerBottom}>

@@ -20,6 +20,10 @@
   margin-bottom: 24px;
 }
 
+.socialIconLink {
+  cursor: pointer;
+}
+
 .footerBottom {
   text-align: center;
 }

@@ -15,9 +15,12 @@
 }
 
 .orderBtnWrap {
-  padding: 6px 12px;
   background-color: #fff;
   border: 2px solid rgba(0, 0, 0, 1);
+}
+
+.orderLink {
+  padding: 6px 12px;
 }
 
 .link {
@@ -69,6 +72,14 @@
 
   .orderBtnWrap {
     margin-top: 8px;
+  }
+
+  .hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
   }
 }
 
