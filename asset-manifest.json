@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/angry-beaver-lodge/static/css/main.8cb3f6f3.css",
-    "main.js": "/angry-beaver-lodge/static/js/main.eea9325c.js",
+    "main.css": "/angry-beaver-lodge/static/css/main.b3f6c67a.css",
+    "main.js": "/angry-beaver-lodge/static/js/main.4ac1fb5d.js",
     "static/media/logo.avif": "/angry-beaver-lodge/static/media/logo.0f5b3153d9ae5c4a4c61.avif",
-    "static/media/instagram.svg": "/angry-beaver-lodge/static/media/instagram.ff322a580a9aa782801dcf69f900c476.svg",
-    "static/media/yelp.svg": "/angry-beaver-lodge/static/media/yelp.b17780c54ce4aa10a1a898c92ebcf630.svg",
+    "static/media/instagram.svg": "/angry-beaver-lodge/static/media/instagram.d59957402a193f0d141b3f4bd692ca75.svg",
+    "static/media/yelp.svg": "/angry-beaver-lodge/static/media/yelp.d117259b8a984c4f07fd8848a9de2d79.svg",
     "static/media/cart.svg": "/angry-beaver-lodge/static/media/cart.c9cfcf125d7c64361480ab8b3fc4b9ea.svg",
     "static/media/burger.svg": "/angry-beaver-lodge/static/media/burger.09aa8aec2eb79d46c584434094417df0.svg",
     "index.html": "/angry-beaver-lodge/index.html",
-    "static/media/facebook.svg": "/angry-beaver-lodge/static/media/facebook.ccd5161928c7b161132725f5d05ea4e8.svg",
+    "static/media/facebook.svg": "/angry-beaver-lodge/static/media/facebook.7db7af03986e9870c306c5b5c6fb9bb7.svg",
     "static/media/close.svg": "/angry-beaver-lodge/static/media/close.eb8f9f1706a26ac193bd47bbc69cedc7.svg",
-    "main.8cb3f6f3.css.map": "/angry-beaver-lodge/static/css/main.8cb3f6f3.css.map",
-    "main.eea9325c.js.map": "/angry-beaver-lodge/static/js/main.eea9325c.js.map"
+    "main.b3f6c67a.css.map": "/angry-beaver-lodge/static/css/main.b3f6c67a.css.map",
+    "main.4ac1fb5d.js.map": "/angry-beaver-lodge/static/js/main.4ac1fb5d.js.map"
   },
   "entrypoints": [
-    "static/css/main.8cb3f6f3.css",
-    "static/js/main.eea9325c.js"
+    "static/css/main.b3f6c67a.css",
+    "static/js/main.4ac1fb5d.js"
   ]
 }
