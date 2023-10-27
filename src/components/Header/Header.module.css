@@ -1,4 +1,5 @@
 .container {
+  height: 90px;
   padding: 26px 8px;
   text-align: right;
 }
@@ -67,7 +68,7 @@
   }
 
   .burgerIcon {
-    margin-left: 16px;
+    margin: 16px 16px 0;
   }
 
   .orderBtnWrap {

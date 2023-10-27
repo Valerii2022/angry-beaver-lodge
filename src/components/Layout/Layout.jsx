@@ -7,7 +7,9 @@ import { Outlet } from 'react-router-dom';
 const Layout = () => {
   return (
     <div className={css.container}>
-      <Header />
+      <div className={css.headerWrap}>
+        <Header />
+      </div>
       <main className={css.content}>
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
