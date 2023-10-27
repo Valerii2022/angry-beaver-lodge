@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+/* ====================================hero=================================== */
 .hero {
   position: relative;
   min-height: 80vh;
@@ -53,4 +54,120 @@
     width: 500px;
     height: 336px;
   }
+}
+
+/* ===========================================gallery================== */
+
+.gallery {
+  padding: 60px 0;
+  background-color: #000000;
+}
+
+.galleryList {
+  display: flex;
+  padding: 0 20px;
+  gap: 40px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.galleryItemOne {
+  background-image: url('https://menufyproduction.imgix.net/637568634491647099+456657.png?auto=compress,format&fit=max&w=1024&h=600');
+  min-height: 300px;
+  width: calc((100% - 40px) / 2);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.galleryItemTwo {
+  background-image: url('https://menufyproduction.imgix.net/637568634497554194+456658.png?auto=compress,format&fit=max&w=1024&h=600');
+  min-height: 300px;
+  width: calc((100% - 40px) / 2);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.galleryItemThree {
+  background-image: url('https://menufyproduction.imgix.net/637568634499504283+456659.png?auto=compress,format&fit=max&w=1024&h=600');
+  min-height: 300px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+@media screen and (max-width: 899px) {
+  .galleryList {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .galleryItemOne {
+    background-image: url('https://menufyproduction.imgix.net/637568634491647099+456657.png?auto=compress,format&fit=max&w=1024&h=600');
+    min-height: 300px;
+    width: calc((100% - 80px) * 0.34);
+  }
+
+  .galleryItemTwo {
+    background-image: url('https://menufyproduction.imgix.net/637568634497554194+456658.png?auto=compress,format&fit=max&w=1024&h=600');
+    min-height: 300px;
+    width: calc((100% - 80px) * 0.28);
+  }
+
+  .galleryItemThree {
+    background-image: url('https://menufyproduction.imgix.net/637568634499504283+456659.png?auto=compress,format&fit=max&w=1024&h=600');
+    min-height: 300px;
+    width: calc((100% - 80px) * 0.38);
+  }
+}
+
+/* ===========================================about============= */
+
+.aboutUs {
+  padding: 46px 15px;
+  background-color: rgb(237, 237, 237);
+}
+
+.title {
+  margin-bottom: 15px;
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.5;
+}
+
+.aboutText {
+  max-width: 1170px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* ===========================================social links============= */
+
+.socislLinks {
+  padding: 50px 15px;
+}
+
+.socialIconList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-top: 16px;
+}
+
+.socialIconLink {
+  cursor: pointer;
+}
+
+.socialIcon {
+  fill: #000000;
 }

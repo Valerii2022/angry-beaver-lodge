@@ -24,6 +24,10 @@
   cursor: pointer;
 }
 
+.socialIcon {
+  fill: #fff;
+}
+
 .footerBottom {
   text-align: center;
 }

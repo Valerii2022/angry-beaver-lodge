@@ -16,7 +16,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               title="facebook"
             >
-              <FacebookIcon width={30} height={30} />
+              <FacebookIcon className={css.socialIcon} width={30} height={30} />
             </a>
           </li>
           <li>
@@ -27,7 +27,11 @@ const Footer = () => {
               rel="noopener noreferrer"
               title="instagram"
             >
-              <InstagramIcon width={26} height={30} />
+              <InstagramIcon
+                className={css.socialIcon}
+                width={26}
+                height={30}
+              />
             </a>
           </li>
           <li>
@@ -38,7 +42,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               title="yelp"
             >
-              <YelpIcon width={23} height={30} />
+              <YelpIcon className={css.socialIcon} width={23} height={30} />
             </a>
           </li>
         </ul>
