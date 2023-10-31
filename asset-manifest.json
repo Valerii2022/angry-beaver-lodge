@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/angry-beaver-lodge/static/css/main.b3f6c67a.css",
-    "main.js": "/angry-beaver-lodge/static/js/main.4ac1fb5d.js",
+    "main.css": "/angry-beaver-lodge/static/css/main.3a904af4.css",
+    "main.js": "/angry-beaver-lodge/static/js/main.d17c6d11.js",
+    "static/media/map.png": "/angry-beaver-lodge/static/media/map.7cbe0bde221c031f5716.png",
     "static/media/logo.avif": "/angry-beaver-lodge/static/media/logo.0f5b3153d9ae5c4a4c61.avif",
     "static/media/instagram.svg": "/angry-beaver-lodge/static/media/instagram.d59957402a193f0d141b3f4bd692ca75.svg",
     "static/media/yelp.svg": "/angry-beaver-lodge/static/media/yelp.d117259b8a984c4f07fd8848a9de2d79.svg",
@@ -10,11 +11,11 @@
     "index.html": "/angry-beaver-lodge/index.html",
     "static/media/facebook.svg": "/angry-beaver-lodge/static/media/facebook.7db7af03986e9870c306c5b5c6fb9bb7.svg",
     "static/media/close.svg": "/angry-beaver-lodge/static/media/close.eb8f9f1706a26ac193bd47bbc69cedc7.svg",
-    "main.b3f6c67a.css.map": "/angry-beaver-lodge/static/css/main.b3f6c67a.css.map",
-    "main.4ac1fb5d.js.map": "/angry-beaver-lodge/static/js/main.4ac1fb5d.js.map"
+    "main.3a904af4.css.map": "/angry-beaver-lodge/static/css/main.3a904af4.css.map",
+    "main.d17c6d11.js.map": "/angry-beaver-lodge/static/js/main.d17c6d11.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3f6c67a.css",
-    "static/js/main.4ac1fb5d.js"
+    "static/css/main.3a904af4.css",
+    "static/js/main.d17c6d11.js"
   ]
 }
