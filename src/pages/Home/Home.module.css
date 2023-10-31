@@ -172,10 +172,10 @@
   fill: #000000;
 }
 
-/* ===============================================about=================== */
+/* ===============================================contacts=================== */
 
 .contacts {
-  padding: 70px 15px;
+  padding: 100px 15px;
   background-image: url('https://menufyproduction.imgix.net:443/637568635761899062+456662.png?blendMode=normal&blend=C9FFFFFF&auto=compress,format&fit=max&w=1024&h=1024');
   background-repeat: no-repeat;
   background-position: center;
@@ -188,11 +188,18 @@
 }
 
 .contactInner {
-  max-width: 1170px;
   margin: 0 auto;
   display: flex;
   gap: 30px;
-  justify-content: space-between;
+}
+
+.mapWrapper {
+  height: 300px;
+  background-color: #8e8e8e;
+  background-image: url('../../images/map.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .contactDescription {
@@ -202,13 +209,10 @@
   margin-bottom: 8px;
 }
 
-.optionsList {
-  text-align: start;
-}
-
 .benefitsList {
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  column-gap: 16px;
   font-size: 17px;
   line-height: 1.5;
 }
@@ -233,9 +237,74 @@
   font-size: 25px;
   font-weight: 600;
   line-height: 1.5;
+  text-align: start;
 }
 
 .addressList {
   padding: 16px 0;
-  max-width: 160px;
+  max-width: 165px;
+}
+
+.addressLink {
+  color: #000;
+  font-size: 17px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-style: normal;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.addressLink:hover {
+  text-decoration: underline;
+}
+
+.hoursWrapper {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.hoursInner {
+  padding: 4px 0 16px 0;
+  display: flex;
+  gap: 16px;
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: start;
+}
+
+.hoursInner .text {
+  margin-bottom: 8px;
+}
+
+@media screen and (max-width: 991px) {
+  .contactInner {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .hoursWrapper {
+    flex-direction: column;
+  }
+
+  .contactInner {
+    max-width: 1170px;
+    justify-content: space-between;
+  }
+
+  .contactsInfo {
+    width: calc((100% - 30px) / 2);
+  }
+
+  .mapWrapper {
+    width: calc((100% - 30px) / 2);
+  }
+
+  .mapWrapper img {
+    height: 100%;
+  }
 }
