@@ -140,6 +140,7 @@
   font-weight: 600;
   font-size: 40px;
   line-height: 1.5;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 1);
 }
 
 .aboutText {

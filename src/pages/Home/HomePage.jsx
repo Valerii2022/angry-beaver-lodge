@@ -9,7 +9,7 @@ import { ReactComponent as Phone } from '../../images/phone.svg';
 
 const Home = () => {
   return (
-    <main className={css.container}>
+    <div className={css.container}>
       <section className={css.hero}>
         <div className={css.contentWrap}>
           <img className={css.logo} src={logo} alt="logo" />
@@ -177,7 +177,7 @@ const Home = () => {
           <div className={css.mapWrapper}></div>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 
