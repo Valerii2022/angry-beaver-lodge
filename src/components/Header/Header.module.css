@@ -2,6 +2,17 @@
   height: 90px;
   padding: 26px 8px;
   text-align: right;
+  transition: background-color 250ms linear, box-shadow 250ms linear;
+}
+
+.defaultContainer {
+  background-color: transparent;
+  box-shadow: 0 1px 6px 0 transparent;
+}
+
+.scrollContainer {
+  background-color: #fff;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
 .closeIcon {

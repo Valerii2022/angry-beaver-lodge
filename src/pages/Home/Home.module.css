@@ -171,3 +171,71 @@
 .socialIcon {
   fill: #000000;
 }
+
+/* ===============================================about=================== */
+
+.contacts {
+  padding: 70px 15px;
+  background-image: url('https://menufyproduction.imgix.net:443/637568635761899062+456662.png?blendMode=normal&blend=C9FFFFFF&auto=compress,format&fit=max&w=1024&h=1024');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #e8e8e8;
+}
+
+.contacts .title {
+  text-align: start;
+}
+
+.contactInner {
+  max-width: 1170px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.contactDescription {
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: start;
+  margin-bottom: 8px;
+}
+
+.optionsList {
+  text-align: start;
+}
+
+.benefitsList {
+  display: flex;
+  gap: 16px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.benefitsList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.benefitsList li::before {
+  content: ' ';
+  display: block;
+  width: 5px;
+  height: 10px;
+  border-bottom: 2px solid #000000;
+  border-right: 2px solid #000000;
+  transform: rotate(45deg);
+}
+
+.subtitle {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.addressList {
+  padding: 16px 0;
+  max-width: 160px;
+}

@@ -3,12 +3,29 @@ import css from './Header.module.css';
 import { ReactComponent as CartIcon } from '../../images/cart.svg';
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 import { ReactComponent as BurgerIcon } from '../../images/burger.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(true);
+
+  const [header, setHeader] = useState('');
+
+  const listenScrollEvent = event => {
+    if (window.scrollY < 53) {
+      return setHeader(css.defaultContainer);
+    } else if (window.scrollY > 50) {
+      return setHeader(css.scrollContainer);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', listenScrollEvent);
+
+    return () => window.removeEventListener('scroll', listenScrollEvent);
+  }, []);
+
   return (
-    <header className={css.container}>
+    <header className={`${css.container} ${header}`}>
       <nav>
         <div
           className={
