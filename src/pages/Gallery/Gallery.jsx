@@ -1,7 +1,11 @@
 import css from './Gallery.module.css';
 import logo from '../../images/logo.avif';
+import { useSelector } from 'react-redux';
+import { getImages } from 'redux/selectors';
 
 const Gallery = () => {
+  const images = useSelector(getImages);
+
   return (
     <div>
       <section className={css.container}>
@@ -19,23 +23,21 @@ const Gallery = () => {
         <h2 className={css.title}>Gallery</h2>
       </section>
       <section className={css.gallery}>
-        <div className={css.galleryInner}>
-          <div className={`${css.item} ${css.half1}`}>1</div>
-          <div className={`${css.item} ${css.half2}`}>2</div>
-          <div className={`${css.item} ${css.half3}`}>3</div>
-          <div className={`${css.item} ${css.half4}`}>4</div>
-          <div className={`${css.item} ${css.half5}`}>5</div>
-          <div className={`${css.item} ${css.half6}`}>6</div>
-          <div className={`${css.item} ${css.half7}`}>7</div>
-          <div className={`${css.item} ${css.half8}`}>8</div>
-          <div className={`${css.item} ${css.half9}`}>9</div>
-          <div className={`${css.item} ${css.half10}`}>10</div>
-          <div className={`${css.item} ${css.half11}`}>11</div>
-          <div className={`${css.item} ${css.half12}`}>12</div>
-          <div className={`${css.item} ${css.half13}`}>13</div>
-          <div className={`${css.item} ${css.half14}`}>14</div>
-          <div className={`${css.item} ${css.half15}`}>15</div>
-        </div>
+        <ul className={css.galleryInner}>
+          {images &&
+            images.map(elem => {
+              return (
+                <li
+                  id={css[`${elem.id}`]}
+                  key={elem.id}
+                  style={{
+                    backgroundImage: `url(${elem.backgroundImage})`,
+                  }}
+                  className={css.item}
+                ></li>
+              );
+            })}
+        </ul>
       </section>
     </div>
   );
