@@ -1,7 +1,7 @@
 .footer {
   padding: 48px 0 56px 0;
-  color: #fff;
-  background-color: #000000;
+  color: var(--primary-bg-color);
+  background-color: var(--primary-color);
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
@@ -25,7 +25,7 @@
 }
 
 .socialIcon {
-  fill: #fff;
+  fill: var(--primary-bg-color);
 }
 
 .footerBottom {
@@ -33,7 +33,7 @@
 }
 
 .manufyLink {
-  color: #fff;
+  color: var(--primary-bg-color);
   margin-right: 4px;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .footerLink {
-  color: #fff;
+  color: var(--primary-bg-color);
 }
 
 @media screen and (min-width: 1200px) {

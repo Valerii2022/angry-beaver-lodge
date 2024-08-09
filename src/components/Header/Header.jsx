@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import css from './Header.module.css';
 import { ReactComponent as CartIcon } from '../../images/cart.svg';
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(true);
-
   const [header, setHeader] = useState('');
+  const navigate = useNavigate();
 
-  const listenScrollEvent = event => {
+  const listenScrollEvent = () => {
     if (window.scrollY < 53) {
       return setHeader(css.defaultContainer);
     } else if (window.scrollY > 50) {
@@ -77,24 +77,29 @@ const Header = () => {
               </NavLink>
             </li>
             <li className={css.orderBtnWrap}>
-              <NavLink
+              <button
                 className={`${css.link} ${css.orderLink}`}
-                to="/order"
                 onClick={() => {
+                  navigate('/order');
                   setMenuStatus(true);
                 }}
               >
                 Order Online
-              </NavLink>
+              </button>
             </li>
           </ul>
         </div>
 
         <div className={css.cartWrapper}>
-          <NavLink className={css.link} to="/order">
+          <button
+            className={`${css.link} ${css.cartLink}`}
+            onClick={() => {
+              navigate('/order');
+            }}
+          >
             <CartIcon className={css.cartIcon} />
             <span className={css.cartValue}>0</span>
-          </NavLink>
+          </button>
           <BurgerIcon
             onClick={() => {
               setMenuStatus(false);

@@ -2,7 +2,7 @@
   height: 90px;
   padding: 26px 8px;
   text-align: right;
-  transition: background-color 250ms linear, box-shadow 250ms linear;
+  transition: background-color var(--transition), box-shadow var(--transition);
 }
 
 .defaultContainer {
@@ -11,8 +11,8 @@
 }
 
 .scrollContainer {
-  background-color: #fff;
-  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  background-color: var(--primary-bg-color);
+  box-shadow: 0 1px 6px 0 var(--shadow-dark);
 }
 
 .closeIcon {
@@ -27,17 +27,16 @@
 }
 
 .orderBtnWrap {
-  background-color: #fff;
-  border: 2px solid rgba(0, 0, 0, 1);
+  outline: none;
 }
 
 .orderLink {
+  background-color: var(--primary-bg-color);
   padding: 6px 12px;
 }
 
 .link {
-  text-decoration: none;
-  color: #000000;
+  color: var(--primary-color);
   line-height: 1.5;
   font-weight: 600;
   display: inline-flex;
@@ -46,6 +45,12 @@
 
 .cartWrapper {
   display: inline-block;
+}
+
+.cartLink {
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 .cartIcon {
@@ -60,7 +65,7 @@
 
 @media screen and (max-width: 991px) {
   .navigationWrapper {
-    background-color: #fff;
+    background-color: var(--primary-bg-color);
     width: 100vw;
     height: 100vh;
     position: fixed;

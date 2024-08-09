@@ -1,10 +1,20 @@
+:root {
+  --primary-color: #000000;
+  --primary-bg-color: #ffffff;
+  --secondary-bg-color: #ededed;
+
+  --shadow-light: rgba(255, 255, 255, 1);
+  --shadow-dark: rgba(32, 33, 36, 0.28);
+  --transition: 250ms linear;
+}
+
 body {
   margin: 0;
   font-family: 'Libre Baskerville', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #000000;
-  background-color: #fff;
+  color: var(--primary-color);
+  background-color: var(--primary-bg-color);
   font-size: 15px;
 }
 
@@ -31,6 +41,10 @@ h6 {
 
 a {
   text-decoration: none;
+}
+
+.active {
+  text-decoration: underline;
 }
 
 /* font-family: 'Permanent Marker', cursive;
