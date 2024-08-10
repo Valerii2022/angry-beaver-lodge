@@ -17,7 +17,12 @@
   gap: 30px;
 }
 
+.mapLink {
+  width: 100%;
+}
+
 .mapWrapper {
+  display: block;
   height: 300px;
   background-color: var(--secondary-bg-color);
   background-image: url('../../images/map.png');
@@ -80,8 +85,11 @@
     width: calc((100% - 30px) / 2);
   }
 
-  .mapWrapper {
+  .mapLink {
     width: calc((100% - 30px) / 2);
+  }
+
+  .mapWrapper {
     height: 674px;
     background-image: url('../../images/map-tab.png');
   }

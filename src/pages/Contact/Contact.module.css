@@ -38,6 +38,7 @@
 }
 
 .mapWrapper {
+  display: block;
   height: 300px;
   background-color: var(--secondary-bg-color);
   background-image: url('../../images/map.png');

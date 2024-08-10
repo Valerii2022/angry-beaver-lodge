@@ -27,14 +27,15 @@ const Contacts = () => {
           <Address />
           <Schedule />
         </div>
-        <a
-          className={css.addressLink}
-          href="https://maps.app.goo.gl/N7b2EEKPf1eH4ogJ6"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className={css.mapWrapper}></div>
-        </a>
+        <div className={css.mapLink}>
+          <a
+            href="https://maps.app.goo.gl/N7b2EEKPf1eH4ogJ6"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className={css.mapWrapper}></span>
+          </a>
+        </div>
       </div>
     </section>
   );

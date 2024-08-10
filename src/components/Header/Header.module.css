@@ -8,17 +8,18 @@
   text-align: right;
   padding: 26px 8px;
   background-color: transparent;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+.logo {
+  margin-right: auto;
 }
 
 .pagesNavigate {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding-left: 20px;
-}
-
-.pagesContainer {
-  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
 .defaultContainer {

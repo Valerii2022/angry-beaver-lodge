@@ -18,12 +18,11 @@ const Contact = () => {
             <Title title="The Angry Beaver Lodge" />
             <Address />
             <a
-              className={css.addressLink}
               href="https://maps.app.goo.gl/N7b2EEKPf1eH4ogJ6"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className={css.mapWrapper}></div>
+              <span className={css.mapWrapper}></span>
             </a>
             <Schedule />
           </div>
