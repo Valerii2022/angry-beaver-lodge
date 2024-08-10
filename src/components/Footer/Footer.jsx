@@ -1,7 +1,7 @@
-import css from './Footer.module.css';
 import { ReactComponent as FacebookIcon } from '../../images/facebook.svg';
 import { ReactComponent as InstagramIcon } from '../../images/instagram.svg';
 import { ReactComponent as YelpIcon } from '../../images/yelp.svg';
+import css from './Footer.module.css';
 
 const Footer = () => {
   return (

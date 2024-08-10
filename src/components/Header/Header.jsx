@@ -1,10 +1,11 @@
+import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import css from './Header.module.css';
 import logo from '../../images/logo.avif';
 import { ReactComponent as CartIcon } from '../../images/cart.svg';
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 import { ReactComponent as BurgerIcon } from '../../images/burger.svg';
-import { useEffect, useState } from 'react';
+import { scrollToTop } from 'helpers/scrollToTop';
+import css from './Header.module.css';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(true);
@@ -27,6 +28,11 @@ const Header = () => {
     return () => window.removeEventListener('scroll', listenScrollEvent);
   }, []);
 
+  const handleNavigateLinkClick = () => {
+    scrollToTop();
+    setMenuStatus(true);
+  };
+
   return (
     <header
       className={
@@ -45,9 +51,7 @@ const Header = () => {
           }
         >
           <CloseIcon
-            onClick={() => {
-              setMenuStatus(true);
-            }}
+            onClick={handleNavigateLinkClick}
             className={css.closeIcon}
             width={16}
             height={16}
@@ -57,9 +61,7 @@ const Header = () => {
               <NavLink
                 className={css.link}
                 to="/"
-                onClick={() => {
-                  setMenuStatus(true);
-                }}
+                onClick={handleNavigateLinkClick}
               >
                 Home
               </NavLink>
@@ -68,9 +70,7 @@ const Header = () => {
               <NavLink
                 className={css.link}
                 to="/gallery"
-                onClick={() => {
-                  setMenuStatus(true);
-                }}
+                onClick={handleNavigateLinkClick}
               >
                 Gallery
               </NavLink>
@@ -79,9 +79,7 @@ const Header = () => {
               <NavLink
                 className={css.link}
                 to="/contact"
-                onClick={() => {
-                  setMenuStatus(true);
-                }}
+                onClick={handleNavigateLinkClick}
               >
                 Contact
               </NavLink>

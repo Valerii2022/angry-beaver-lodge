@@ -1,7 +1,7 @@
-import css from './Contacts.module.css';
 import Title from 'components/Title/Title';
 import Address from 'components/Address/Address';
 import Schedule from 'components/WorkingHours/Schedule';
+import css from './Contacts.module.css';
 
 const Contacts = () => {
   return (
@@ -27,7 +27,14 @@ const Contacts = () => {
           <Address />
           <Schedule />
         </div>
-        <div className={css.mapWrapper}></div>
+        <a
+          className={css.addressLink}
+          href="https://maps.app.goo.gl/N7b2EEKPf1eH4ogJ6"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className={css.mapWrapper}></div>
+        </a>
       </div>
     </section>
   );

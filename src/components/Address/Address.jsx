@@ -1,6 +1,5 @@
 import { ReactComponent as RoadSign } from '../../images/road.svg';
 import { ReactComponent as Phone } from '../../images/phone.svg';
-
 import css from './Address.module.css';
 
 const Address = () => {

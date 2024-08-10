@@ -1,5 +1,5 @@
-import css from './Order.module.css';
 import logo from '../../images/logo.avif';
+import css from './Order.module.css';
 
 const Order = () => {
   return (

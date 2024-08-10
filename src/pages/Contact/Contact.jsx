@@ -1,9 +1,9 @@
-import css from './Contact.module.css';
 import logo from '../../images/logo.avif';
 import Title from 'components/Title/Title';
 import Form from 'components/ContactForm/ContactForm';
 import Address from 'components/Address/Address';
 import Schedule from 'components/WorkingHours/Schedule';
+import css from './Contact.module.css';
 
 const Contact = () => {
   return (
@@ -17,7 +17,14 @@ const Contact = () => {
           <div className={css.contactsInfo}>
             <Title title="The Angry Beaver Lodge" />
             <Address />
-            <div className={css.mapWrapper}></div>
+            <a
+              className={css.addressLink}
+              href="https://maps.app.goo.gl/N7b2EEKPf1eH4ogJ6"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className={css.mapWrapper}></div>
+            </a>
             <Schedule />
           </div>
           <div className={css.formWrapper}>
