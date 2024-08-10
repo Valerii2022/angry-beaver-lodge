@@ -1,5 +1,6 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import css from './Header.module.css';
+import logo from '../../images/logo.avif';
 import { ReactComponent as CartIcon } from '../../images/cart.svg';
 import { ReactComponent as CloseIcon } from '../../images/close.svg';
 import { ReactComponent as BurgerIcon } from '../../images/burger.svg';
@@ -9,6 +10,8 @@ const Header = () => {
   const [menuStatus, setMenuStatus] = useState(true);
   const [header, setHeader] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const homePage = location.pathname.endsWith('/');
 
   const listenScrollEvent = () => {
     if (window.scrollY < 53) {
@@ -25,8 +28,15 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`${css.container} ${header}`}>
-      <nav>
+    <header
+      className={
+        homePage
+          ? `${css.homeContainer} ${css.container} ${header}`
+          : css.container
+      }
+    >
+      <nav className={!homePage ? css.pagesNavigate : ''}>
+        {!homePage && <img src={logo} alt="Logo" width={147} height={85} />}
         <div
           className={
             menuStatus

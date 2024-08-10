@@ -1,9 +1,10 @@
+import Title from 'components/Title/Title';
 import css from './About.module.css';
 
 const About = () => {
   return (
     <section className={css.aboutUs}>
-      <h2 className={css.title}>About Us</h2>
+      <Title title="About Us" />
       <p className={css.aboutText}>
         The Angry Beaver Lodge has been the cornerstone of Oakes Main Street for
         over 20 years. The unusual name stems from owner Shawn Ulmer’s three

@@ -1,0 +1,104 @@
+.contacts {
+  padding: 100px 15px;
+  background-image: url('https://menufyproduction.imgix.net:443/637568635761899062+456662.png?blendMode=normal&blend=C9FFFFFF&auto=compress,format&fit=max&w=1024&h=1024');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: var(--secondary-bg-color);
+}
+
+.titleWrapper {
+  text-align: start;
+}
+
+.contactInner {
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+}
+
+.mapWrapper {
+  height: 300px;
+  background-color: var(--secondary-bg-color);
+  background-image: url('../../images/map.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.contactDescription {
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: start;
+  margin-bottom: 8px;
+}
+
+.benefitsList {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.benefitsList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.benefitsList li::before {
+  content: ' ';
+  display: block;
+  width: 5px;
+  height: 10px;
+  border-bottom: 2px solid var(--primary-color);
+  border-right: 2px solid var(--primary-color);
+  transform: rotate(45deg);
+}
+
+.subtitle {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: start;
+}
+
+@media screen and (max-width: 991px) {
+  .contactInner {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .contactInner {
+    max-width: 1170px;
+    justify-content: space-between;
+  }
+
+  .contactsInfo {
+    width: calc((100% - 30px) / 2);
+  }
+
+  .mapWrapper {
+    width: calc((100% - 30px) / 2);
+    height: 674px;
+    background-image: url('../../images/map-tab.png');
+  }
+
+  .mapWrapper {
+    height: 674px;
+  }
+}
+
+@media screen and (min-width: 1027px) {
+  .mapWrapper {
+    height: 614px;
+  }
+}
+
+@media screen and (min-width: 1172px) {
+  .mapWrapper {
+    height: 589px;
+  }
+}

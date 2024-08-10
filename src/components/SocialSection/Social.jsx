@@ -2,14 +2,15 @@ import css from './Social.module.css';
 import { ReactComponent as FacebookIcon } from '../../images/facebook.svg';
 import { ReactComponent as InstagramIcon } from '../../images/instagram.svg';
 import { ReactComponent as YelpIcon } from '../../images/yelp.svg';
+import Title from 'components/Title/Title';
 
 const Social = () => {
   return (
     <section className={css.socislLinks}>
-      <h2 className={css.title}>
-        Check us out on social media for upcoming events, specials, and other
-        fun things we've got going on!
-      </h2>
+      <Title
+        title={`Check us out on social media for upcoming events, specials, and other
+        fun things we've got going on!`}
+      />
       <ul className={css.socialIconList}>
         <li>
           <a

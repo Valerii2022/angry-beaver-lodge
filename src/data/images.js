@@ -2,76 +2,77 @@ export const images = [
   {
     id: 'item1',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639918375396+456665.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270518/beaver/Gallery/item1_ym1g8y.avif',
   },
   {
     id: 'item2',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639920836483+456666.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270518/beaver/Gallery/item2_anhpmw.avif',
   },
   {
     id: 'item3',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639923236690+456667.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270519/beaver/Gallery/item3_atg4e5.avif',
   },
   {
     id: 'item4',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639924986824+456668.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270521/beaver/Gallery/item4_qvykgq.avif',
   },
   {
     id: 'item5',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639927737059+456669.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270521/beaver/Gallery/item5_blg447.avif',
   },
   {
     id: 'item6',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639929948554+456670.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270522/beaver/Gallery/item6_qy8qx2.avif',
   },
   {
     id: 'item7',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639931698718+456671.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270518/beaver/Gallery/item7_fyeogs.avif',
   },
   {
     id: 'item8',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639933448829+456672.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270523/beaver/Gallery/item8_ul0kye.avif',
   },
   {
     id: 'item9',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639935566439+456673.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270524/beaver/Gallery/item9_hxks6n.avif',
   },
+
   {
     id: 'item10',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639935566439+456673.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270525/beaver/Gallery/item10_rso0gl.avif',
   },
   {
     id: 'item11',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568639938166438+456674.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270525/beaver/Gallery/item11_nugd31.avif',
   },
   {
     id: 'item12',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568640204386751+456676.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270527/beaver/Gallery/item12_f6nbk6.avif',
   },
   {
     id: 'item13',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568640206336736+456677.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270527/beaver/Gallery/item13_x5zxeb.avif',
   },
   {
     id: 'item14',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568640208336833+456678.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270517/beaver/Gallery/item14_pvqkc8.avif',
   },
   {
     id: 'item15',
     backgroundImage:
-      'https://menufyproduction.imgix.net/637568640210798370+456679.png?auto=compress,format&fit=max&w=1024&h=800',
+      'https://res.cloudinary.com/dqyjr9t6r/image/upload/v1723270517/beaver/Gallery/item15_jox6cv.avif',
   },
 ];

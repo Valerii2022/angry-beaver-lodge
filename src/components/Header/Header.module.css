@@ -1,8 +1,24 @@
 .container {
   height: 90px;
-  padding: 26px 8px;
-  text-align: right;
   transition: background-color var(--transition), box-shadow var(--transition);
+  background-color: var(--primary-bg-color);
+}
+
+.homeContainer {
+  text-align: right;
+  padding: 26px 8px;
+  background-color: transparent;
+}
+
+.pagesNavigate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.pagesContainer {
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
 .defaultContainer {

@@ -1,0 +1,43 @@
+.subtitle {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: start;
+}
+
+.hoursWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.hoursInner {
+  padding: 4px 0 16px 0;
+  display: flex;
+  gap: 16px;
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: start;
+}
+
+.hoursInner .text {
+  margin-bottom: 8px;
+}
+
+@media screen and (min-width: 636px) {
+  .hoursWrapper {
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .hoursWrapper {
+    gap: 30px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .hoursWrapper {
+    flex-direction: column;
+  }
+}
