@@ -43,13 +43,15 @@ const Header = () => {
     >
       <nav className={!homePage ? css.pagesNavigate : ''}>
         {!homePage && (
-          <img
-            className={css.logo}
-            src={logo}
-            alt="Logo"
-            width={147}
-            height={85}
-          />
+          <a className={css.logoLink} href="/angry-beaver-lodge">
+            <img
+              className={css.logo}
+              src={logo}
+              alt="Logo"
+              width={147}
+              height={85}
+            />
+          </a>
         )}
         <div
           className={
