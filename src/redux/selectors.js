@@ -1,3 +1,2 @@
-export const getImages = state => state.images;
-export const getProducts = state => state.products;
-export const getCart = state => state.cart;
+export const getAllProducts = state => state.products.products;
+export const getImages = state => state.images.images;

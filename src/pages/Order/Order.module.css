@@ -1,8 +1,6 @@
 .container {
-  height: 90px;
-  background-color: #fff;
-}
-.sectionHeader {
-  padding-left: 20px;
-  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  padding-top: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

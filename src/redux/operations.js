@@ -1,9 +1,28 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://653a0e10e3b530c8d9e91220.mockapi.io';
+axios.defaults.baseURL = 'https://angry-beaver-oakes-be.vercel.app';
 
-export const fetchImages = createAsyncThunk('images/fetchAll', async data => {
-  const response = await axios.get('/images');
-  return response.data;
-});
+export const getProducts = createAsyncThunk(
+  'products/allProducts',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/api/products');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getGallery = createAsyncThunk(
+  'images/allImages',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/api/gallery');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

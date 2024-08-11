@@ -1,10 +1,17 @@
-import { useSelector } from 'react-redux';
-import { getImages } from 'redux/selectors';
 import Title from 'components/Title/Title';
 import css from './Gallery.module.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGallery } from 'redux/operations';
+import { getImages } from 'redux/selectors';
 
 const Gallery = () => {
+  const dispatch = useDispatch();
   const images = useSelector(getImages);
+
+  useEffect(() => {
+    dispatch(getGallery());
+  }, [dispatch]);
 
   return (
     <div className={css.container}>

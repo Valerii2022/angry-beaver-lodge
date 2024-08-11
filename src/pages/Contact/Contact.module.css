@@ -5,7 +5,6 @@
 .titleWrap {
   text-align: center;
   padding: 100px 15px;
-  background-color: var(--secondary-bg-color);
   background-image: url('https://menufyproduction.imgix.net:443/637568639349406171+456664.png?blendMode=normal&blend=7AFFFFFF&auto=compress,format&fit=max&w=1024&h=1024');
   background-position: center;
   background-repeat: no-repeat;
@@ -25,7 +24,6 @@
 
 .formContainer {
   padding: 50px 15px 160px;
-  background-color: var(--secondary-bg-color);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -40,7 +38,6 @@
 .mapWrapper {
   display: block;
   height: 300px;
-  background-color: var(--secondary-bg-color);
   background-image: url('../../images/map.png');
   background-repeat: no-repeat;
   background-position: center;
