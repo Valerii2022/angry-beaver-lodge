@@ -69,6 +69,10 @@
   text-align: start;
 }
 
+.addressWrapper {
+  padding: 16px 0;
+}
+
 @media screen and (max-width: 991px) {
   .contactInner {
     flex-direction: column;

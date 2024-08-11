@@ -1,5 +1,4 @@
-import { ReactComponent as RoadSign } from '../../images/road.svg';
-import { ReactComponent as Phone } from '../../images/phone.svg';
+import icons from '../../images/icons.svg';
 import css from './Address.module.css';
 
 const Address = () => {
@@ -13,7 +12,9 @@ const Address = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <RoadSign width={22} height={24} />
+            <svg width={22} height={24}>
+              <use href={`${icons}#road`} />
+            </svg>
             <p>404 MAIN AVE </p>
             <p>OAKES, ND 58474</p>
           </a>
@@ -26,7 +27,9 @@ const Address = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Phone width={16} height={16} />
+            <svg width={16} height={16}>
+              <use href={`${icons}#phone`} />
+            </svg>
             <p>(701) 742-3458</p>
           </a>
         </li>

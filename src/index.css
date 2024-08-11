@@ -1,9 +1,15 @@
 :root {
   --primary-color: #000000;
+  --secondary-color: #1b1e21;
   --primary-bg-color: #ffffff;
   --secondary-bg-color: #ededed;
-
-  --shadow-light: rgba(255, 255, 255, 1);
+  --icon-color: #4d4f52;
+  --accent-color: #1072d3;
+  --hover-color: #0056b3;
+  --warning-color: #dc3545;
+  --access-color: #228237;
+  --hover-access-color: #218838;
+  --shadow-light: rgba(255, 255, 255, 0.8);
   --shadow-dark: rgba(32, 33, 36, 0.28);
   --transition: 250ms linear;
 }

@@ -19,9 +19,9 @@ const Gallery = () => {
         <Title title="Gallery" />
       </section>
       <section className={css.gallery}>
-        <ul className={css.galleryInner}>
-          {images &&
-            images.map(elem => {
+        {images && images.length !== 0 ? (
+          <ul className={css.galleryInner}>
+            {images.map(elem => {
               return (
                 <li
                   id={css[`${elem.id}`]}
@@ -33,7 +33,12 @@ const Gallery = () => {
                 ></li>
               );
             })}
-        </ul>
+          </ul>
+        ) : (
+          <p className={css.errorText}>
+            Sorry! We have some technical problems. Try again later!
+          </p>
+        )}
       </section>
     </div>
   );

@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../images/logo.avif';
-import { ReactComponent as CartIcon } from '../../images/cart.svg';
-import { ReactComponent as CloseIcon } from '../../images/close.svg';
-import { ReactComponent as BurgerIcon } from '../../images/burger.svg';
+import icons from '../../images/icons.svg';
 import { scrollToTop } from 'helpers/scrollToTop';
 import css from './Header.module.css';
 
@@ -60,12 +58,14 @@ const Header = () => {
               : css.navigationWrapper
           }
         >
-          <CloseIcon
+          <svg
             onClick={handleNavigateLinkClick}
             className={css.closeIcon}
             width={16}
             height={16}
-          />
+          >
+            <use href={`${icons}#close`} />
+          </svg>
           <ul className={css.navigation}>
             <li>
               <NavLink
@@ -115,17 +115,21 @@ const Header = () => {
               navigate('/order');
             }}
           >
-            <CartIcon className={css.cartIcon} />
+            <svg className={css.cartIcon}>
+              <use href={`${icons}#cart`} />
+            </svg>
             <span className={css.cartValue}>0</span>
           </button>
-          <BurgerIcon
+          <svg
             onClick={() => {
               setMenuStatus(false);
             }}
             className={css.burgerIcon}
             width={16}
             height={16}
-          />
+          >
+            <use href={`${icons}#burger`} />
+          </svg>
         </div>
       </nav>
     </header>

@@ -16,7 +16,9 @@ const Contact = () => {
         <div className={css.contactInner}>
           <div className={css.contactsInfo}>
             <Title title="The Angry Beaver Lodge" />
-            <Address />
+            <div className={css.addressWrapper}>
+              <Address />
+            </div>
             <a
               href="https://maps.app.goo.gl/N7b2EEKPf1eH4ogJ6"
               target="_blank"

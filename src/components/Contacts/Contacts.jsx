@@ -24,7 +24,7 @@ const Contacts = () => {
             <li>Sandwiches</li>
             <li>Steak</li>
           </ul>
-          <Address />
+          <div className={css.addressWrapper}><Address /></div>
           <Schedule />
         </div>
         <div className={css.mapLink}>
