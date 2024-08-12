@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import Modal from 'components/Modal/Modal';
-import GroupModal from 'components/GroupOrderModal/GroupOrderModal';
-import SignUpModal from 'components/SignUpModal/SignUpModal';
+import Modal from 'components/Modals/Modal/Modal';
+import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
+import SignUpModal from 'components/Modals/SignUpModal/SignUpModal';
 import Address from 'components/Address/Address';
 import Schedule from 'components/WorkingHours/Schedule';
 import Products from 'components/ProductsList/Products';
 import Cart from 'components/Cart/Cart';
 import icons from '../../images/icons.svg';
 import css from './Order.module.css';
+import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityModal';
 
 const Order = () => {
   const [groupModalOpen, setGroupModalOpen] = useState(false);
@@ -55,7 +56,7 @@ const Order = () => {
                 className={css.detailsBtn}
                 onClick={() => setCarryoutModal(true)}
               >
-                Carryout
+                5:00 PM - 2:00 AM
               </button>
             </li>
             <li className={css.detailsItem}>
@@ -100,8 +101,11 @@ const Order = () => {
             </li>
           </ul>
           <div className={css.availability}>
-            <p>Start your carryout order.</p>
-            <button onClick={() => setAvailabilityModal(true)}>
+            <p className={css.availabilityTitle}>Start your carryout order.</p>
+            <button
+              className={css.availabilityBtn}
+              onClick={() => setAvailabilityModal(true)}
+            >
               Check Availability
             </button>
           </div>
@@ -118,29 +122,23 @@ const Order = () => {
         </div>
       </div>
       {groupModalOpen && (
-        <Modal modalIsOpen={setGroupModalOpen}>
+        <Modal modalIsOpen={setGroupModalOpen} title="Group Order">
           <GroupModal />
         </Modal>
       )}
       {signupModalOpen && (
-        <Modal modalIsOpen={setSignupModalOpen}>
+        <Modal modalIsOpen={setSignupModalOpen} title="Sign Up For Deals">
           <SignUpModal />
         </Modal>
       )}
       {carryoutModal && (
-        <Modal modalIsOpen={setCarryoutModal}>
+        <Modal modalIsOpen={setCarryoutModal} title="Hours">
           <Schedule />
         </Modal>
       )}
       {availabilityModal && (
-        <Modal modalIsOpen={setAvailabilityModal}>
-          <div>
-            <h2>Pick And Order Type</h2>
-            <p>Restaurant Location:</p>
-            <span>Delivery</span>
-            <span>Carryout</span>
-            <button>Update</button>
-          </div>
+        <Modal modalIsOpen={setAvailabilityModal} title="Pick And Order Type">
+          <AvailabilityModal />
         </Modal>
       )}
     </>

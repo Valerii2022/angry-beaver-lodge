@@ -1,6 +1,5 @@
 .container {
   padding-top: 90px;
-  padding-bottom: 16px;
   position: relative;
   background-color: var(--primary-bg-color);
   font-family: 'Roboto', sans-serif;
@@ -25,7 +24,7 @@
   border: none;
   outline: none;
   color: var(--accent-color);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
 }
 
@@ -46,7 +45,7 @@
 .detailsItem {
   min-height: 24px;
   display: flex;
-  gap: 4px;
+  gap: 8px;
   align-items: center;
   font-weight: 400;
 }
@@ -84,6 +83,21 @@
 
 .availability {
   text-align: center;
+}
+
+.availabilityTitle {
+  margin-bottom: 4px;
+}
+
+.availabilityBtn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  height: 38px;
+  border: none;
+  outline: none;
+  background-color: var(--accent-color);
+  color: var(--primary-bg-color);
+  font-weight: 500;
 }
 
 .viewCartBtnWrapper {
@@ -147,6 +161,15 @@
 
   .announcementBtn:hover {
     color: var(--primary-color);
+  }
+
+  .availabilityBtn {
+    cursor: pointer;
+    transition: background-color var(--transition);
+  }
+
+  .availabilityBtn {
+    background-color: var(--hover-color);
   }
 }
 

@@ -3,7 +3,6 @@ import css from './SignUpModal.module.css';
 const SignUpModal = () => {
   return (
     <div className={css.container}>
-      <h2 className={css.title}>Sign Up For Deals</h2>
       <p>
         Sign up for future deals from <span>The Angry Beaver Lodge.</span> You
         can opt-out of email promotions at any time.

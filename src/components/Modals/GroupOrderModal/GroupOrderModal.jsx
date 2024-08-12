@@ -3,7 +3,6 @@ import css from './GrouporderModal.module.css';
 const GroupModal = () => {
   return (
     <div className={css.container}>
-      <h2 className={css.title}>Group Order</h2>
       <div>
         <p>Share this link with your guests</p>
         <p>
