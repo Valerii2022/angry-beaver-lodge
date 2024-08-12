@@ -113,6 +113,7 @@ const Header = () => {
           <button
             className={`${css.link} ${css.cartLink}`}
             onClick={() => {
+              document.body.classList.add('lock');
               navigate('/order', { state: { cart: true } });
             }}
           >

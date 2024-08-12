@@ -24,6 +24,13 @@ const GroupModal = () => {
       });
   };
 
+  const handleLimitFormSubmit = e => {
+    e.preventDefault();
+    const limitValue = document.querySelector('input[name="limit"]:checked');
+    setLimit(limitValue.id);
+    setChange(false);
+  };
+
   return (
     <div className={css.container}>
       <div className={css.titleWrapper}>
@@ -59,76 +66,44 @@ const GroupModal = () => {
             <span>change</span>
           </button>
         </div>
-        <form className={change ? css.limitChooseBlock : css.hidden}>
+        <form
+          className={change ? css.limitChooseBlock : css.hidden}
+          onSubmit={handleLimitFormSubmit}
+        >
           <p className={css.title}>Order limit per guest</p>
           <ul className={css.limitList}>
             <li>
-              <input
-                id="no"
-                type="radio"
-                name="limit"
-                onChange={() => setLimit('No')}
-              />
-              <label htmlFor="no" className={css.limitLabel}>
+              <input id="No" type="radio" name="limit" />
+              <label htmlFor="No" className={css.limitLabel}>
                 No limit
               </label>
             </li>
             <li>
-              <input
-                id="10"
-                type="radio"
-                name="limit"
-                onChange={() => setLimit('$10')}
-              />
-              <label htmlFor="10" className={css.limitLabel}>
+              <input id="$10" type="radio" name="limit" />
+              <label htmlFor="$10" className={css.limitLabel}>
                 $10
               </label>
             </li>
             <li>
-              <input
-                id="20"
-                type="radio"
-                name="limit"
-                onChange={() => setLimit('$20')}
-              />
-              <label htmlFor="20" className={css.limitLabel}>
+              <input id="$20" type="radio" name="limit" />
+              <label htmlFor="$20" className={css.limitLabel}>
                 $20
               </label>
             </li>
             <li>
-              <input
-                id="30"
-                type="radio"
-                name="limit"
-                onChange={() => setLimit('$30')}
-              />
-              <label htmlFor="30" className={css.limitLabel}>
+              <input id="$30" type="radio" name="limit" />
+              <label htmlFor="$30" className={css.limitLabel}>
                 $30
               </label>
             </li>
             <li>
-              <input
-                id="custom"
-                type="radio"
-                name="limit"
-                onChange={e => {
-                  setLimit('$10');
-                }}
-              />
+              <input id="custom" type="radio" name="limit" />
               <label htmlFor="custom" className={css.limitLabel}>
                 Custom
               </label>
             </li>
           </ul>
-          <button
-            className={css.updateLimitBtn}
-            onClick={e => {
-              e.preventDefault();
-              setChange(false);
-            }}
-          >
-            Update Group Order
-          </button>
+          <button className={css.updateLimitBtn}>Update Group Order</button>
         </form>
       </div>
       <div>
@@ -142,10 +117,15 @@ const GroupModal = () => {
           again.
         </p>
       </div>
-      <button className={css.helpBtn}>
+      <a
+        href="https://support.menufy.com/hc/en-us/articles/360044057712-Group-Ordering"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={css.helpBtn}
+      >
         <span className={css.helpIcon}>?</span>
         <span>Help</span>
-      </button>
+      </a>
     </div>
   );
 };
