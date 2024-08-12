@@ -1,5 +1,5 @@
 .addressList {
-  max-width: 165px;
+  max-width: 180px;
 }
 
 .addressLink {
@@ -9,12 +9,19 @@
   line-height: 1.5;
   font-style: normal;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   column-gap: 8px;
   transition: text-decoration var(--transition);
 }
 
+.addressIcon {
+  align-self: start;
+}
+
 .addressLink:hover {
   text-decoration: underline;
+}
+
+.textWrapper {
+  text-align: left;
 }

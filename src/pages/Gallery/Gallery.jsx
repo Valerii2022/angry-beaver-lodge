@@ -19,7 +19,7 @@ const Gallery = () => {
         <Title title="Gallery" />
       </section>
       <section className={css.gallery}>
-        {images && images.length !== 0 ? (
+        {images && images.length !== 0 && (
           <ul className={css.galleryInner}>
             {images.map(elem => {
               return (
@@ -34,10 +34,6 @@ const Gallery = () => {
               );
             })}
           </ul>
-        ) : (
-          <p className={css.errorText}>
-            Sorry! We have some technical problems. Try again later!
-          </p>
         )}
       </section>
     </div>

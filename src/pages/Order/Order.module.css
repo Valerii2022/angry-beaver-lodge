@@ -28,6 +28,10 @@
   font-size: 16px;
 }
 
+.detailsList {
+  padding-bottom: 0;
+}
+
 .detailsBtn {
   background-color: transparent;
   border: none;
@@ -46,8 +50,27 @@
   min-height: 24px;
   display: flex;
   gap: 8px;
-  align-items: center;
+  align-items: start;
   font-weight: 400;
+  position: relative;
+  transform: scaleY(1);
+  transition: transform var(--transition);
+}
+
+.announcementWrapper {
+  display: flex;
+  gap: 8px;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.hiddenBlock {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity var(--transition), transform var(--transition);
 }
 
 .announcement {
@@ -56,9 +79,14 @@
   border-radius: 4px;
   color: var(--secondary-color);
   font-weight: 600;
-  position: relative;
   text-align: center;
   transform: scale(1) translate(0, 0);
+  transition: transform var(--transition);
+  margin-bottom: 16px;
+}
+
+.hidden {
+  transform: scale(0) translate(-100%, -100%);
   transition: transform var(--transition);
 }
 
@@ -75,10 +103,6 @@
 
 .icon {
   fill: currentColor;
-}
-
-.hidden {
-  transform: scale(0) translate(-100%, -100%);
 }
 
 .availability {
@@ -107,7 +131,7 @@
   width: 100%;
   background-color: var(--primary-bg-color);
   padding: 16px;
-  border-top: 1px solid var(--shadow-dark);
+  box-shadow: 0 1px 6px 0 var(--shadow-dark);
 }
 
 .viewCartBtn {

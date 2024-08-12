@@ -1,11 +1,19 @@
+import { useLocation } from 'react-router-dom';
 import { ReactComponent as FacebookIcon } from '../../images/facebook.svg';
 import { ReactComponent as InstagramIcon } from '../../images/instagram.svg';
 import { ReactComponent as YelpIcon } from '../../images/yelp.svg';
 import css from './Footer.module.css';
 
 const Footer = () => {
+  const { pathname } = useLocation();
+  const orderPage = pathname.includes('order');
+
   return (
-    <footer className={css.footer}>
+    <footer
+      className={
+        orderPage ? `${css.footer} ${css.orderFooter}` : `${css.footer}`
+      }
+    >
       <div className={css.container}>
         <ul className={css.socialIconList}>
           <li>

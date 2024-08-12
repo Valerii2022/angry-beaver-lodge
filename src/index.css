@@ -53,5 +53,9 @@ a {
   text-decoration: underline;
 }
 
+.lock {
+  overflow: hidden;
+}
+
 /* font-family: 'Permanent Marker', cursive;
 font-family: 'Roboto', sans-serif; */

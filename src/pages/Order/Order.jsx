@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
 import SignUpModal from 'components/Modals/SignUpModal/SignUpModal';
@@ -9,15 +9,25 @@ import Cart from 'components/Cart/Cart';
 import icons from '../../images/icons.svg';
 import css from './Order.module.css';
 import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityModal';
+import { useLocation } from 'react-router-dom';
 
 const Order = () => {
+  const location = useLocation();
+
   const [groupModalOpen, setGroupModalOpen] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
   const [carryoutModal, setCarryoutModal] = useState(false);
   const [announcement, setAnnouncement] = useState(false);
-
   const [availabilityModal, setAvailabilityModal] = useState(false);
   const [cart, setCart] = useState(false);
+
+  useEffect(() => {
+    if (location.state) {
+      setCart(true);
+    } else {
+      setCart(false);
+    }
+  }, [location]);
 
   return (
     <>
@@ -72,32 +82,32 @@ const Order = () => {
               <p>Curbside Pickup Available</p>
             </li>
             <li className={css.detailsItem}>
-              <svg width={16} height={16}>
-                <use href={`${icons}#horn`} />
-              </svg>
-              <button
-                className={css.detailsBtn}
-                onClick={() => setAnnouncement(true)}
+              <div
+                className={
+                  announcement ? css.hiddenBlock : css.announcementWrapper
+                }
               >
-                Announcement
-              </button>
-            </li>
-            <li
-              className={
-                announcement
-                  ? css.announcement
-                  : `${css.announcement} ${css.hidden}`
-              }
-            >
-              <button
-                className={css.announcementBtn}
-                onClick={() => setAnnouncement(false)}
-              >
-                <svg className={css.icon} width={16} height={16}>
-                  <use href={`${icons}#close`} />
+                <svg width={16} height={16}>
+                  <use href={`${icons}#horn`} />
                 </svg>
-              </button>
-              <p>CARRY OUT OUT TIMES MAY VARY</p>
+                <button
+                  className={css.detailsBtn}
+                  onClick={() => setAnnouncement(true)}
+                >
+                  Announcement
+                </button>
+              </div>
+              <div className={announcement ? css.announcement : css.hidden}>
+                <button
+                  className={css.announcementBtn}
+                  onClick={() => setAnnouncement(false)}
+                >
+                  <svg className={css.icon} width={16} height={16}>
+                    <use href={`${icons}#close`} />
+                  </svg>
+                </button>
+                <p>CARRY OUT OUT TIMES MAY VARY</p>
+              </div>
             </li>
           </ul>
           <div className={css.availability}>
@@ -113,7 +123,13 @@ const Order = () => {
         </div>
         {cart && <Cart mobileOpening={setCart} />}
         <div className={css.viewCartBtnWrapper}>
-          <button className={css.viewCartBtn} onClick={() => setCart(true)}>
+          <button
+            className={css.viewCartBtn}
+            onClick={() => {
+              document.body.classList.add('lock');
+              setCart(true);
+            }}
+          >
             <span>
               View cart <span>0</span>
             </span>

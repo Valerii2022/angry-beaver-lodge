@@ -26,7 +26,7 @@ const Products = () => {
   return (
     <>
       <div>
-        {products && products.length !== 0 ? (
+        {products && products.length !== 0 && (
           <div className={css.container}>
             <button
               className={css.openBtn}
@@ -97,10 +97,6 @@ const Products = () => {
               })}
             </ul>
           </div>
-        ) : (
-          <p className={css.errorText}>
-            Sorry! We have some technical problems. Try again later!
-          </p>
         )}
       </div>
       {detailsModal && (

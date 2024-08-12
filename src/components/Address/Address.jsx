@@ -12,14 +12,15 @@ const Address = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <svg width={22} height={24}>
+            <svg width={22} height={24} className={css.addressIcon}>
               <use href={`${icons}#road`} />
             </svg>
-            <p>404 MAIN AVE </p>
-            <p>OAKES, ND 58474</p>
+            <div className={css.textWrapper}>
+              <p>404 MAIN AVE </p>
+              <p>OAKES, ND 58474</p>
+            </div>
           </a>
         </li>
-
         <li>
           <a
             className={css.addressLink}

@@ -27,6 +27,7 @@ const Header = () => {
   }, []);
 
   const handleNavigateLinkClick = () => {
+    document.body.classList.remove('lock');
     scrollToTop();
     setMenuStatus(true);
   };
@@ -99,7 +100,7 @@ const Header = () => {
                 className={`${css.link} ${css.orderLink}`}
                 onClick={() => {
                   navigate('/order');
-                  setMenuStatus(true);
+                  handleNavigateLinkClick();
                 }}
               >
                 Order Online
@@ -112,7 +113,7 @@ const Header = () => {
           <button
             className={`${css.link} ${css.cartLink}`}
             onClick={() => {
-              navigate('/order');
+              navigate('/order', { state: { cart: true } });
             }}
           >
             <svg className={css.cartIcon}>
@@ -122,6 +123,7 @@ const Header = () => {
           </button>
           <svg
             onClick={() => {
+              document.body.classList.add('lock');
               setMenuStatus(false);
             }}
             className={css.burgerIcon}
