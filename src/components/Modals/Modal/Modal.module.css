@@ -11,6 +11,14 @@
   backdrop-filter: blur(3px);
   z-index: 1200;
   overflow: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal {
@@ -21,9 +29,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   overflow: auto;
 }
+
+
 
 .titleWrapper {
   padding: 16px;

@@ -89,6 +89,11 @@
     position: fixed;
     top: 0;
     left: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity var(--slow-transition), visibility var(--slow-transition),
+      transform var(--slow-transition);
   }
 
   .navigation {
@@ -110,11 +115,11 @@
   }
 
   .hidden {
-    position: absolute;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    margin: -1px;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--slow-transition), visibility var(--slow-transition),
+      transform var(--slow-transition);
   }
 }
 

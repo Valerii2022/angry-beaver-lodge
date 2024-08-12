@@ -50,7 +50,7 @@
   min-height: 24px;
   display: flex;
   gap: 8px;
-  align-items: start;
+  align-items: flex-start;
   font-weight: 400;
   position: relative;
   transform: scaleY(1);

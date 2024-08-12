@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import icons from '../../../images/icons.svg';
 import css from './Modal.module.css';
@@ -6,11 +6,19 @@ import css from './Modal.module.css';
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ children, modalIsOpen, title }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const closeModal = useCallback(() => {
+    setIsActive(false);
+    setTimeout(() => modalIsOpen(false), 300);
+  }, [modalIsOpen]);
+
   useEffect(() => {
+    setIsActive(true);
+
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        document.body.classList.remove('lock');
-        modalIsOpen();
+        closeModal();
       }
     };
 
@@ -19,31 +27,30 @@ const Modal = ({ children, modalIsOpen, title }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [modalIsOpen]);
+  }, [closeModal]);
 
   useEffect(() => {
     document.body.classList.add('lock');
+    return () => {
+      document.body.classList.remove('lock');
+    };
   }, []);
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
-      document.body.classList.remove('lock');
-      modalIsOpen(false);
+      closeModal();
     }
   };
 
   return createPortal(
-    <div className={css.overlay} onClick={handleBackdropClick}>
+    <div
+      className={`${css.overlay} ${isActive ? css.active : ''}`}
+      onClick={handleBackdropClick}
+    >
       <div className={css.modal}>
         <div className={css.titleWrapper}>
           <h2 className={css.title}>{title}</h2>
-          <button
-            className={css.closeBtn}
-            onClick={() => {
-              document.body.classList.remove('lock');
-              modalIsOpen(false);
-            }}
-          >
+          <button className={css.closeBtn} onClick={closeModal}>
             <svg className={css.icon} width={20} height={20}>
               <use href={`${icons}#close`} />
             </svg>
