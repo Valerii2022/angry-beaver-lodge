@@ -22,6 +22,7 @@ const Order = () => {
   const [cart, setCart] = useState(false);
 
   useEffect(() => {
+    setTimeout(() => setAnnouncement(true), 1000);
     if (location.state) {
       setCart(true);
     } else {

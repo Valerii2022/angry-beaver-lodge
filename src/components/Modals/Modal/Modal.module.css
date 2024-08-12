@@ -70,17 +70,13 @@
   padding: 16px;
 }
 
-@media screen and (min-width: 432px) {
+@media screen and (min-width: 680px) {
   .modal {
-    width: 400px;
+    width: 648px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .modal {
-    width: 400px;
-  }
-
   .closeBtn {
     cursor: pointer;
     transition: color var(--transition);

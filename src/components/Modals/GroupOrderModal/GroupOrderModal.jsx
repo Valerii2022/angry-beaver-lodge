@@ -1,14 +1,17 @@
 import css from './GrouporderModal.module.css';
 import icons from '../../../images/icons.svg';
 import { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid';
 
 const GroupModal = () => {
   const [url, setUrl] = useState('');
   const [message, setMessage] = useState(false);
-  const [change, setChange] = useState(false);
+  const [change, setChange] = useState(true);
   const [limit, setLimit] = useState('No');
+  const [defaultOptions, setDefaultOptions] = useState(false);
 
   useEffect(() => {
+    setDefaultOptions(localStorage.getItem('orderId'));
     setUrl(window.location.href);
   }, []);
 
@@ -28,19 +31,21 @@ const GroupModal = () => {
     e.preventDefault();
     const limitValue = document.querySelector('input[name="limit"]:checked');
     setLimit(limitValue.id);
+    setDefaultOptions(true);
     setChange(false);
+    localStorage.setItem('orderId', nanoid(10));
   };
 
   return (
     <div className={css.container}>
-      <div className={css.titleWrapper}>
+      <div className={defaultOptions ? css.titleWrapper : css.hidden}>
         <p className={css.title}>Share this link with your guests</p>
         <p className={css.description}>
           Order with your team! You invite guests, they add their meals to the
           order, and you check out. It's that simple!
         </p>
       </div>
-      <label className={css.label}>
+      <label className={defaultOptions ? css.label : css.hidden}>
         <input type="text" className={css.input} disabled placeholder={url} />
         <button className={css.filesBtn} onClick={copyToClipboard}>
           <svg width={18} height={18} className={css.icon}>
@@ -73,7 +78,7 @@ const GroupModal = () => {
           <p className={css.title}>Order limit per guest</p>
           <ul className={css.limitList}>
             <li>
-              <input id="No" type="radio" name="limit" />
+              <input id="No" type="radio" name="limit" checked />
               <label htmlFor="No" className={css.limitLabel}>
                 No limit
               </label>

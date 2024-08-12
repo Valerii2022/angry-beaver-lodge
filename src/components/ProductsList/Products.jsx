@@ -86,8 +86,10 @@ const Products = () => {
                               }}
                             >
                               <p>{el.title}</p>
-                              <p>{el.description}</p>
-                              <p>${el.price}</p>
+                              <p className={css.productDescription}>
+                                {el.description}
+                              </p>
+                              <p className={css.price}>${el.price}</p>
                             </li>
                           );
                         })}

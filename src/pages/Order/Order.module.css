@@ -1,7 +1,7 @@
 .container {
   padding-top: 90px;
   position: relative;
-  background-color: var(--primary-bg-color);
+  background-color: var(--shadow-light);
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
@@ -127,7 +127,6 @@
 .viewCartBtnWrapper {
   position: fixed;
   bottom: 0;
-  left: 0;
   width: 100%;
   background-color: var(--primary-bg-color);
   padding: 16px;
@@ -148,6 +147,12 @@
   font-size: 16px;
   font-weight: 500;
   border-radius: 4px;
+}
+
+@media screen and (max-width: 991px) {
+  .viewCartBtnWrapper {
+    left: 0;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -194,6 +199,17 @@
 
   .availabilityBtn {
     background-color: var(--hover-color);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .content {
+    width: 75%;
+  }
+
+  .viewCartBtnWrapper {
+    right: 0;
+    width: 25%;
   }
 }
 
