@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import logo from '../../images/logo.avif';
+import logo from '../../images/logo.webp';
 import css from './Hero.module.css';
 
 const Hero = () => {
@@ -15,4 +15,4 @@ const Hero = () => {
   );
 };
 
-export default Hero
+export default Hero;

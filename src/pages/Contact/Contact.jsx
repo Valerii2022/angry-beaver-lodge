@@ -1,4 +1,4 @@
-import logo from '../../images/logo.avif';
+import logo from '../../images/logo.webp';
 import Title from 'components/Title/Title';
 import Form from 'components/ContactForm/ContactForm';
 import Address from 'components/Address/Address';

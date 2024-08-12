@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import logo from '../../images/logo.avif';
+import logo from '../../images/logo.webp';
 import icons from '../../images/icons.svg';
 import { scrollToTop } from 'helpers/scrollToTop';
 import css from './Header.module.css';
