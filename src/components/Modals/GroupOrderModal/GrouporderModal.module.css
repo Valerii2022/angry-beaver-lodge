@@ -23,6 +23,7 @@
 }
 
 .label {
+  position: relative;
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -45,6 +46,12 @@
   border-radius: 4px;
 }
 
+.input::placeholder {
+  color: var(--accent-color);
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .filesBtn,
 .changeBtn {
   color: var(--accent-color);
@@ -52,6 +59,144 @@
   outline: none;
   background-color: transparent;
   padding: 0;
+}
+
+.copyMessage {
+  position: absolute;
+  top: 65px;
+  left: 20px;
+  right: 54px;
+  border: 1px solid var(--shadow-dark);
+  border-radius: 4px;
+  background-color: var(--primary-bg-color);
+  z-index: 2000;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+
+.hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition),
+    transform var(--transition);
+}
+
+.copyMessage::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  display: block;
+  background-color: var(--shadow-medium);
+  border-left: 1px solid var(--shadow-dark);
+  border-top: 1px solid var(--shadow-dark);
+  left: 50%;
+  border-top-left-radius: 4px;
+  transform: translateX(-50%) rotate(45deg);
+  position: absolute;
+  top: -8px;
+}
+
+.copyMessage p {
+  padding: 6px 12px;
+}
+
+.copyMessage p:first-child {
+  border-bottom: 1px solid var(--secondary-bg-color);
+  background-color: var(--shadow-medium);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.copyMessage p:last-child {
+  font-size: 14px;
+}
+
+.limit {
+  padding: 20px;
+  border: 1px solid var(--shadow-dark);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  overflow: hidden;
+  display: flex;
+}
+
+.openChangeBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+  transition: opacity var(--transition), visibility var(--transition),
+    transform var(--transition);
+}
+
+.limitChooseBlock {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transition), visibility var(--transition),
+    transform var(--transition);
+}
+
+.changeBtn {
+  font-size: 16px;
+  padding: 6px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.limitList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+
+.limitList input {
+  display: none;
+}
+
+.limitList input:checked ~ .limitLabel {
+  color: var(--primary-bg-color);
+  background-color: var(--secondary-color);
+}
+
+.limitList li {
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  overflow: hidden;
+  height: 38px;
+}
+
+.limitLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  width: 100%;
+  height: 100%;
+}
+
+.updateLimitBtn {
+  background-color: var(--accent-color);
+  border: none;
+  outline: none;
+  height: 38px;
+  color: var(--primary-bg-color);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .icon {

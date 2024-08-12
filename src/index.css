@@ -10,7 +10,7 @@
   --access-color: #228237;
   --hover-access-color: #218838;
   --shadow-light: rgba(255, 255, 255, 0.8);
-  --shadow-medium: rgba(32, 33, 36, 0.05);
+  --shadow-medium: #f5f6fa;
   --shadow-dark: rgba(32, 33, 36, 0.28);
   --transition: 250ms linear;
   --slow-transition: 1000ms ease;
