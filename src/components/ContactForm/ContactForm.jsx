@@ -5,10 +5,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Modal from 'components/Modals/Modal/Modal';
 import { useState } from 'react';
+import Loader from 'components/Loader/Loader';
 
 const ContactForm = () => {
   const [successModal, setSuccessModal] = useState(false);
   const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const initialValue = {
     name: '',
@@ -32,11 +34,15 @@ const ContactForm = () => {
   });
 
   const onSubmit = (values, { setSubmitting, resetForm }) => {
+    setLoading(true);
     console.log('Form data', values);
     setName(values.name);
-    setSuccessModal(true);
-    resetForm();
-    setSubmitting(false);
+    setTimeout(() => {
+      setLoading(false);
+      setSuccessModal(true);
+      resetForm();
+      setSubmitting(false);
+    }, 4000);
   };
 
   return (
@@ -120,20 +126,27 @@ const ContactForm = () => {
               />
             </label>
             <button
+              style={{ borderColor: loading ? '#1072d3' : '' }}
               disabled={isSubmitting}
               type="submit"
               className={css.submitBtn}
             >
-              Submit
+              {loading ? <Loader /> : 'Submit'}
             </button>
           </Form>
         )}
       </Formik>
       {successModal && (
         <Modal modalIsOpen={setSuccessModal} title="Thank you!">
-          <p>Thank you for your request, {name}! </p>
-          <p>We will contact you shortly!</p>
-          <p>With best wishes, Angry Beaver Lodge!</p>
+          <div className={css.modalWrapper}>
+            <p>
+              Thank you for your request, <span>{name}</span>!{' '}
+            </p>
+            <p>We will contact you shortly!</p>
+            <p>
+              With best wishes, <span>Angry Beaver Lodge</span>!
+            </p>
+          </div>
         </Modal>
       )}
     </>

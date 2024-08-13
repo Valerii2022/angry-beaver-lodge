@@ -65,7 +65,7 @@
   .closeBtn,
   .checkoutBtn {
     cursor: pointer;
-    transition: opasity var(--transition);
+    transition: opacity var(--transition);
   }
 
   .closeBtn:hover,
