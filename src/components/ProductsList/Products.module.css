@@ -99,6 +99,10 @@
   .title:hover {
     color: var(--hover-color);
   }
+
+  .productItem {
+    cursor: pointer;
+  }
 }
 
 @media screen and (max-width: 991px) {

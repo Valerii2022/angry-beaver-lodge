@@ -75,7 +75,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary-bg-color);
+  background: var(--icon-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {

@@ -1,6 +1,6 @@
 import logo from '../../images/logo.webp';
 import Title from 'components/Title/Title';
-import Form from 'components/ContactForm/ContactForm';
+import ContactForm from 'components/ContactForm/ContactForm';
 import Address from 'components/Address/Address';
 import Schedule from 'components/WorkingHours/Schedule';
 import css from './Contact.module.css';
@@ -30,7 +30,7 @@ const Contact = () => {
           </div>
           <div className={css.formWrapper}>
             <Title title="Get In Touch" />
-            <Form />
+            <ContactForm />
           </div>
         </div>
       </section>

@@ -1,5 +1,96 @@
+.form {
+  padding-top: 16px;
+}
+
 .label {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   width: 100%;
+  margin-bottom: 16px;
+  font-size: 18px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.input,
+.textarea {
+  border-radius: 4px;
+  background-color: var(--primary-bg-color);
+  border: 1px solid var(--shadow-dark);
+  box-shadow: 0 1px 6px 0 var(--shadow-dark);
+  outline: none;
+  font-size: 16px;
+  color: var(--primary-color);
+  font-family: 'Roboto', sans-serif;
+}
+
+.input {
+  height: 38px;
+  padding: 6px 12px 6px 52px;
+}
+
+.noIconInput {
+  padding-left: 12px;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 134px;
+  padding: 6px 12px;
+}
+
+.input:focus,
+.textarea:focus {
+  box-shadow: 0 0 6px 0 var(--accent-color);
+}
+
+.iconWrapper {
+  background-color: var(--shadow-medium);
+  height: 36px;
+  position: absolute;
+  bottom: 1px;
+  left: 1px;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--shadow-dark);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  color: var(--icon-color);
+}
+
+.submitBtn {
+  border: 2px solid var(--primary-color);
+  background-color: var(--primary-bg-color);
+  padding: 6px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--transition), border var(--transition);
+}
+
+.inputError {
+  color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+.inputError:focus {
+  box-shadow: 0 0 6px 0 var(--warning-color);
+}
+
+.error {
+  color: var(--warning-color);
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .submitBtn:hover {
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+  }
 }

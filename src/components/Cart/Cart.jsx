@@ -93,7 +93,7 @@ const Cart = ({ mobileOpening }) => {
         </li>
         <li>
           <button className={css.checkoutBtn}>
-            <span>Checkout</span> <span>$0.00</span>
+            <span>Submit Order</span> <span>$0.00</span>
           </button>
         </li>
       </ul>

@@ -2,7 +2,7 @@
   position: relative;
   min-height: 90vh;
   background-color: var(--secondary-bg-color);
-  background-image: url('https://menufyproduction.imgix.net:443/637571331436602254+460265.png?blendMode=normal&blend=8AFFFFFF&blur=20&auto=compress,format&fit=max&w=1024&h=1024');
+  background-image: url('../../images/hero.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -36,6 +36,7 @@
   justify-content: center;
   border: 2px solid var(--primary-color);
   background-color: var(--primary-bg-color);
+  transition: color var(--transition), border var(--transition);
 }
 
 @media screen and (max-width: 559px) {
@@ -48,5 +49,10 @@
   .logo {
     width: 500px;
     height: 336px;
+  }
+
+  .link:hover {
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
   }
 }

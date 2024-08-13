@@ -1,7 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { ReactComponent as FacebookIcon } from '../../images/facebook.svg';
-import { ReactComponent as InstagramIcon } from '../../images/instagram.svg';
-import { ReactComponent as YelpIcon } from '../../images/yelp.svg';
+import SocialLinks from 'components/SocialLinksList/SocialLinksList';
 import css from './Footer.module.css';
 
 const Footer = () => {
@@ -15,45 +13,9 @@ const Footer = () => {
       }
     >
       <div className={css.container}>
-        <ul className={css.socialIconList}>
-          <li>
-            <a
-              className={css.socialIconLink}
-              href="https://uk-ua.facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="facebook"
-            >
-              <FacebookIcon className={css.socialIcon} width={30} height={30} />
-            </a>
-          </li>
-          <li>
-            <a
-              className={css.socialIconLink}
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="instagram"
-            >
-              <InstagramIcon
-                className={css.socialIcon}
-                width={26}
-                height={30}
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              className={css.socialIconLink}
-              href="https://www.yelp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="yelp"
-            >
-              <YelpIcon className={css.socialIcon} width={23} height={30} />
-            </a>
-          </li>
-        </ul>
+        <div className={css.socialWrapper}>
+          <SocialLinks />
+        </div>
         <div className={css.footerBottom}>
           <p>
             Powered by{' '}

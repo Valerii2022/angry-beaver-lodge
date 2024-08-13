@@ -12,20 +12,9 @@
   padding: 0 15px;
 }
 
-.socialIconList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
+.socialWrapper {
+  color: var(--primary-bg-color);
   margin-bottom: 24px;
-}
-
-.socialIconLink {
-  cursor: pointer;
-}
-
-.socialIcon {
-  fill: var(--primary-bg-color);
 }
 
 .footerBottom {
@@ -35,10 +24,7 @@
 .manufyLink {
   color: var(--primary-bg-color);
   margin-right: 4px;
-}
-
-.manufyLink:hover {
-  text-decoration: underline;
+  transition: color var(--transition), text-decoration var(--transition);
 }
 
 .linksList {
@@ -49,6 +35,18 @@
 
 .footerLink {
   color: var(--primary-bg-color);
+  transition: color var(--transition);
+}
+
+@media screen and (min-width: 768px) {
+  .manufyLink:hover {
+    text-decoration: underline;
+    color: var(--accent-color);
+  }
+
+  .footerLink:hover {
+    color: var(--accent-color);
+  }
 }
 
 @media screen and (max-width: 991px) {

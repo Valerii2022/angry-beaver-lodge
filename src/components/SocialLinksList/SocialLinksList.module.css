@@ -1,0 +1,23 @@
+.socialIconList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.socialIconLink {
+  cursor: pointer;
+  color: currentColor;
+  transition: var(--transition);
+}
+
+.socialIcon {
+  fill: currentColor;
+}
+
+@media screen and (min-width: 768px) {
+  .socialIconLink:hover {
+    color: var(--accent-color);
+  }
+}

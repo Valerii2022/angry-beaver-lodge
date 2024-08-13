@@ -1,4 +1,4 @@
-.socialLinks {
+.socialLinksWpapper {
   padding: 50px 15px;
   display: flex;
   flex-direction: column;
@@ -6,19 +6,7 @@
   background-color: var(--primary-bg-color);
 }
 
-.socialIconList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
+.socialWrapper {
+  color: var(--primary-color);
   margin-bottom: 16px;
-  padding-top: 16px;
-}
-
-.socialIconLink {
-  cursor: pointer;
-}
-
-.socialIcon {
-  fill: var(--primary-color);
 }
