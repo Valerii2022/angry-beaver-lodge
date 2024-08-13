@@ -1,20 +1,16 @@
 .cart {
-  position: fixed;
-  top: 90px;
-  right: 0;
-  width: 100%;
-  height: calc(100% - 90px);
   background-color: var(--primary-bg-color);
-  box-shadow: 0 1px 6px 0 var(--shadow-dark);
-  overflow: scroll;
-  z-index: 1;
   display: flex;
   flex-direction: column;
+  margin-right: 6px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-bottom: 70px;
 }
 
 .content {
   flex-grow: 1;
-  overflow: auto;
 }
 
 .orderListWrapper {
@@ -31,6 +27,10 @@
 }
 
 .btnList {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
   background-color: var(--primary-bg-color);
   padding: 16px;
   box-shadow: 0 1px 6px 0 var(--shadow-dark);
@@ -61,6 +61,19 @@
   background-color: var(--access-color);
 }
 
+@media screen and (min-width: 768px) {
+  .closeBtn,
+  .checkoutBtn {
+    cursor: pointer;
+    transition: opasity var(--transition);
+  }
+
+  .closeBtn:hover,
+  .checkoutBtn:hover {
+    opacity: 1;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .btnList {
     display: flex;
@@ -69,12 +82,12 @@
 }
 
 @media screen and (min-width: 992px) {
-  .cart {
-    width: 25%;
-  }
-
   .closeBtn {
     display: none;
+  }
+
+  .btnList {
+    width: 25%;
   }
 
   .checkoutBtn {

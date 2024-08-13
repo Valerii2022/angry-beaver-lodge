@@ -61,16 +61,10 @@
   display: flex;
   gap: 8px;
   opacity: 1;
+  visibility: visible;
   transform: translateX(0);
-  transition: opacity var(--transition), transform var(--transition);
-}
-
-.hiddenBlock {
-  display: flex;
-  gap: 8px;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: opacity var(--transition), transform var(--transition);
+  transition: transform var(--transition), opacity var(--transition),
+    visibility var(--transition);
 }
 
 .announcement {
@@ -83,11 +77,12 @@
   transform: scale(1) translate(0, 0);
   transition: transform var(--transition);
   margin-bottom: 16px;
+  opacity: 1;
+  visibility: visible;
 }
 
 .hidden {
-  transform: scale(0) translate(-100%, -100%);
-  transition: transform var(--transition);
+  transform: scale(0) translateX(-200%);
 }
 
 .announcementBtn {
@@ -149,9 +144,27 @@
   border-radius: 4px;
 }
 
+.cartWrapper {
+  padding-right: 4px;
+  opacity: 1;
+  visibility: visible;
+  position: fixed;
+  top: 90px;
+  right: 0;
+  width: 100%;
+  height: calc(100% - 90px);
+  z-index: 100;
+  box-shadow: 0 1px 6px 0 var(--shadow-dark);
+}
+
 @media screen and (max-width: 991px) {
   .viewCartBtnWrapper {
     left: 0;
+  }
+
+  .cartHidden {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -205,6 +218,10 @@
 @media screen and (min-width: 992px) {
   .content {
     width: 75%;
+  }
+
+  .cartWrapper {
+    width: 25%;
   }
 
   .viewCartBtnWrapper {

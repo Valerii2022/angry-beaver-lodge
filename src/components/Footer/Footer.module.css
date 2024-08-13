@@ -58,7 +58,7 @@
 }
 
 @media screen and (min-width: 992px) {
-  .footer {
+  .orderFooter {
     width: 75%;
   }
 }

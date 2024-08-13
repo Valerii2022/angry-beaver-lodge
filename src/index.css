@@ -59,5 +59,28 @@ a {
   overflow: hidden;
 }
 
-/* font-family: 'Permanent Marker', cursive;
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: transform var(--transition), opacity var(--transition),
+    visibility var(--transition);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-bg-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover-color);
+}
+
+/* font-family: 'Permanent Marker';
 font-family: 'Roboto', sans-serif; */

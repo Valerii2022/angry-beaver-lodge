@@ -59,14 +59,16 @@ const Header = () => {
               : css.navigationWrapper
           }
         >
-          <svg
-            onClick={handleNavigateLinkClick}
-            className={css.closeIcon}
-            width={16}
-            height={16}
-          >
-            <use href={`${icons}#close`} />
-          </svg>
+          <button className={css.closeIcon}>
+            <svg
+              onClick={handleNavigateLinkClick}
+              width={16}
+              height={16}
+              className={css.icon}
+            >
+              <use href={`${icons}#close`} />
+            </svg>
+          </button>
           <ul className={css.navigation}>
             <li>
               <NavLink
@@ -113,26 +115,27 @@ const Header = () => {
           <button
             className={`${css.link} ${css.cartLink}`}
             onClick={() => {
-              document.body.classList.add('lock');
               navigate('/order', { state: { cart: true } });
             }}
           >
-            <svg className={css.cartIcon}>
+            <svg className={css.icon} width={23} height={20}>
               <use href={`${icons}#cart`} />
             </svg>
             <span className={css.cartValue}>0</span>
           </button>
-          <svg
-            onClick={() => {
-              document.body.classList.add('lock');
-              setMenuStatus(false);
-            }}
-            className={css.burgerIcon}
-            width={16}
-            height={16}
-          >
-            <use href={`${icons}#burger`} />
-          </svg>
+          <button className={css.burgerIcon}>
+            <svg
+              onClick={() => {
+                document.body.classList.add('lock');
+                setMenuStatus(false);
+              }}
+              className={css.icon}
+              width={16}
+              height={16}
+            >
+              <use href={`${icons}#burger`} />
+            </svg>
+          </button>
         </div>
       </nav>
     </header>

@@ -24,7 +24,13 @@ const Order = () => {
   useEffect(() => {
     setTimeout(() => setAnnouncement(true), 1000);
     if (location.state) {
-      setCart(true);
+      if (
+        location.state.cart &&
+        window.matchMedia('(max-width: 991px)').matches
+      ) {
+        document.body.classList.add('lock');
+        setCart(true);
+      }
     } else {
       setCart(false);
     }
@@ -85,7 +91,9 @@ const Order = () => {
             <li className={css.detailsItem}>
               <div
                 className={
-                  announcement ? css.hiddenBlock : css.announcementWrapper
+                  announcement
+                    ? `${css.hidden} hidden`
+                    : css.announcementWrapper
                 }
               >
                 <svg width={16} height={16}>
@@ -98,7 +106,11 @@ const Order = () => {
                   Announcement
                 </button>
               </div>
-              <div className={announcement ? css.announcement : css.hidden}>
+              <div
+                className={
+                  announcement ? css.announcement : `${css.hidden} hidden`
+                }
+              >
                 <button
                   className={css.announcementBtn}
                   onClick={() => setAnnouncement(false)}
@@ -122,7 +134,13 @@ const Order = () => {
           </div>
           <Products />
         </div>
-        {cart && <Cart mobileOpening={setCart} />}
+        <div
+          className={
+            !cart ? `${css.cartHidden} ${css.cartWrapper}` : css.cartWrapper
+          }
+        >
+          <Cart mobileOpening={setCart} />
+        </div>
         <div className={css.viewCartBtnWrapper}>
           <button
             className={css.viewCartBtn}

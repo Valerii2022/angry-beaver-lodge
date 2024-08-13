@@ -36,6 +36,11 @@
   position: absolute;
   top: 36px;
   right: 16px;
+  color: var(--primary-color);
+  transition: color var(--transition);
+  border: none;
+  background-color: transparent;
+  outline: none;
 }
 
 .navigation {
@@ -51,6 +56,9 @@
   background-color: var(--primary-bg-color);
   padding: 6px 12px;
   cursor: pointer;
+  border: 1px solid var(--primary-color);
+  outline: none;
+  transition: border var(--transition);
 }
 
 .link {
@@ -59,6 +67,7 @@
   font-weight: 600;
   display: inline-flex;
   align-items: center;
+  transition: color var(--transition);
 }
 
 .cartWrapper {
@@ -66,19 +75,46 @@
 }
 
 .cartLink {
+  color: var(--primary-color);
+  transition: fill var(--transition);
   background-color: transparent;
   border: none;
   outline: none;
 }
 
-.cartIcon {
-  width: 23px;
-  height: 20px;
-}
-
 .cartValue {
   display: inline-block;
   margin-left: 8px;
+}
+
+.icon {
+  fill: currentColor;
+}
+
+.burgerIcon {
+  color: var(--primary-color);
+  transition: color var(--transition);
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  .cartLink,
+  .burgerIcon,
+  .closeIcon {
+    cursor: pointer;
+  }
+
+  .closeIcon:hover,
+  .link:hover,
+  .burgerIcon:hover {
+    color: var(--hover-color);
+  }
+
+  .orderLink:hover {
+    border: 1px solid var(--hover-color);
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -92,8 +128,8 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    transition: opacity var(--slow-transition), visibility var(--slow-transition),
-      transform var(--slow-transition);
+    transition: opacity var(--slow-transition),
+      visibility var(--slow-transition), transform var(--slow-transition);
   }
 
   .navigation {
@@ -118,8 +154,8 @@
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--slow-transition), visibility var(--slow-transition),
-      transform var(--slow-transition);
+    transition: opacity var(--slow-transition),
+      visibility var(--slow-transition), transform var(--slow-transition);
   }
 }
 
