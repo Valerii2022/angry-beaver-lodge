@@ -34,6 +34,23 @@
   background-size: cover;
 }
 
+.loaderWrapper {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  padding: 50px 0;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--warning-color);
+}
+
 @media screen and (min-width: 800px) {
   .gallery {
     padding: 50px;

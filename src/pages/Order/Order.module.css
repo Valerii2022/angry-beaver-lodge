@@ -4,6 +4,7 @@
   background-color: var(--shadow-light);
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  min-height: calc(100vh - 270px);
 }
 
 .options {
@@ -216,6 +217,10 @@
 }
 
 @media screen and (min-width: 992px) {
+  .container {
+    min-height: calc(100vh - 190px);
+  }
+
   .content {
     width: 75%;
   }

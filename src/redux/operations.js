@@ -10,7 +10,7 @@ export const getProducts = createAsyncThunk(
       const { data } = await axios.get('/api/products');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response.status);
     }
   }
 );
@@ -22,7 +22,7 @@ export const getGallery = createAsyncThunk(
       const { data } = await axios.get('/api/gallery');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response.status);
     }
   }
 );
