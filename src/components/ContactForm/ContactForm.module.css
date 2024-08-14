@@ -110,6 +110,12 @@
   top: 16px;
 }
 
+.errorMessage {
+  color: var(--warning-color);
+  font-size: 16px;
+  padding-left: 16px;
+}
+
 @media screen and (min-width: 768px) {
   .submitBtn:hover {
     color: var(--accent-color);

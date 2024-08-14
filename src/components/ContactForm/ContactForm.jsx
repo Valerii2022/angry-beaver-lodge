@@ -6,11 +6,16 @@ import * as Yup from 'yup';
 import Modal from 'components/Modals/Modal/Modal';
 import { useState } from 'react';
 import Loader from 'components/Loader/Loader';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/operations';
 
 const ContactForm = () => {
   const [successModal, setSuccessModal] = useState(false);
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState(false);
+
+  const dispatch = useDispatch();
 
   const initialValue = {
     name: '',
@@ -37,16 +42,24 @@ const ContactForm = () => {
       .required('Message is required'),
   });
 
-  const onSubmit = (values, { setSubmitting, resetForm }) => {
+  const onSubmit = async (values, { setSubmitting, resetForm }) => {
     setLoading(true);
-    console.log('Form data', values);
-    setName(values.name);
-    setTimeout(() => {
-      setLoading(false);
+    const { payload } = await dispatch(addContact(values));
+    if (typeof payload !== 'object') {
+      setServerError(true);
+    } else {
+      setName(values.name);
       setSuccessModal(true);
       resetForm();
       setSubmitting(false);
-    }, 4000);
+      setServerError(false);
+    }
+    setLoading(false);
+  };
+
+  const handleFieldChange = handleChange => e => {
+    setServerError(false);
+    handleChange(e);
   };
 
   return (
@@ -57,11 +70,12 @@ const ContactForm = () => {
         onSubmit={onSubmit}
         validateOnChange={true}
       >
-        {({ isSubmitting, errors, touched }) => (
+        {({ isSubmitting, errors, touched, handleChange }) => (
           <Form noValidate>
             <label className={css.label}>
               Name *
               <Field
+                onChange={handleFieldChange(handleChange)}
                 type="text"
                 name="name"
                 className={
@@ -79,6 +93,7 @@ const ContactForm = () => {
             <label className={css.label}>
               Email *
               <Field
+                onChange={handleFieldChange(handleChange)}
                 type="email"
                 name="email"
                 className={
@@ -101,6 +116,7 @@ const ContactForm = () => {
             <label className={css.label}>
               Phone *
               <Field
+                onChange={handleFieldChange(handleChange)}
                 type="text"
                 name="phone"
                 className={
@@ -123,6 +139,7 @@ const ContactForm = () => {
             <label className={css.label}>
               Message *
               <Field
+                onChange={handleFieldChange(handleChange)}
                 as="textarea"
                 type="text"
                 name="message"
@@ -146,6 +163,9 @@ const ContactForm = () => {
             >
               {loading ? <Loader /> : 'Submit'}
             </button>
+            {serverError && (
+              <span className={css.errorMessage}>Server error</span>
+            )}
           </Form>
         )}
       </Formik>
