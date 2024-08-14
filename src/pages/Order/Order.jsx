@@ -61,7 +61,7 @@ const Order = () => {
             </li>
           </ul>
           <ul className={css.detailsList}>
-            <li>
+            <li className={css.addressItem}>
               <h1 className={css.title}>The Angry Beaver Lodge</h1>
               <Address />
             </li>
@@ -112,6 +112,7 @@ const Order = () => {
                 }
               >
                 <button
+                  aria-label="Close announcement"
                   className={css.announcementBtn}
                   onClick={() => setAnnouncement(false)}
                 >

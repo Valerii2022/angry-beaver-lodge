@@ -74,6 +74,7 @@ const Products = () => {
                       >
                         <span>{title}</span>
                         <button
+                          aria-label="Open product details"
                           style={{
                             transform:
                               openProductId === id ? 'rotate(180deg)' : '',

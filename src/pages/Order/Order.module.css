@@ -33,6 +33,10 @@
   padding-bottom: 0;
 }
 
+.addressItem {
+  margin-bottom: 4px;
+}
+
 .detailsBtn {
   background-color: transparent;
   border: none;
