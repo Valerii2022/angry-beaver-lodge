@@ -31,6 +31,10 @@ const ContactForm = () => {
     phone: Yup.string()
       .matches(phonePattern, 'Format XXX-XXX-XXXX')
       .required('Phone is required'),
+    message: Yup.string()
+      .min(10, 'Minimum 10 characters')
+      .max(200, 'Maximum 200 characters')
+      .required('Message is required'),
   });
 
   const onSubmit = (values, { setSubmitting, resetForm }) => {
@@ -122,7 +126,16 @@ const ContactForm = () => {
                 as="textarea"
                 type="text"
                 name="message"
-                className={css.textarea}
+                className={
+                  errors.message && touched.message
+                    ? `${css.textarea} ${css.inputError}`
+                    : css.textarea
+                }
+              />
+              <ErrorMessage
+                name="message"
+                component="span"
+                className={css.error}
               />
             </label>
             <button
