@@ -20,9 +20,17 @@ const Order = () => {
   const [announcement, setAnnouncement] = useState(false);
   const [availabilityModal, setAvailabilityModal] = useState(false);
   const [cart, setCart] = useState(false);
+  const [orderType, setOrderType] = useState('');
+
+  useEffect(() => {
+    setOrderType(localStorage.getItem('orderType'));
+  }, []);
 
   useEffect(() => {
     setTimeout(() => setAnnouncement(true), 1000);
+  }, []);
+
+  useEffect(() => {
     if (location.state) {
       if (
         location.state.cart &&
@@ -36,6 +44,11 @@ const Order = () => {
     }
   }, [location]);
 
+  const handleChangeAvailability = type => {
+    setOrderType(type);
+    setAvailabilityModal(false);
+  };
+
   return (
     <>
       <div className={css.container}>
@@ -45,7 +58,13 @@ const Order = () => {
               <button
                 className={css.optionsBtn}
                 type="button"
-                onClick={() => setGroupModalOpen(true)}
+                onClick={() => {
+                  if (orderType) {
+                    setGroupModalOpen(true);
+                  } else {
+                    setAvailabilityModal(true);
+                  }
+                }}
               >
                 Group Order
               </button>
@@ -174,7 +193,7 @@ const Order = () => {
       )}
       {availabilityModal && (
         <Modal modalIsOpen={setAvailabilityModal} title="Pick And Order Type">
-          <AvailabilityModal />
+          <AvailabilityModal closeModal={handleChangeAvailability} />
         </Modal>
       )}
     </>

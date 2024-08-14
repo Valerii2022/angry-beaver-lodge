@@ -47,9 +47,10 @@ const Products = () => {
             <div className={css.container}>
               <button
                 className={css.openBtn}
-                onClick={() =>
-                  setProductDetailsVisibility(!productDetailsVisibility)
-                }
+                onClick={() => {
+                  setOpenProductId('');
+                  setProductDetailsVisibility(!productDetailsVisibility);
+                }}
               >
                 <span className={css.openIcon}>
                   {productDetailsVisibility ? '-' : '+'}

@@ -1,8 +1,8 @@
 import css from './Cart.module.css';
-import cards from '../../images/cards.png';
+import cards from '../../images/cards.webp';
 
 const Cart = ({ mobileOpening }) => {
-  const cart = [1];
+  const cart = [];
 
   return (
     <div className={css.cart}>
