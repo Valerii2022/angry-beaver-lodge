@@ -59,7 +59,7 @@ const Header = () => {
               : css.navigationWrapper
           }
         >
-          <button className={css.closeIcon}>
+          <button className={css.closeIcon} aria-label="Close navigation menu">
             <svg
               onClick={handleNavigateLinkClick}
               width={16}
@@ -113,6 +113,7 @@ const Header = () => {
 
         <div className={css.cartWrapper}>
           <button
+            aria-label="View cart"
             className={`${css.link} ${css.cartLink}`}
             onClick={() => {
               navigate('/order', { state: { cart: true } });
@@ -123,7 +124,7 @@ const Header = () => {
             </svg>
             <span className={css.cartValue}>0</span>
           </button>
-          <button className={css.burgerIcon}>
+          <button className={css.burgerIcon} aria-label="Open navigation menu">
             <svg
               onClick={() => {
                 document.body.classList.add('lock');

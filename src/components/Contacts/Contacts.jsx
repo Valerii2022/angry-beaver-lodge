@@ -24,11 +24,14 @@ const Contacts = () => {
             <li>Sandwiches</li>
             <li>Steak</li>
           </ul>
-          <div className={css.addressWrapper}><Address /></div>
+          <div className={css.addressWrapper}>
+            <Address />
+          </div>
           <Schedule />
         </div>
         <div className={css.mapLink}>
           <a
+            aria-label="Map"
             href="https://maps.app.goo.gl/N7b2EEKPf1eH4ogJ6"
             target="_blank"
             rel="noopener noreferrer"
