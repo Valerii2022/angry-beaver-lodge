@@ -28,7 +28,7 @@ export const getGallery = createAsyncThunk(
 );
 
 export const addContact = createAsyncThunk(
-  'contacts',
+  'contacts/setContact',
   async (contact, thunkAPI) => {
     try {
       const { data } = await axios.post('/contacts', contact);
