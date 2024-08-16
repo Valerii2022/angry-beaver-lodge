@@ -1,10 +1,10 @@
 import icons from '../../images/icons.svg';
 import css from './Address.module.css';
 
-const Address = () => {
+const Address = ({ modal }) => {
   return (
     <address>
-      <ul className={css.addressList}>
+      <ul>
         <li>
           <a
             className={css.addressLink}
@@ -16,24 +16,35 @@ const Address = () => {
               <use href={`${icons}#road`} />
             </svg>
             <div className={css.textWrapper}>
-              <p>404 MAIN AVE </p>
-              <p>OAKES, ND 58474</p>
+              {modal ? (
+                <>
+                  <p>404 MAIN AVE OAKES, ND</p>
+                  <p className={css.modalText}>58474</p>
+                </>
+              ) : (
+                <>
+                  <p>404 MAIN AVE </p>
+                  <p>OAKES, ND 58474</p>
+                </>
+              )}
             </div>
           </a>
         </li>
-        <li>
-          <a
-            className={css.addressLink}
-            href="tel:+7017423458"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg width={16} height={16}>
-              <use href={`${icons}#phone`} />
-            </svg>
-            <p>(701) 742-3458</p>
-          </a>
-        </li>
+        {!modal && (
+          <li>
+            <a
+              className={css.addressLink}
+              href="tel:+7017423458"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width={16} height={16}>
+                <use href={`${icons}#phone`} />
+              </svg>
+              <p>(701) 742-3458</p>
+            </a>
+          </li>
+        )}
       </ul>
     </address>
   );
