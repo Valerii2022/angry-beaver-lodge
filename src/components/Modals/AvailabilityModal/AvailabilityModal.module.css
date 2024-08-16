@@ -20,8 +20,8 @@
   align-items: center;
   justify-content: center;
   gap: 1px;
-  margin-bottom: 16px;
   max-width: 284px;
+  margin: 0 auto 16px auto;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -66,6 +66,8 @@
 }
 
 .buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -117,4 +119,20 @@
   font-size: 14px;
   color: var(--warning-color);
   text-align: start;
+}
+
+@media screen and (min-width: 768px) {
+  .submitBtn {
+    cursor: pointer;
+    max-width: 250px;
+    transition: background-color var(--transition);
+  }
+
+  .submitBtn:hover {
+    background-color: var(--hover-color);
+  }
+
+  .radioLabel {
+    cursor: pointer;
+  }
 }

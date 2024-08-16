@@ -11,20 +11,23 @@ const AvailabilityModal = ({ closeModal }) => {
 
   useEffect(() => {
     setOrderType(localStorage.getItem('orderType'));
+    setAddress(localStorage.getItem('deliveryAddress'));
   }, []);
 
   const handleSubmitForm = e => {
     e.preventDefault();
+
     if (!orderType) {
-      console.log('error', orderType);
       setError(true);
       return;
     }
-    console.log('good');
+
     localStorage.setItem('orderType', orderType);
+
     if (orderType === 'delivery') {
       if (!address) {
         setAddressError(true);
+        return;
       } else {
         localStorage.setItem('deliveryAddress', address);
       }
@@ -49,6 +52,7 @@ const AvailabilityModal = ({ closeModal }) => {
               type="radio"
               name="order-type"
               onChange={e => {
+                setAddressError(false);
                 setError(false);
                 setOrderType(e.target.id);
               }}
@@ -68,6 +72,7 @@ const AvailabilityModal = ({ closeModal }) => {
               type="radio"
               name="order-type"
               onChange={e => {
+                setAddressError(false);
                 setError(false);
                 setOrderType(e.target.id);
               }}
@@ -102,10 +107,10 @@ const AvailabilityModal = ({ closeModal }) => {
           </div>
         )}
         {error && (
-          <p className={css.errorMessage}>Choose Pick And Order Type</p>
+          <p className={css.errorMessage}>* Choose Order Type Please</p>
         )}
-        {addressError && (
-          <p className={css.errorMessage}>Type The Delivery Address</p>
+        {addressError && orderType === 'delivery' && (
+          <p className={css.errorMessage}>* Type The Delivery Address</p>
         )}
         <div className={css.buttonWrapper}>
           <button className={css.submitBtn}>Update</button>

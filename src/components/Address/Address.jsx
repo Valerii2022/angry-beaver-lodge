@@ -7,6 +7,7 @@ const Address = ({ modal }) => {
       <ul>
         <li>
           <a
+            style={{ justifyContent: modal ? 'center' : '' }}
             className={css.addressLink}
             href="https://maps.app.goo.gl/N7b2EEKPf1eH4ogJ6"
             target="_blank"
@@ -18,8 +19,7 @@ const Address = ({ modal }) => {
             <div className={css.textWrapper}>
               {modal ? (
                 <>
-                  <p>404 MAIN AVE OAKES, ND</p>
-                  <p className={css.modalText}>58474</p>
+                  <p>404 MAIN AVE OAKES, ND 58474</p>
                 </>
               ) : (
                 <>

@@ -219,7 +219,7 @@
     transition: background-color var(--transition);
   }
 
-  .availabilityBtn {
+  .availabilityBtn:hover {
     background-color: var(--hover-color);
   }
 }
