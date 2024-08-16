@@ -16,7 +16,7 @@
 
 .pagesNavigate {
   height: 100%;
-  box-shadow: 0 1px 6px 0 var(--shadow-dark);
+  box-shadow: var(--box-shadow);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -29,7 +29,7 @@
 
 .scrollContainer {
   background-color: var(--primary-bg-color);
-  box-shadow: 0 1px 6px 0 var(--shadow-dark);
+  box-shadow: var(--box-shadow);
 }
 
 .closeIcon {

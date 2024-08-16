@@ -18,7 +18,7 @@
   border-radius: 4px;
   background-color: var(--primary-bg-color);
   border: 1px solid var(--shadow-dark);
-  box-shadow: 0 1px 6px 0 var(--shadow-dark);
+  box-shadow: var(--box-shadow);
   outline: none;
   font-size: 16px;
   color: var(--primary-color);

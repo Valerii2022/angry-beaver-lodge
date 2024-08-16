@@ -38,3 +38,27 @@ export const addContact = createAsyncThunk(
     }
   }
 );
+
+export const addSubscribe = createAsyncThunk(
+  'subscribe/addSubscribe',
+  async (userData, thunkAPI) => {
+    try {
+      const data = await axios.post('/subscribe', userData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);
+
+export const addOrder = createAsyncThunk(
+  'orders/addOrder',
+  async (order, thunkAPI) => {
+    try {
+      const data = axios.post('/orders', order);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);

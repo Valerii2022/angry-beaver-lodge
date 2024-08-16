@@ -130,7 +130,7 @@
   width: 100%;
   background-color: var(--primary-bg-color);
   padding: 16px;
-  box-shadow: 0 1px 6px 0 var(--shadow-dark);
+  box-shadow: var(--box-shadow);
 }
 
 .viewCartBtn {
@@ -154,12 +154,12 @@
   opacity: 1;
   visibility: visible;
   position: fixed;
-  top: 92px;
+  top: 90px;
   right: 0;
   width: 100%;
   height: calc(100% - 90px);
-  z-index: 100;
-  box-shadow: 0 1px 6px 0 var(--shadow-dark);
+  z-index: 1;
+  box-shadow: var(--box-shadow);
 }
 
 @media screen and (max-width: 991px) {
@@ -207,7 +207,7 @@
   }
 
   .announcementBtn:hover {
-    color: var(--primary-color);
+    color: var(--hover-color);
   }
 
   .availabilityBtn {
@@ -231,11 +231,15 @@
 
   .cartWrapper {
     width: 25%;
+    top: 88px;
+    height: calc(100% - 88px);
+    z-index: 0;
   }
 
   .viewCartBtnWrapper {
     right: 0;
     width: 25%;
+    z-index: 0;
   }
 }
 

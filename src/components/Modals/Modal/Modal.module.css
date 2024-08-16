@@ -83,6 +83,6 @@
   }
 
   .closeBtn:hover {
-    color: var(--primary-color);
+    color: var(--hover-color);
   }
 }
