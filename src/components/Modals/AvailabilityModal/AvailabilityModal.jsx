@@ -3,7 +3,7 @@ import css from './AvailabilityModal.module.css';
 import { useEffect, useState } from 'react';
 import icons from '../../../images/icons.svg';
 
-const AvailabilityModal = ({ closeModal }) => {
+const AvailabilityModal = ({ closeModal, groupOrder, closeGroupModal }) => {
   const [orderType, setOrderType] = useState('');
   const [address, setAddress] = useState('');
   const [error, setError] = useState(false);
@@ -35,7 +35,11 @@ const AvailabilityModal = ({ closeModal }) => {
       setAddress('');
       localStorage.setItem('deliveryAddress', '');
     }
-    closeModal(orderType);
+    if (groupOrder) {
+      closeGroupModal();
+    } else {
+      closeModal(orderType);
+    }
   };
 
   return (

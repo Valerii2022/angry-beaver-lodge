@@ -15,6 +15,7 @@ const Order = () => {
   const location = useLocation();
 
   const [groupModalOpen, setGroupModalOpen] = useState(false);
+  const [groupModalPreOpen, setGroupModalPreOpen] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
   const [carryoutModal, setCarryoutModal] = useState(false);
   const [announcement, setAnnouncement] = useState(false);
@@ -73,6 +74,12 @@ const Order = () => {
     setAvailabilityModal(false);
   };
 
+  const handleGroupOrderModalLogic = () => {
+    setGroupModalPreOpen(false);
+    setGroupModalOpen(true);
+    setOrderType(localStorage.getItem('orderType'));
+  };
+
   return (
     <>
       <div className={css.container}>
@@ -86,7 +93,7 @@ const Order = () => {
                   if (orderType) {
                     setGroupModalOpen(true);
                   } else {
-                    setAvailabilityModal(true);
+                    setGroupModalPreOpen(true);
                   }
                 }}
               >
@@ -231,11 +238,12 @@ const Order = () => {
           <Schedule modal={true} />
         </Modal>
       )}
-      {availabilityModal && (
+      {(availabilityModal || groupModalPreOpen) && (
         <Modal modalIsOpen={setAvailabilityModal} title="Pick And Order Type">
           <AvailabilityModal
             closeModal={handleChangeAvailability}
-            setSuccessModal={setSuccessModal}
+            groupOrder={groupModalPreOpen}
+            closeGroupModal={handleGroupOrderModalLogic}
           />
         </Modal>
       )}
