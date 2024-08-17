@@ -41,7 +41,7 @@
 }
 
 .input:focus,
-.textarea:focus {
+.textarea:foc{
   box-shadow: 0 0 6px 0 var(--accent-color);
 }
 

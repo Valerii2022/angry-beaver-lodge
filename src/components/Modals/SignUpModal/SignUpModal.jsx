@@ -25,12 +25,12 @@ const SignUpModal = ({ modalIsOpen, setSuccessModal }) => {
       .matches(namePattern, 'Only latin is allowed')
       .min(3, 'Minimum 3 cheracters')
       .max(20, 'Maximum 20 characters')
-      .required('First name is required'),
+      .required('First Name is required'),
     lastName: Yup.string()
       .matches(namePattern, 'Only latin is allowed')
       .min(3, 'Minimum 3 cheracters')
       .max(20, 'Maximum 20 characters')
-      .required('Last name is required'),
+      .required('Last Name is required'),
     email: Yup.string()
       .matches(emailPattern, 'Invalid email format')
       .required('Email is required'),
@@ -79,7 +79,7 @@ const SignUpModal = ({ modalIsOpen, setSuccessModal }) => {
                   type="text"
                   name="firstName"
                   className={
-                    errors.name && touched.name
+                    errors.firstName && touched.firstName
                       ? `${css.input} ${css.inputError}`
                       : `${css.input}`
                   }
@@ -102,7 +102,7 @@ const SignUpModal = ({ modalIsOpen, setSuccessModal }) => {
                   type="text"
                   name="lastName"
                   className={
-                    errors.name && touched.name
+                    errors.lastName && touched.lastName
                       ? `${css.input} ${css.inputError}`
                       : `${css.input}`
                   }
@@ -125,7 +125,7 @@ const SignUpModal = ({ modalIsOpen, setSuccessModal }) => {
                   type="email"
                   name="email"
                   className={
-                    errors.name && touched.name
+                    errors.email && touched.email
                       ? `${css.input} ${css.inputError}`
                       : `${css.input}`
                   }
@@ -149,7 +149,7 @@ const SignUpModal = ({ modalIsOpen, setSuccessModal }) => {
                   type="submit"
                   className={css.submitBtn}
                 >
-                  {loading ? <Loader /> : 'Sign Up'}
+                  {loading ? <Loader modal={true} /> : 'Sign Up'}
                 </button>
               </div>
               {serverError && (
