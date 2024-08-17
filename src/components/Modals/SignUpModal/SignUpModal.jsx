@@ -72,7 +72,7 @@ const SignUpModal = ({ modalIsOpen, setSuccessModal }) => {
           validateOnChange={true}
         >
           {({ isSubmitting, errors, touched, handleChange }) => (
-            <Form noValidate>
+            <Form noValidate className={css.form}>
               <label className={css.label}>
                 <Field
                   onChange={handleFieldChange(handleChange)}

@@ -192,7 +192,7 @@ const Order = () => {
       )}
       {carryoutModal && (
         <Modal modalIsOpen={setCarryoutModal} title="Hours">
-          <Schedule />
+          <Schedule modal={true} />
         </Modal>
       )}
       {availabilityModal && (

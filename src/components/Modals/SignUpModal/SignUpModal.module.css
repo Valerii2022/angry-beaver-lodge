@@ -1,6 +1,6 @@
 .container {
   font-family: 'Roboto', sans-serif;
-  padding-bottom: 60px;
+  padding-bottom: 80px;
 }
 
 .text {
@@ -18,12 +18,17 @@
   color: var(--icon-color);
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .label {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  margin-bottom: 24px;
   font-size: 18px;
   line-height: 1.5;
   position: relative;
@@ -106,6 +111,17 @@
   background-color: var(--accent-color);
   font-size: 16px;
   font-weight: 500;
+}
+
+@media screen and (min-width: 576px) {
+  .form {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .label {
+    width: calc((100% - 24px) / 2);
+  }
 }
 
 @media screen and (min-width: 768px) {

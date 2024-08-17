@@ -1,27 +1,66 @@
-.subtitle {
-  font-size: 25px;
+.subtitle,
+.modalTitle {
   font-weight: 600;
   line-height: 1.5;
   text-align: start;
 }
 
-.hoursWrapper {
+.subtitle {
+  font-size: 24px;
+}
+
+.modalTitle {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.hoursWrapper,
+.hoursModalWrapper {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
 
-.hoursInner {
-  padding: 4px 0 16px 0;
-  display: flex;
-  gap: 16px;
-  font-size: 17px;
-  line-height: 1.5;
-  text-align: start;
+.hoursModalWrapper {
+  max-width: 380px;
+  margin: 0 auto;
 }
 
-.hoursInner .text {
+.hoursInner,
+.hoursModalInner {
+  display: flex;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.hoursInner {
+  padding: 4px 0 16px 0;
+}
+
+.hoursModalInner {
+  border-top: 1px solid var(--shadow-dark);
+  padding: 16px 0 20px 0;
+  justify-content: space-between;
+}
+
+.text {
   margin-bottom: 8px;
+}
+
+.hoursModalInner .text {
+  margin-bottom: 16px;
+}
+
+.innerItem {
+  border-bottom: 1px solid var(--shadow-dark);
+}
+
+.modalText {
+  margin-bottom: 16px;
+  text-align: right;
 }
 
 @media screen and (min-width: 636px) {
