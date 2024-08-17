@@ -22,6 +22,29 @@ const Order = () => {
   const [cart, setCart] = useState(false);
   const [orderType, setOrderType] = useState('');
   const [successModal, setSuccessModal] = useState(false);
+  const [workingDaysStatus, setWorkingDaysStatus] = useState(true);
+  const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    const now = new Date();
+    const day = now.getDay();
+    const hours = now.getHours();
+
+    if (day === 0) {
+      setDate(`${now.getMonth() + 2}/${now.getDate()}`);
+      setWorkingDaysStatus(false);
+    } else {
+      setDate(`${now.getMonth() + 1}/${now.getDate()}`);
+      setWorkingDaysStatus(true);
+    }
+
+    if (hours >= 2 && hours < 17) {
+      setWorkingHoursStatus(false);
+    } else {
+      setWorkingHoursStatus(true);
+    }
+  }, []);
 
   useEffect(() => {
     setOrderType(localStorage.getItem('orderType'));
@@ -93,7 +116,11 @@ const Order = () => {
                 className={css.detailsBtn}
                 onClick={() => setCarryoutModal(true)}
               >
-                5:00 PM - 2:00 AM
+                {workingDaysStatus ? (
+                  '5:00 PM - 2:00 AM'
+                ) : (
+                  <span className={css.warning}>Closed</span>
+                )}
               </button>
             </li>
             <li className={css.detailsItem}>
@@ -145,7 +172,16 @@ const Order = () => {
             </li>
           </ul>
           <div className={css.availability}>
-            <p className={css.availabilityTitle}>Start your carryout order.</p>
+            <p className={css.availabilityTitle}>
+              {workingHoursStatus ? (
+                'Start your order.'
+              ) : (
+                <span className={css.warning}>
+                  Closed until {workingDaysStatus ? 'Today' : 'Tomorrow'},{' '}
+                  {date} 5:00 PM
+                </span>
+              )}
+            </p>
             <button
               className={css.availabilityBtn}
               onClick={() => setAvailabilityModal(true)}

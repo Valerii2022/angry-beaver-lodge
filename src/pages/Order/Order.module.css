@@ -62,6 +62,14 @@
   transition: transform var(--transition);
 }
 
+.warning {
+  color: var(--warning-color);
+}
+
+.warning:hover {
+  text-decoration: underline;
+}
+
 .announcementWrapper {
   display: flex;
   gap: 8px;
