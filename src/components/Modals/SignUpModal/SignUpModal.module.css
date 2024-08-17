@@ -1,0 +1,55 @@
+.container {
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 45px;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.text span {
+  font-weight: 600;
+}
+
+.subText {
+  margin-bottom: 16px;
+  color: var(--icon-color);
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  box-shadow: var(--box-shadow);
+}
+
+.submitBtn {
+  width: 100%;
+  height: 100%;
+  padding: 6px 12px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  color: var(--primary-bg-color);
+  background-color: var(--accent-color);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .submitBtn {
+    cursor: pointer;
+    max-width: 250px;
+    transition: background-color var(--transition);
+  }
+
+  .submitBtn:hover {
+    background-color: var(--hover-color);
+  }
+}
