@@ -5,16 +5,12 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addSubscribe } from 'redux/operations';
-import Modal from '../Modal/Modal';
 import icons from '../../../images/icons.svg';
 import Loader from 'components/Loader/Loader';
 
-const SignUpModal = () => {
+const SignUpModal = ({ modalIsOpen, setSuccessModal }) => {
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState(false);
-  const [successModal, setSuccessModal] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
 
   const dispatch = useDispatch();
 
@@ -46,8 +42,7 @@ const SignUpModal = () => {
     if (typeof payload !== 'object') {
       setServerError(true);
     } else {
-      setFirstName(values.firstName);
-      setLastName(values.lastName);
+      modalIsOpen(false);
       setSuccessModal(true);
       resetForm();
       setSubmitting(false);
@@ -74,18 +69,28 @@ const SignUpModal = () => {
           initialValues={initialValue}
           onSubmit={onSubmit}
           validationSchema={validationSchema}
-          validateOnChangetrue
+          validateOnChange={true}
         >
-          {({ isSubmitting, error, touched, handleChange }) => {
+          {({ isSubmitting, errors, touched, handleChange }) => (
             <Form noValidate>
               <label className={css.label}>
                 <Field
                   onChange={handleFieldChange(handleChange)}
                   type="text"
                   name="firstName"
+                  className={
+                    errors.name && touched.name
+                      ? `${css.input} ${css.inputError}`
+                      : `${css.input}`
+                  }
+                  placeholder="First Name"
                 />
-                <ErrorMessage name="firstName" component="span" />
-                <div>
+                <ErrorMessage
+                  name="firstName"
+                  component="span"
+                  className={css.error}
+                />
+                <div className={css.iconWrapper}>
                   <svg width={16} height={16}>
                     <use href={`${icons}#user`} />
                   </svg>
@@ -96,9 +101,19 @@ const SignUpModal = () => {
                   onChange={handleFieldChange(handleChange)}
                   type="text"
                   name="lastName"
+                  className={
+                    errors.name && touched.name
+                      ? `${css.input} ${css.inputError}`
+                      : `${css.input}`
+                  }
+                  placeholder="LastName"
                 />
-                <ErrorMessage name="lastName" component="span" />
-                <div>
+                <ErrorMessage
+                  name="lastName"
+                  component="span"
+                  className={css.error}
+                />
+                <div className={css.iconWrapper}>
                   <svg width={16} height={16}>
                     <use href={`${icons}#user`} />
                   </svg>
@@ -109,9 +124,19 @@ const SignUpModal = () => {
                   onChange={handleFieldChange(handleChange)}
                   type="email"
                   name="email"
+                  className={
+                    errors.name && touched.name
+                      ? `${css.input} ${css.inputError}`
+                      : `${css.input}`
+                  }
+                  placeholder="Email"
                 />
-                <ErrorMessage name="email" component="span" />
-                <div>
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className={css.error}
+                />
+                <div className={css.iconWrapper}>
                   <svg width={16} height={16}>
                     <use href={`${icons}#email`} />
                   </svg>
@@ -124,29 +149,16 @@ const SignUpModal = () => {
                   type="submit"
                   className={css.submitBtn}
                 >
-                  {loading ? <Loader /> : 'Submit'}
-                  Submit
+                  {loading ? <Loader /> : 'Sign Up'}
                 </button>
               </div>
-              {serverError && <span>Server error</span>}
-            </Form>;
-          }}
+              {serverError && (
+                <span className={css.errorMessage}>Server error</span>
+              )}
+            </Form>
+          )}
         </Formik>
       </div>
-      {successModal && (
-        <Modal modalIsOpen={setSuccessModal} title="Thank you!">
-          <div className={css.modalWrapper}>
-            <p>
-              Thank you for your subscribe, <span>{(firstName, lastName)}</span>
-              !{' '}
-            </p>
-            <p>Let`s be in touch!</p>
-            <p>
-              With best wishes, <span>Angry Beaver Lodge</span>!
-            </p>
-          </div>
-        </Modal>
-      )}
     </>
   );
 };

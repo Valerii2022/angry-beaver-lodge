@@ -1,6 +1,6 @@
 .container {
   font-family: 'Roboto', sans-serif;
-  padding-bottom: 45px;
+  padding-bottom: 60px;
 }
 
 .text {
@@ -14,8 +14,74 @@
 }
 
 .subText {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   color: var(--icon-color);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.input {
+  border-radius: 4px;
+  background-color: var(--primary-bg-color);
+  border: 1px solid var(--shadow-dark);
+  box-shadow: var(--box-shadow);
+  outline: none;
+  font-size: 16px;
+  color: var(--primary-color);
+  font-family: 'Roboto', sans-serif;
+  height: 38px;
+  padding: 6px 48px 6px 12px;
+}
+
+.input:focus {
+  box-shadow: 0 0 6px 0 var(--accent-color);
+}
+
+.iconWrapper {
+  background-color: var(--shadow-medium);
+  height: 36px;
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid var(--shadow-dark);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: var(--icon-color);
+}
+
+.inputError {
+  color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+.inputError:focus {
+  box-shadow: 0 0 6px 0 var(--warning-color);
+}
+
+.error {
+  color: var(--warning-color);
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: -18px;
+}
+
+.errorMessage {
+  color: var(--warning-color);
+  font-size: 16px;
 }
 
 .buttonWrapper {

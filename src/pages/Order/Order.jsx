@@ -21,6 +21,7 @@ const Order = () => {
   const [availabilityModal, setAvailabilityModal] = useState(false);
   const [cart, setCart] = useState(false);
   const [orderType, setOrderType] = useState('');
+  const [successModal, setSuccessModal] = useState(false);
 
   useEffect(() => {
     setOrderType(localStorage.getItem('orderType'));
@@ -183,7 +184,10 @@ const Order = () => {
       )}
       {signupModalOpen && (
         <Modal modalIsOpen={setSignupModalOpen} title="Sign Up For Deals">
-          <SignUpModal />
+          <SignUpModal
+            modalIsOpen={setSignupModalOpen}
+            setSuccessModal={setSuccessModal}
+          />
         </Modal>
       )}
       {carryoutModal && (
@@ -193,7 +197,21 @@ const Order = () => {
       )}
       {availabilityModal && (
         <Modal modalIsOpen={setAvailabilityModal} title="Pick And Order Type">
-          <AvailabilityModal closeModal={handleChangeAvailability} />
+          <AvailabilityModal
+            closeModal={handleChangeAvailability}
+            setSuccessModal={setSuccessModal}
+          />
+        </Modal>
+      )}
+      {successModal && (
+        <Modal modalIsOpen={setSuccessModal} title="Thank you!">
+          <div className={css.modalWrapper}>
+            <p>Thank you for your subscribe!</p>
+            <p>Let`s be in touch!</p>
+            <p>
+              With best wishes, <span>Angry Beaver Lodge</span>!
+            </p>
+          </div>
         </Modal>
       )}
     </>
