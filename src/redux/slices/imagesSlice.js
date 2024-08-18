@@ -5,13 +5,9 @@ const imagesSlice = createSlice({
   name: 'images',
   initialState: { images: [] },
   extraReducers: builder => {
-    builder
-      .addCase(getGallery.fulfilled, (state, { payload }) => {
-        state.images = payload;
-      })
-      .addCase(getGallery.rejected, (state, { payload }) => {
-        console.log(payload);
-      });
+    builder.addCase(getGallery.fulfilled, (state, { payload }) => {
+      state.images = payload;
+    });
   },
 });
 

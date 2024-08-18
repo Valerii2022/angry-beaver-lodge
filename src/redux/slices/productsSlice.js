@@ -5,13 +5,9 @@ const productSlice = createSlice({
   name: 'products',
   initialState: { products: [] },
   extraReducers: builder => {
-    builder
-      .addCase(getProducts.fulfilled, (state, { payload }) => {
-        state.products = payload;
-      })
-      .addCase(getProducts.rejected, (state, { payload }) => {
-        console.log(payload);
-      });
+    builder.addCase(getProducts.fulfilled, (state, { payload }) => {
+      state.products = payload;
+    });
   },
 });
 

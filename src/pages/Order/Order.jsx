@@ -27,6 +27,7 @@ const Order = () => {
   const [successModal, setSuccessModal] = useState(false);
   const [workingDaysStatus, setWorkingDaysStatus] = useState(true);
   const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
+  const [sundayHours, setSundayHours] = useState(true);
   const [date, setDate] = useState('');
 
   useEffect(() => {
@@ -42,6 +43,14 @@ const Order = () => {
     } else {
       setDate(`${now.getMonth() + 1}/${now.getDate()}`);
       setWorkingDaysStatus(true);
+    }
+
+    const sundayHours = hours >= 0 && hours < 2;
+
+    if (sundayHours) {
+      setSundayHours(false);
+    } else {
+      setSundayHours(true);
     }
 
     const isWithinTimeRange =
@@ -141,9 +150,7 @@ const Order = () => {
                   '5:00 PM - 2:00 AM'
                 ) : (
                   <span className={css.warning}>
-                    {workingHoursStatus
-                      ? 'Closed'
-                      : 'Closed for Delivery /Carryout'}
+                    {sundayHours ? 'Closed' : 'Closed for Delivery/Carryout'}
                   </span>
                 )}
               </button>
@@ -219,7 +226,7 @@ const Order = () => {
               </button>
             ) : (
               <div className={css.closedMenu}>
-                <p>{`Carryout /Delivery menu opens at ${date} 5:00 PM`}</p>
+                <p>{`Carryout / Delivery menu opens at ${date} 5:00 PM`}</p>
               </div>
             )}
           </div>

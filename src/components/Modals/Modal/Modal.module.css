@@ -33,6 +33,10 @@
   overflow: auto;
 }
 
+.modal::-webkit-scrollbar-track {
+  margin-top: 56px;
+}
+
 .titleWrapper {
   z-index: 5000;
   position: sticky;

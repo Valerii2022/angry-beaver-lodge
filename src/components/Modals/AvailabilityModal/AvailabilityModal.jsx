@@ -1,7 +1,10 @@
 import Address from 'components/Address/Address';
 import css from './AvailabilityModal.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import icons from '../../../images/icons.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOrder } from 'redux/operations';
+import { getDeliveryAddress, getOrderType } from 'redux/selectors';
 
 const AvailabilityModal = ({
   closeModal,
@@ -10,17 +13,17 @@ const AvailabilityModal = ({
   closeGroupModal,
   closeDetailsModal,
 }) => {
-  const [orderType, setOrderType] = useState('');
-  const [address, setAddress] = useState('');
+  console.log(useSelector(getOrderType));
+  const [orderType, setOrderType] = useState(useSelector(getOrderType));
+  const [address, setAddress] = useState(
+    useSelector(getDeliveryAddress) || 'none'
+  );
   const [error, setError] = useState(false);
   const [addressError, setAddressError] = useState(false);
 
-  useEffect(() => {
-    setOrderType(localStorage.getItem('orderType'));
-    setAddress(localStorage.getItem('deliveryAddress'));
-  }, []);
+  const dispatch = useDispatch();
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = async e => {
     e.preventDefault();
 
     if (!orderType) {
@@ -28,19 +31,22 @@ const AvailabilityModal = ({
       return;
     }
 
-    localStorage.setItem('orderType', orderType);
-
-    if (orderType === 'delivery') {
-      if (!address) {
-        setAddressError(true);
-        return;
-      } else {
-        localStorage.setItem('deliveryAddress', address);
-      }
-    } else {
-      setAddress('');
-      localStorage.setItem('deliveryAddress', '');
+    if (orderType === 'delivery' && (!address || address === 'none')) {
+      setAddressError(true);
+      return;
     }
+
+    const { payload } = await dispatch(
+      addOrder({
+        deliveryAddress: address,
+        orderType: orderType,
+        items: [],
+        limitPerGuest: 'No limit',
+        total: '0',
+      })
+    );
+    console.log(payload);
+
     if (groupOrder) {
       closeGroupModal();
     } else if (productDetails) {
@@ -109,7 +115,7 @@ const AvailabilityModal = ({
               <input
                 placeholder="Address"
                 type="text"
-                value={address}
+                value={address === 'none' ? '' : address}
                 onChange={e => {
                   setAddressError(false);
                   setAddress(e.target.value);
