@@ -47,11 +47,12 @@ const GroupModal = () => {
             </p>
           </div>
           <label className={css.label}>
+            <div onClick={copyToClipboard} className={css.inputWrapper}></div>
             <input
               type="text"
               className={css.input}
               disabled
-              placeholder={url}
+              placeholder={`${url}/${orderId}`}
             />
             <button className={css.filesBtn} onClick={copyToClipboard}>
               <svg width={18} height={18} className={css.icon}>
@@ -86,8 +87,8 @@ const GroupModal = () => {
           <p className={css.title}>Order limit per guest</p>
           <ul className={css.limitList}>
             <li>
-              <input id="No limit" type="radio" name="limit" checked />
-              <label htmlFor="No" className={css.limitLabel}>
+              <input id="No limit" type="radio" name="limit" />
+              <label htmlFor="No limit" className={css.limitLabel}>
                 No limit
               </label>
             </li>
@@ -109,7 +110,7 @@ const GroupModal = () => {
                 $30
               </label>
             </li>
-            <li>
+            <li className={css.custom}>
               <input id="custom" type="radio" name="limit" />
               <label htmlFor="custom" className={css.limitLabel}>
                 Custom
@@ -117,17 +118,17 @@ const GroupModal = () => {
             </li>
           </ul>
           <button className={css.updateLimitBtn}>
-            {true ? 'Start Group Order' : 'Update Group Order'}
+            {limit === 'none' ? 'Start Group Order' : 'Update Group Order'}
           </button>
         </form>
       </div>
       <div>
-        <p>
+        <p className={css.textTop}>
           Start a group order, then share the link provided. You can continue
           adding food to your cart. When your guests submit their order, you
           will see their items in your cart.
         </p>
-        <p>
+        <p className={css.textBottom}>
           If you need to invite more people you can always open this window
           again.
         </p>
