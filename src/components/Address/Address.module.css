@@ -6,6 +6,7 @@
   font-style: normal;
   display: inline-flex;
   align-items: center;
+  width: 100%;
   column-gap: 8px;
   transition: text-decoration var(--transition);
 }

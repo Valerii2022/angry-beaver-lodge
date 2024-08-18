@@ -1,15 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
-import css from './Products.module.css';
 import { nanoid } from 'nanoid';
 import { getProducts } from 'redux/operations';
 import { getAllProducts } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import icons from '../../images/icons.svg';
 import Modal from 'components/Modals/Modal/Modal';
 import Details from 'components/Modals/ProductDetailsModal/Details';
 import Loader from 'components/Loader/Loader';
+import icons from 'images/icons.svg';
+import css from './Products.module.css';
 
-const Products = () => {
+const Products = ({
+  availability,
+  productModal,
+  setProductModal,
+  setPreOpen,
+}) => {
   const [productDetailsVisibility, setProductDetailsVisibility] =
     useState(false);
   const [openProductId, setOpenProductId] = useState('');
@@ -35,6 +40,30 @@ const Products = () => {
     fetchProducts();
   }, [fetchProducts]);
 
+  const handleModalOpening = element => {
+    console.log(availability);
+    setModalTitle(element.title);
+    setProductDetails(element);
+    if (availability) {
+      setDetailsModal(true);
+    } else {
+      setPreOpen(true);
+    }
+  };
+
+  const toggleAllDetailsVisible = () => {
+    setOpenProductId('');
+    setProductDetailsVisibility(!productDetailsVisibility);
+  };
+
+  const toggleProductDetailsVisible = id => {
+    if (openProductId === id) {
+      setOpenProductId('');
+    } else {
+      setOpenProductId(id);
+    }
+  };
+
   return (
     <>
       {loading ? (
@@ -45,13 +74,7 @@ const Products = () => {
         <div>
           {products && products.length !== 0 ? (
             <div className={css.container}>
-              <button
-                className={css.openBtn}
-                onClick={() => {
-                  setOpenProductId('');
-                  setProductDetailsVisibility(!productDetailsVisibility);
-                }}
-              >
+              <button className={css.openBtn} onClick={toggleAllDetailsVisible}>
                 <span className={css.openIcon}>
                   {productDetailsVisibility ? '-' : '+'}
                 </span>
@@ -65,13 +88,7 @@ const Products = () => {
                     <li key={id} className={css.listItem} id={id}>
                       <p
                         className={css.title}
-                        onClick={() => {
-                          if (openProductId === id) {
-                            setOpenProductId('');
-                          } else {
-                            setOpenProductId(id);
-                          }
-                        }}
+                        onClick={() => toggleProductDetailsVisible(id)}
                       >
                         <span>{title}</span>
                         <button
@@ -98,11 +115,7 @@ const Products = () => {
                               <li
                                 key={nanoid(6)}
                                 className={css.productItem}
-                                onClick={() => {
-                                  setModalTitle(el.title);
-                                  setProductDetails(el);
-                                  setDetailsModal(true);
-                                }}
+                                onClick={() => handleModalOpening(el)}
                               >
                                 <p>{el.title}</p>
                                 <p className={css.productDescription}>
@@ -130,8 +143,11 @@ const Products = () => {
           )}
         </div>
       )}
-      {detailsModal && (
-        <Modal modalIsOpen={setDetailsModal} title={modalTitle}>
+      {(detailsModal || productModal) && (
+        <Modal
+          modalIsOpen={detailsModal ? setDetailsModal : setProductModal}
+          title={modalTitle}
+        >
           <Details item={productDetails} />
         </Modal>
       )}

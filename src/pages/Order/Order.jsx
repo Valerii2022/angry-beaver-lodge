@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
 import SignUpModal from 'components/Modals/SignUpModal/SignUpModal';
@@ -6,16 +7,17 @@ import Address from 'components/Address/Address';
 import Schedule from 'components/WorkingHours/Schedule';
 import Products from 'components/ProductsList/Products';
 import Cart from 'components/Cart/Cart';
-import icons from '../../images/icons.svg';
-import css from './Order.module.css';
 import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityModal';
-import { useLocation } from 'react-router-dom';
+import icons from 'images/icons.svg';
+import css from './Order.module.css';
 
 const Order = () => {
   const location = useLocation();
 
   const [groupModalOpen, setGroupModalOpen] = useState(false);
   const [groupModalPreOpen, setGroupModalPreOpen] = useState(false);
+  const [productModalPreOpen, setProductModalPreOpen] = useState(false);
+  const [productModal, setProductModal] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
   const [carryoutModal, setCarryoutModal] = useState(false);
   const [announcement, setAnnouncement] = useState(false);
@@ -86,7 +88,11 @@ const Order = () => {
     setOrderType(localStorage.getItem('orderType'));
   };
 
-  const handleDetailsModalOpening = () => {};
+  const handleDetailsModalOpening = () => {
+    setProductModalPreOpen(false);
+    setProductModal(true);
+    setOrderType(localStorage.getItem('orderType'));
+  };
 
   return (
     <>
@@ -217,7 +223,12 @@ const Order = () => {
               </div>
             )}
           </div>
-          <Products availability={orderType} />
+          <Products
+            availability={orderType}
+            setPreOpen={setProductModalPreOpen}
+            productModal={productModal}
+            setProductModal={setProductModal}
+          />
         </div>
         <div
           className={
@@ -259,11 +270,21 @@ const Order = () => {
           <Schedule modal={true} />
         </Modal>
       )}
-      {(availabilityModal || groupModalPreOpen) && (
-        <Modal modalIsOpen={setAvailabilityModal} title="Pick And Order Type">
+      {(availabilityModal || groupModalPreOpen || productModalPreOpen) && (
+        <Modal
+          modalIsOpen={
+            availabilityModal
+              ? setAvailabilityModal
+              : groupModalPreOpen
+              ? setGroupModalPreOpen
+              : setProductModalPreOpen
+          }
+          title="Pick And Order Type"
+        >
           <AvailabilityModal
             closeModal={handleChangeAvailability}
             groupOrder={groupModalPreOpen}
+            productDetails={productModalPreOpen}
             closeGroupModal={handleGroupOrderModalLogic}
             closeDetailsModal={handleDetailsModalOpening}
           />

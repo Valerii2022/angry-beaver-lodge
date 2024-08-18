@@ -9,6 +9,7 @@
   background-color: transparent;
   display: flex;
   gap: 4px;
+  cursor: pointer;
 }
 
 .openIcon {
@@ -50,6 +51,7 @@
   width: 20px;
   height: 20px;
   padding: 0;
+  cursor: pointer;
 }
 
 .description {
