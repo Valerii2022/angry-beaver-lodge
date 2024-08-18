@@ -56,7 +56,18 @@ export const addOrder = createAsyncThunk(
   async (order, thunkAPI) => {
     try {
       const { data } = await axios.post('/orders', order);
-      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);
+
+export const updateOrder = createAsyncThunk(
+  'orders/updateOrder',
+  async ({ orderId, order }, thunkAPI) => {
+    try {
+      const { data } = await axios.put(`/orders/${orderId}`, order);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);

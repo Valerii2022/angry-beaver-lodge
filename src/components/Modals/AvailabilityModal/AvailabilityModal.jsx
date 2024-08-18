@@ -3,8 +3,9 @@ import css from './AvailabilityModal.module.css';
 import { useState } from 'react';
 import icons from '../../../images/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { addOrder } from 'redux/operations';
-import { getDeliveryAddress, getOrderType } from 'redux/selectors';
+import { addOrder, updateOrder } from 'redux/operations';
+import { getDeliveryAddress, getOrderId, getOrderType } from 'redux/selectors';
+import Loader from 'components/Loader/Loader';
 
 const AvailabilityModal = ({
   closeModal,
@@ -13,7 +14,8 @@ const AvailabilityModal = ({
   closeGroupModal,
   closeDetailsModal,
 }) => {
-  console.log(useSelector(getOrderType));
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [orderType, setOrderType] = useState(useSelector(getOrderType));
   const [address, setAddress] = useState(
     useSelector(getDeliveryAddress) || 'none'
@@ -21,6 +23,7 @@ const AvailabilityModal = ({
   const [error, setError] = useState(false);
   const [addressError, setAddressError] = useState(false);
 
+  const orderId = useSelector(getOrderId);
   const dispatch = useDispatch();
 
   const handleSubmitForm = async e => {
@@ -36,26 +39,39 @@ const AvailabilityModal = ({
       return;
     }
 
+    const order = {
+      deliveryAddress: address,
+      orderType: orderType,
+      items: [],
+      limitPerGuest: 'No limit',
+      total: '0',
+    };
+    setLoading(true);
     const { payload } = await dispatch(
-      addOrder({
-        deliveryAddress: address,
-        orderType: orderType,
-        items: [],
-        limitPerGuest: 'No limit',
-        total: '0',
-      })
+      orderId ? updateOrder({ orderId, order }) : addOrder(order)
     );
-    console.log(payload);
 
-    if (groupOrder) {
-      closeGroupModal();
-    } else if (productDetails) {
-      closeDetailsModal();
+    if (typeof payload !== 'object') {
+      setServerError(true);
     } else {
-      closeModal(orderType);
+      setServerError(false);
+      if (groupOrder) {
+        closeGroupModal();
+      } else if (productDetails) {
+        closeDetailsModal();
+      } else {
+        closeModal(orderType);
+      }
     }
+    setLoading(false);
   };
 
+  const handleChangeOrderType = e => {
+    setServerError(false);
+    setAddressError(false);
+    setError(false);
+    setOrderType(e.target.id);
+  };
   return (
     <div className={css.container}>
       <p className={css.title}>Restaurant Location:</p>
@@ -69,11 +85,7 @@ const AvailabilityModal = ({
               id="delivery"
               type="radio"
               name="order-type"
-              onChange={e => {
-                setAddressError(false);
-                setError(false);
-                setOrderType(e.target.id);
-              }}
+              onChange={e => handleChangeOrderType(e)}
             />
             <label htmlFor="delivery" className={css.radioLabel}>
               <svg width={24} height={24} className={css.icon}>
@@ -89,11 +101,7 @@ const AvailabilityModal = ({
               id="carryout"
               type="radio"
               name="order-type"
-              onChange={e => {
-                setAddressError(false);
-                setError(false);
-                setOrderType(e.target.id);
-              }}
+              onChange={e => handleChangeOrderType(e)}
             />
             <label htmlFor="carryout" className={css.radioLabel}>
               <svg width={24} height={24} className={css.icon}>
@@ -117,6 +125,7 @@ const AvailabilityModal = ({
                 type="text"
                 value={address === 'none' ? '' : address}
                 onChange={e => {
+                  setServerError(false);
                   setAddressError(false);
                   setAddress(e.target.value);
                 }}
@@ -130,8 +139,11 @@ const AvailabilityModal = ({
         {addressError && orderType === 'delivery' && (
           <p className={css.errorMessage}>* Type The Delivery Address</p>
         )}
+        {serverError && <p className={css.errorMessage}>* Server error</p>}
         <div className={css.buttonWrapper}>
-          <button className={css.submitBtn}>Update</button>
+          <button className={css.submitBtn}>
+            {loading ? <Loader modal={true} /> : 'Update'}
+          </button>
         </div>
       </form>
     </div>
