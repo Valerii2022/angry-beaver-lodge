@@ -1,23 +1,24 @@
 import css from './GrouporderModal.module.css';
 import icons from '../../../images/icons.svg';
 import { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid';
+import { useSelector } from 'react-redux';
+import { getGuestLimit, getOrderId } from 'redux/selectors';
 
 const GroupModal = () => {
   const [url, setUrl] = useState('');
   const [message, setMessage] = useState(false);
   const [change, setChange] = useState(true);
-  const [limit, setLimit] = useState('No');
-  const [defaultOptions, setDefaultOptions] = useState(false);
+  const [limit, setLimit] = useState(useSelector(getGuestLimit));
+
+  const orderId = useSelector(getOrderId);
 
   useEffect(() => {
-    setDefaultOptions(localStorage.getItem('orderId'));
     setUrl(window.location.href);
   }, []);
 
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(url)
+      .writeText(`${url}/${orderId}`)
       .then(() => {
         setMessage(true);
         setTimeout(() => setMessage(false), 5000);
@@ -31,36 +32,43 @@ const GroupModal = () => {
     e.preventDefault();
     const limitValue = document.querySelector('input[name="limit"]:checked');
     setLimit(limitValue.id);
-    setDefaultOptions(true);
     setChange(false);
-    localStorage.setItem('orderId', nanoid(10));
   };
 
   return (
     <div className={css.container}>
-      <div className={defaultOptions ? css.titleWrapper : css.hidden}>
-        <p className={css.title}>Share this link with your guests</p>
-        <p className={css.description}>
-          Order with your team! You invite guests, they add their meals to the
-          order, and you check out. It's that simple!
-        </p>
-      </div>
-      <label className={defaultOptions ? css.label : css.hidden}>
-        <input type="text" className={css.input} disabled placeholder={url} />
-        <button className={css.filesBtn} onClick={copyToClipboard}>
-          <svg width={18} height={18} className={css.icon}>
-            <use href={`${icons}#files`} />
-          </svg>
-        </button>
-        <div
-          className={
-            message ? css.copyMessage : `${css.hidden} ${css.copyMessage}`
-          }
-        >
-          <p>Group Order Link</p>
-          <p>Link copied to your clipboard!</p>
-        </div>
-      </label>
+      {limit !== 'none' && (
+        <>
+          <div className={css.titleWrapper}>
+            <p className={css.title}>Share this link with your guests</p>
+            <p className={css.description}>
+              Order with your team! You invite guests, they add their meals to
+              the order, and you check out. It's that simple!
+            </p>
+          </div>
+          <label className={css.label}>
+            <input
+              type="text"
+              className={css.input}
+              disabled
+              placeholder={url}
+            />
+            <button className={css.filesBtn} onClick={copyToClipboard}>
+              <svg width={18} height={18} className={css.icon}>
+                <use href={`${icons}#files`} />
+              </svg>
+            </button>
+            <div
+              className={
+                message ? css.copyMessage : `${css.hidden} ${css.copyMessage}`
+              }
+            >
+              <p>Group Order Link</p>
+              <p>Link copied to your clipboard!</p>
+            </div>
+          </label>
+        </>
+      )}
       <div className={css.limit}>
         <div className={change ? css.hidden : css.openChangeBlock}>
           <p>{limit} order limit per guest</p>
@@ -78,7 +86,7 @@ const GroupModal = () => {
           <p className={css.title}>Order limit per guest</p>
           <ul className={css.limitList}>
             <li>
-              <input id="No" type="radio" name="limit" checked />
+              <input id="No limit" type="radio" name="limit" checked />
               <label htmlFor="No" className={css.limitLabel}>
                 No limit
               </label>
@@ -108,7 +116,9 @@ const GroupModal = () => {
               </label>
             </li>
           </ul>
-          <button className={css.updateLimitBtn}>Update Group Order</button>
+          <button className={css.updateLimitBtn}>
+            {true ? 'Start Group Order' : 'Update Group Order'}
+          </button>
         </form>
       </div>
       <div>

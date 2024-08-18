@@ -10,6 +10,8 @@ import Cart from 'components/Cart/Cart';
 import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityModal';
 import icons from 'images/icons.svg';
 import css from './Order.module.css';
+import { useSelector } from 'react-redux';
+import { getOrderType } from 'redux/selectors';
 
 const Order = () => {
   const location = useLocation();
@@ -23,7 +25,7 @@ const Order = () => {
   const [announcement, setAnnouncement] = useState(false);
   const [availabilityModal, setAvailabilityModal] = useState(false);
   const [cart, setCart] = useState(false);
-  const [orderType, setOrderType] = useState('');
+  const [orderType, setOrderType] = useState(useSelector(getOrderType));
   const [successModal, setSuccessModal] = useState(false);
   const [workingDaysStatus, setWorkingDaysStatus] = useState(true);
   const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
@@ -65,10 +67,6 @@ const Order = () => {
   }, []);
 
   useEffect(() => {
-    setOrderType(localStorage.getItem('orderType'));
-  }, []);
-
-  useEffect(() => {
     setTimeout(() => setAnnouncement(true), 1000);
   }, []);
 
@@ -94,13 +92,11 @@ const Order = () => {
   const handleGroupOrderModalLogic = () => {
     setGroupModalPreOpen(false);
     setGroupModalOpen(true);
-    setOrderType(localStorage.getItem('orderType'));
   };
 
   const handleDetailsModalOpening = () => {
     setProductModalPreOpen(false);
     setProductModal(true);
-    setOrderType(localStorage.getItem('orderType'));
   };
 
   return (

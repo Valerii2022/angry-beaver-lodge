@@ -43,7 +43,7 @@ const AvailabilityModal = ({
       deliveryAddress: address,
       orderType: orderType,
       items: [],
-      limitPerGuest: 'No limit',
+      limitPerGuest: 'none',
       total: '0',
     };
     setLoading(true);

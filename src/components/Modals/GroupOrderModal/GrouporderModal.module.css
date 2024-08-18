@@ -195,6 +195,7 @@
 }
 
 .updateLimitBtn {
+  width: 100%;
   background-color: var(--accent-color);
   border: none;
   outline: none;
@@ -204,6 +205,8 @@
   border-radius: 4px;
   font-size: 16px;
 }
+
+/* .updateLimitBtn::before{} */
 
 .icon {
   fill: currentColor;
