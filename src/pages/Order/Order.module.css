@@ -64,10 +64,20 @@
 
 .warning {
   color: var(--warning-color);
+  cursor: pointer;
 }
 
 .warning:hover {
   text-decoration: underline;
+}
+
+.closedMenu {
+  color: var(--closed-color);
+  background-color: var(--closed-bg-color);
+  padding: 12px 20px;
+  line-height: 1.5;
+  margin: 8px auto 0 auto;
+  border-radius: 4px;
 }
 
 .announcementWrapper {
@@ -190,6 +200,12 @@
 .modalWrapper span {
   font-weight: 600;
   color: var(--accent-color);
+}
+
+@media screen and (min-width: 412px) {
+  .closedMenu {
+    width: 380px;
+  }
 }
 
 @media screen and (max-width: 991px) {

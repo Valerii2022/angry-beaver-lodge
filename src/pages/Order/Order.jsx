@@ -29,8 +29,10 @@ const Order = () => {
 
   useEffect(() => {
     const now = new Date();
-    const day = now.getDay();
-    const hours = now.getHours();
+    const utcHour = now.getUTCHours();
+    const utcMinutes = now.getUTCMinutes();
+    const hours = (utcHour - 5 + 24) % 24;
+    const day = now.getUTCDay();
 
     if (day === 0) {
       setDate(`${now.getMonth() + 2}/${now.getDate()}`);
@@ -40,7 +42,11 @@ const Order = () => {
       setWorkingDaysStatus(true);
     }
 
-    if (hours >= 2 && hours < 17) {
+    const isWithinTimeRange =
+      (hours > 17 || (hours === 17 && utcMinutes >= 0)) &&
+      (hours < 22 || (hours === 22 && utcMinutes <= 30));
+
+    if (!isWithinTimeRange) {
       setWorkingHoursStatus(false);
     } else {
       setWorkingHoursStatus(true);
@@ -79,6 +85,8 @@ const Order = () => {
     setGroupModalOpen(true);
     setOrderType(localStorage.getItem('orderType'));
   };
+
+  const handleDetailsModalOpening = () => {};
 
   return (
     <>
@@ -126,7 +134,11 @@ const Order = () => {
                 {workingDaysStatus ? (
                   '5:00 PM - 2:00 AM'
                 ) : (
-                  <span className={css.warning}>Closed</span>
+                  <span className={css.warning}>
+                    {workingHoursStatus
+                      ? 'Closed'
+                      : 'Closed for Delivery /Carryout'}
+                  </span>
                 )}
               </button>
             </li>
@@ -183,20 +195,29 @@ const Order = () => {
               {workingHoursStatus ? (
                 'Start your order.'
               ) : (
-                <span className={css.warning}>
+                <span
+                  className={css.warning}
+                  onClick={() => setAvailabilityModal(true)}
+                >
                   Closed until {workingDaysStatus ? 'Today' : 'Tomorrow'},{' '}
                   {date} 5:00 PM
                 </span>
               )}
             </p>
-            <button
-              className={css.availabilityBtn}
-              onClick={() => setAvailabilityModal(true)}
-            >
-              Check Availability
-            </button>
+            {workingHoursStatus ? (
+              <button
+                className={css.availabilityBtn}
+                onClick={() => setAvailabilityModal(true)}
+              >
+                Check Availability
+              </button>
+            ) : (
+              <div className={css.closedMenu}>
+                <p>{`Carryout /Delivery menu opens at ${date} 5:00 PM`}</p>
+              </div>
+            )}
           </div>
-          <Products />
+          <Products availability={orderType} />
         </div>
         <div
           className={
@@ -244,6 +265,7 @@ const Order = () => {
             closeModal={handleChangeAvailability}
             groupOrder={groupModalPreOpen}
             closeGroupModal={handleGroupOrderModalLogic}
+            closeDetailsModal={handleDetailsModalOpening}
           />
         </Modal>
       )}

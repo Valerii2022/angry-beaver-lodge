@@ -24,7 +24,7 @@ const Schedule = ({ modal }) => {
       </div>
       <div>
         <h3 className={modal ? css.modalTitle : css.subtitle}>
-          Carryout Hours
+          Carryout / Delivery Hours
         </h3>
         <div className={modal ? css.hoursModalInner : css.hoursInner}>
           <div>
@@ -35,7 +35,7 @@ const Schedule = ({ modal }) => {
           </div>
           <div>
             <p className={modal ? css.modalText : css.text}>
-              5:00 PM - 10:30 AM
+              5:00 PM - 10:30 PM
             </p>
             <p className={modal ? css.modalText : ''}>Closed</p>
           </div>

@@ -6,7 +6,7 @@
 }
 
 .subtitle {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .modalTitle {
@@ -61,6 +61,12 @@
 .modalText {
   margin-bottom: 16px;
   text-align: right;
+}
+
+@media screen and (min-width: 375px) {
+  .subtitle {
+    font-size: 24px;
+  }
 }
 
 @media screen and (min-width: 636px) {
