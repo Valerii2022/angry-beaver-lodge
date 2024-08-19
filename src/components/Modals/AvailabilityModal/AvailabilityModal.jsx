@@ -42,9 +42,6 @@ const AvailabilityModal = ({
     const order = {
       deliveryAddress: address,
       orderType: orderType,
-      items: [],
-      limitPerGuest: 'none',
-      total: '0',
     };
     setLoading(true);
     const { payload } = await dispatch(

@@ -1,20 +1,32 @@
 import css from './GrouporderModal.module.css';
 import icons from '../../../images/icons.svg';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getGuestLimit, getOrderId } from 'redux/selectors';
+import { updateOrder } from 'redux/operations';
+import Loader from 'components/Loader/Loader';
 
 const GroupModal = () => {
+  const guestLimit = useSelector(getGuestLimit);
+  const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState('');
   const [message, setMessage] = useState(false);
   const [change, setChange] = useState(true);
-  const [limit, setLimit] = useState(useSelector(getGuestLimit));
+  const [limit, setLimit] = useState('none');
+  const [serverError, setServerError] = useState(false);
 
   const orderId = useSelector(getOrderId);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setUrl(window.location.href);
-  }, []);
+
+    if (guestLimit === 'none' || guestLimit === 'No') {
+      setLimit('No');
+    } else {
+      setLimit(guestLimit);
+    }
+  }, [guestLimit]);
 
   const copyToClipboard = () => {
     navigator.clipboard
@@ -28,16 +40,31 @@ const GroupModal = () => {
       });
   };
 
-  const handleLimitFormSubmit = e => {
+  const handleLimitChange = e => {
+    setServerError(false);
+    setLimit(e.target.id);
+  };
+
+  const handleLimitFormSubmit = async e => {
     e.preventDefault();
-    const limitValue = document.querySelector('input[name="limit"]:checked');
-    setLimit(limitValue.id);
-    setChange(false);
+    const order = { limitPerGuest: limit };
+
+    setLoading(true);
+
+    const { payload } = await dispatch(updateOrder({ orderId, order }));
+
+    if (typeof payload !== 'object') {
+      setServerError(true);
+    } else {
+      setChange(false);
+    }
+
+    setLoading(false);
   };
 
   return (
     <div className={css.container}>
-      {limit !== 'none' && (
+      {guestLimit !== 'none' && (
         <>
           <div className={css.titleWrapper}>
             <p className={css.title}>Share this link with your guests</p>
@@ -71,54 +98,87 @@ const GroupModal = () => {
         </>
       )}
       <div className={css.limit}>
-        <div className={change ? css.hidden : css.openChangeBlock}>
-          <p>{limit} order limit per guest</p>
-          <button className={css.changeBtn} onClick={() => setChange(true)}>
-            <svg width={14} height={18} className={css.icon}>
-              <use href={`${icons}#pencil`} />
-            </svg>
-            <span>change</span>
-          </button>
-        </div>
+        {!change && (
+          <div className={css.openChangeBlock}>
+            <p>{limit} order limit per guest</p>
+            <button className={css.changeBtn} onClick={() => setChange(true)}>
+              <svg width={14} height={18} className={css.icon}>
+                <use href={`${icons}#pencil`} />
+              </svg>
+              <span>change</span>
+            </button>
+          </div>
+        )}
         <form
           className={change ? css.limitChooseBlock : css.hidden}
           onSubmit={handleLimitFormSubmit}
         >
           <p className={css.title}>Order limit per guest</p>
           <ul className={css.limitList}>
-            <li>
-              <input id="No limit" type="radio" name="limit" />
-              <label htmlFor="No limit" className={css.limitLabel}>
+            <li onClick={handleLimitChange}>
+              <input
+                id="No"
+                type="radio"
+                name="limit"
+                checked={limit === 'No'}
+              />
+              <label htmlFor="No" className={css.limitLabel}>
                 No limit
               </label>
             </li>
-            <li>
-              <input id="$10" type="radio" name="limit" />
+            <li onClick={handleLimitChange}>
+              <input
+                id="$10"
+                type="radio"
+                name="limit"
+                checked={limit === '$10'}
+              />
               <label htmlFor="$10" className={css.limitLabel}>
                 $10
               </label>
             </li>
-            <li>
-              <input id="$20" type="radio" name="limit" />
+            <li onClick={handleLimitChange}>
+              <input
+                id="$20"
+                type="radio"
+                name="limit"
+                checked={limit === '$20'}
+              />
               <label htmlFor="$20" className={css.limitLabel}>
                 $20
               </label>
             </li>
-            <li>
-              <input id="$30" type="radio" name="limit" />
+            <li onClick={handleLimitChange}>
+              <input
+                id="$30"
+                type="radio"
+                name="limit"
+                checked={limit === '$30'}
+              />
               <label htmlFor="$30" className={css.limitLabel}>
                 $30
               </label>
             </li>
-            <li className={css.custom}>
-              <input id="custom" type="radio" name="limit" />
-              <label htmlFor="custom" className={css.limitLabel}>
-                Custom
+            <li className={css.custom} onClick={handleLimitChange}>
+              <input
+                id="$50"
+                type="radio"
+                name="limit"
+                checked={limit === '$50'}
+              />
+              <label htmlFor="$50" className={css.limitLabel}>
+                $50
               </label>
             </li>
           </ul>
           <button className={css.updateLimitBtn}>
-            {limit === 'none' ? 'Start Group Order' : 'Update Group Order'}
+            {loading ? (
+              <Loader />
+            ) : guestLimit === 'none' ? (
+              'Start Group Order'
+            ) : (
+              'Update Group Order'
+            )}
           </button>
         </form>
       </div>
@@ -133,15 +193,18 @@ const GroupModal = () => {
           again.
         </p>
       </div>
-      <a
-        href="https://support.menufy.com/hc/en-us/articles/360044057712-Group-Ordering"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={css.helpBtn}
-      >
-        <span className={css.helpIcon}>?</span>
-        <span>Help</span>
-      </a>
+      <div className={css.bottomWrapper}>
+        {serverError && <p className={css.errorMessage}>* Server error</p>}
+        <a
+          href="https://support.menufy.com/hc/en-us/articles/360044057712-Group-Ordering"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={css.helpBtn}
+        >
+          <span className={css.helpIcon}>?</span>
+          <span>Help</span>
+        </a>
+      </div>
     </div>
   );
 };

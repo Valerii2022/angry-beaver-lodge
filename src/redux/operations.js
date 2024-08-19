@@ -54,8 +54,9 @@ export const addSubscribe = createAsyncThunk(
 export const addOrder = createAsyncThunk(
   'orders/addOrder',
   async (order, thunkAPI) => {
+    const newOrder = { ...order, items: [], limitPerGuest: 'none', total: '0' };
     try {
-      const { data } = await axios.post('/orders', order);
+      const { data } = await axios.post('/orders', newOrder);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);

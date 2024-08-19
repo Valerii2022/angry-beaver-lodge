@@ -249,7 +249,7 @@
 
 .helpBtn {
   display: flex;
-  justify-content: flex-end;
+  margin-left: auto;
   gap: 8px;
   outline: none;
   border: none;
@@ -270,6 +270,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.bottomWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.errorMessage {
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--warning-color);
+  text-align: start;
 }
 
 @media screen and (min-width: 375px) {

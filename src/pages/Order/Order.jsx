@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getOrderType } from 'redux/selectors';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
 import SignUpModal from 'components/Modals/SignUpModal/SignUpModal';
@@ -10,11 +12,10 @@ import Cart from 'components/Cart/Cart';
 import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityModal';
 import icons from 'images/icons.svg';
 import css from './Order.module.css';
-import { useSelector } from 'react-redux';
-import { getOrderType } from 'redux/selectors';
 
 const Order = () => {
   const location = useLocation();
+  const currentOrderType = useSelector(getOrderType);
 
   const [groupModalOpen, setGroupModalOpen] = useState(false);
   const [groupModalPreOpen, setGroupModalPreOpen] = useState(false);
@@ -25,12 +26,16 @@ const Order = () => {
   const [announcement, setAnnouncement] = useState(false);
   const [availabilityModal, setAvailabilityModal] = useState(false);
   const [cart, setCart] = useState(false);
-  const [orderType, setOrderType] = useState(useSelector(getOrderType));
+  const [orderType, setOrderType] = useState('none');
   const [successModal, setSuccessModal] = useState(false);
   const [workingDaysStatus, setWorkingDaysStatus] = useState(true);
   const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
   const [sundayHours, setSundayHours] = useState(true);
   const [date, setDate] = useState('');
+
+  useEffect(() => {
+    setOrderType(currentOrderType);
+  }, [currentOrderType]);
 
   useEffect(() => {
     const now = new Date();
