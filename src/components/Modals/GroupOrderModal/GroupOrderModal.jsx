@@ -56,7 +56,7 @@ const GroupModal = () => {
     if (typeof payload !== 'object') {
       setServerError(true);
     } else {
-      setChange(false);
+      setChange(true);
     }
 
     setLoading(false);
@@ -98,9 +98,9 @@ const GroupModal = () => {
         </>
       )}
       <div className={css.limit}>
-        {guestLimit === 'none' ? (
+        {guestLimit === 'none' || !change ? (
           <form
-            className={change ? css.limitChooseBlock : css.hidden}
+            className={css.limitChooseBlock}
             onSubmit={handleLimitFormSubmit}
           >
             <p className={css.title}>Order limit per guest</p>
@@ -174,7 +174,7 @@ const GroupModal = () => {
         ) : (
           <div className={css.openChangeBlock}>
             <p>{limit} order limit per guest</p>
-            <button className={css.changeBtn} onClick={() => setChange(true)}>
+            <button className={css.changeBtn} onClick={() => setChange(false)}>
               <svg width={14} height={18} className={css.icon}>
                 <use href={`${icons}#pencil`} />
               </svg>

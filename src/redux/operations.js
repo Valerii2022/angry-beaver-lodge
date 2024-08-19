@@ -51,6 +51,18 @@ export const addSubscribe = createAsyncThunk(
   }
 );
 
+export const getOrder = createAsyncThunk(
+  'orders/getOrder',
+  async (orderId, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/orders/${orderId}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);
+
 export const addOrder = createAsyncThunk(
   'orders/addOrder',
   async (order, thunkAPI) => {

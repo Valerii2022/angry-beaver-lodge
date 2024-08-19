@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useCallback, useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { getOrderType } from 'redux/selectors';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
@@ -12,10 +12,13 @@ import Cart from 'components/Cart/Cart';
 import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityModal';
 import icons from 'images/icons.svg';
 import css from './Order.module.css';
+import { getOrder } from 'redux/operations';
 
 const Order = () => {
   const location = useLocation();
   const currentOrderType = useSelector(getOrderType);
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
   const [groupModalOpen, setGroupModalOpen] = useState(false);
   const [groupModalPreOpen, setGroupModalPreOpen] = useState(false);
@@ -32,6 +35,19 @@ const Order = () => {
   const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
   const [sundayHours, setSundayHours] = useState(true);
   const [date, setDate] = useState('');
+
+  const getGroupOrderDetails = useCallback(
+    async orderId => {
+      await dispatch(getOrder(orderId));
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
+    if (id) {
+      getGroupOrderDetails(id);
+    }
+  }, [getGroupOrderDetails, id]);
 
   useEffect(() => {
     setOrderType(currentOrderType);

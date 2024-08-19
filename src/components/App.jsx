@@ -19,7 +19,7 @@ const App = () => {
           <Route path="gallery" element={<Gallery />} />
           <Route path="contact" element={<Contact />} />
           <Route path="order" element={<Order />} />
-          <Route path="order:id" element={<Order />} />
+          <Route path="order/:id" element={<Order />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />
