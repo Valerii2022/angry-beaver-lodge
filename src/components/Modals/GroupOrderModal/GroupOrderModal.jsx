@@ -98,7 +98,80 @@ const GroupModal = () => {
         </>
       )}
       <div className={css.limit}>
-        {!change && (
+        {guestLimit === 'none' ? (
+          <form
+            className={change ? css.limitChooseBlock : css.hidden}
+            onSubmit={handleLimitFormSubmit}
+          >
+            <p className={css.title}>Order limit per guest</p>
+            <ul className={css.limitList}>
+              <li onClick={handleLimitChange}>
+                <input
+                  id="No"
+                  type="radio"
+                  name="limit"
+                  checked={limit === 'No'}
+                />
+                <label htmlFor="No" className={css.limitLabel}>
+                  No limit
+                </label>
+              </li>
+              <li onClick={handleLimitChange}>
+                <input
+                  id="$10"
+                  type="radio"
+                  name="limit"
+                  checked={limit === '$10'}
+                />
+                <label htmlFor="$10" className={css.limitLabel}>
+                  $10
+                </label>
+              </li>
+              <li onClick={handleLimitChange}>
+                <input
+                  id="$20"
+                  type="radio"
+                  name="limit"
+                  checked={limit === '$20'}
+                />
+                <label htmlFor="$20" className={css.limitLabel}>
+                  $20
+                </label>
+              </li>
+              <li onClick={handleLimitChange}>
+                <input
+                  id="$30"
+                  type="radio"
+                  name="limit"
+                  checked={limit === '$30'}
+                />
+                <label htmlFor="$30" className={css.limitLabel}>
+                  $30
+                </label>
+              </li>
+              <li className={css.custom} onClick={handleLimitChange}>
+                <input
+                  id="$50"
+                  type="radio"
+                  name="limit"
+                  checked={limit === '$50'}
+                />
+                <label htmlFor="$50" className={css.limitLabel}>
+                  $50
+                </label>
+              </li>
+            </ul>
+            <button className={css.updateLimitBtn}>
+              {loading ? (
+                <Loader />
+              ) : guestLimit === 'none' ? (
+                'Start Group Order'
+              ) : (
+                'Update Group Order'
+              )}
+            </button>
+          </form>
+        ) : (
           <div className={css.openChangeBlock}>
             <p>{limit} order limit per guest</p>
             <button className={css.changeBtn} onClick={() => setChange(true)}>
@@ -109,78 +182,6 @@ const GroupModal = () => {
             </button>
           </div>
         )}
-        <form
-          className={change ? css.limitChooseBlock : css.hidden}
-          onSubmit={handleLimitFormSubmit}
-        >
-          <p className={css.title}>Order limit per guest</p>
-          <ul className={css.limitList}>
-            <li onClick={handleLimitChange}>
-              <input
-                id="No"
-                type="radio"
-                name="limit"
-                checked={limit === 'No'}
-              />
-              <label htmlFor="No" className={css.limitLabel}>
-                No limit
-              </label>
-            </li>
-            <li onClick={handleLimitChange}>
-              <input
-                id="$10"
-                type="radio"
-                name="limit"
-                checked={limit === '$10'}
-              />
-              <label htmlFor="$10" className={css.limitLabel}>
-                $10
-              </label>
-            </li>
-            <li onClick={handleLimitChange}>
-              <input
-                id="$20"
-                type="radio"
-                name="limit"
-                checked={limit === '$20'}
-              />
-              <label htmlFor="$20" className={css.limitLabel}>
-                $20
-              </label>
-            </li>
-            <li onClick={handleLimitChange}>
-              <input
-                id="$30"
-                type="radio"
-                name="limit"
-                checked={limit === '$30'}
-              />
-              <label htmlFor="$30" className={css.limitLabel}>
-                $30
-              </label>
-            </li>
-            <li className={css.custom} onClick={handleLimitChange}>
-              <input
-                id="$50"
-                type="radio"
-                name="limit"
-                checked={limit === '$50'}
-              />
-              <label htmlFor="$50" className={css.limitLabel}>
-                $50
-              </label>
-            </li>
-          </ul>
-          <button className={css.updateLimitBtn}>
-            {loading ? (
-              <Loader />
-            ) : guestLimit === 'none' ? (
-              'Start Group Order'
-            ) : (
-              'Update Group Order'
-            )}
-          </button>
-        </form>
       </div>
       <div>
         <p className={css.textTop}>
