@@ -80,7 +80,7 @@ const Cart = ({ mobileOpening }) => {
         )}
       </div>
       <ul className={css.btnList}>
-        <li>
+        <li className={css.closeBtnWrapper}>
           <button
             className={css.closeBtn}
             onClick={() => {
@@ -88,12 +88,20 @@ const Cart = ({ mobileOpening }) => {
               mobileOpening(false);
             }}
           >
-            Close cart
+            Close Cart
           </button>
         </li>
-        <li>
-          <button className={css.checkoutBtn}>
-            <span>Submit Order</span> <span>$0.00</span>
+        <li className={css.checkoutBtnWrapper}>
+          <button className={css.checkoutBtn}>Your Order $0.00</button>
+        </li>
+        <li className={css.cancelBtnWrapper}>
+          <button className={css.cancelBtn}>
+            <span>Cancel</span>
+          </button>
+        </li>
+        <li className={css.submitBtnWrapper}>
+          <button className={css.submitBtn}>
+            <span>Submit</span>
           </button>
         </li>
       </ul>

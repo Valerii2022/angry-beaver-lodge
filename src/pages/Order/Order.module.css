@@ -287,9 +287,7 @@
   }
 
   .viewCartBtnWrapper {
-    right: 0;
-    width: 25%;
-    z-index: 0;
+    display: none;
   }
 }
 
