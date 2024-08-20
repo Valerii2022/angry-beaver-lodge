@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderType } from 'redux/selectors';
+import { getItems, getOrderType } from 'redux/selectors';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
 import SignUpModal from 'components/Modals/SignUpModal/SignUpModal';
@@ -17,8 +17,13 @@ import { getOrder } from 'redux/operations';
 const Order = () => {
   const location = useLocation();
   const currentOrderType = useSelector(getOrderType);
+  const cartItems = useSelector(getItems);
   const dispatch = useDispatch();
   const { id } = useParams();
+
+  const totalCartPrice = cartItems.reduce((acc, item) => {
+    return acc + parseFloat(item.price);
+  }, 0);
 
   const [groupModalOpen, setGroupModalOpen] = useState(false);
   const [groupModalPreOpen, setGroupModalPreOpen] = useState(false);
@@ -270,9 +275,9 @@ const Order = () => {
             }}
           >
             <span>
-              View cart <span>0</span>
+              View cart <span>{cartItems.length}</span>
             </span>
-            <span>$0.00</span>
+            <span>${(totalCartPrice * 1.15).toFixed(2)}</span>
           </button>
         </div>
       </div>

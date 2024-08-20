@@ -4,6 +4,8 @@ import logo from '../../images/logo.webp';
 import icons from '../../images/icons.svg';
 import { scrollToTop } from 'helpers/scrollToTop';
 import css from './Header.module.css';
+import { useSelector } from 'react-redux';
+import { getItems } from 'redux/selectors';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(true);
@@ -11,6 +13,8 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const homePage = location.pathname.endsWith('/');
+
+  const cartItems = useSelector(getItems);
 
   const listenScrollEvent = () => {
     if (window.scrollY < 53) {
@@ -122,7 +126,7 @@ const Header = () => {
             <svg className={css.icon} width={23} height={20}>
               <use href={`${icons}#cart`} />
             </svg>
-            <span className={css.cartValue}>0</span>
+            <span className={css.cartValue}>{cartItems.length}</span>
           </button>
           <button className={css.burgerIcon} aria-label="Open navigation menu">
             <svg
