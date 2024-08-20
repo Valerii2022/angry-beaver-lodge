@@ -94,7 +94,7 @@
   height: 38px;
   padding: 6px 12px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   border: none;
   outline: none;
@@ -104,6 +104,11 @@
   font-size: 16px;
   font-weight: 500;
   margin-left: auto;
+}
+
+.submitText {
+  flex-grow: 1;
+  text-align: left;
 }
 
 .errorMessage {

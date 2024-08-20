@@ -41,7 +41,6 @@ const Products = ({
   }, [fetchProducts]);
 
   const handleModalOpening = element => {
-    console.log(availability);
     setModalTitle(element.title);
     setProductDetails(element);
     if (availability) {
@@ -121,7 +120,7 @@ const Products = ({
                                 <p className={css.productDescription}>
                                   {el.description}
                                 </p>
-                                <p className={css.price}>${el.price}</p>
+                                <p className={css.price}>${el.price}+</p>
                               </li>
                             );
                           })}
@@ -148,7 +147,10 @@ const Products = ({
           modalIsOpen={detailsModal ? setDetailsModal : setProductModal}
           title={modalTitle}
         >
-          <Details item={productDetails} />
+          <Details
+            item={productDetails}
+            closeModal={detailsModal ? setDetailsModal : setProductModal}
+          />
         </Modal>
       )}
     </>

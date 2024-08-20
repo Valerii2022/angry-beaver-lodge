@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import css from './Details.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getItems, getOrderId } from 'redux/selectors';
+import { getItems, getOrderId, getTotalPrice } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
 import { updateOrder } from 'redux/operations';
 
-const Details = ({ item }) => {
+const Details = ({ item, closeModal }) => {
   const cartItems = useSelector(getItems);
   const orderId = useSelector(getOrderId);
+  const currentPrice = useSelector(getTotalPrice);
   const dispatch = useDispatch();
 
   const [price, setPrice] = useState(parseFloat(item.price));
@@ -15,6 +16,7 @@ const Details = ({ item }) => {
   const [instructions, setInstructions] = useState('');
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState(false);
+  const totalPrice = (parseFloat(currentPrice) + 1.15 * price).toFixed(2);
 
   const handleQuantity = option => {
     if (quantity === 1 && option === 'decrease') {
@@ -33,17 +35,20 @@ const Details = ({ item }) => {
     setLoading(true);
     const order = {
       items: [{ title: item.title, quantity, price }, ...cartItems],
+      total: totalPrice,
     };
 
     const { payload } = await dispatch(updateOrder({ orderId, order }));
 
     if (typeof payload !== 'object') {
       setServerError(true);
+    } else {
+      closeModal(false);
     }
-    setLoading(false);
     setTimeout(() => {
       setServerError(false);
     }, 3000);
+    setLoading(false);
   };
 
   return (
@@ -87,8 +92,12 @@ const Details = ({ item }) => {
       <div className={css.buttonWrapper}>
         {serverError && <p className={css.errorMessage}>* Server error</p>}
         <button className={css.submitBtn} onClick={handleAddedToCart}>
-          <span>{loading ? <Loader modal={true} /> : 'Add to Cart'}</span>{' '}
-          <span>${price.toFixed(2)}</span>
+          {loading ? (
+            <Loader modal={true} />
+          ) : (
+            <span className={css.submitText}>Add to Cart</span>
+          )}
+          {!loading && <span>${price.toFixed(2)}</span>}
         </button>
       </div>
     </div>

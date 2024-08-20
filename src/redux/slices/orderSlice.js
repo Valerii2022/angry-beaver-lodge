@@ -1,8 +1,7 @@
-import { addOrder, getOrder, updateOrder } from 'redux/operations';
+import { addOrder, getOrder, removeOrder, updateOrder } from 'redux/operations';
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
-import { handleRejected } from 'redux/handlers';
 
 const orderSlice = createSlice({
   name: 'orders',
@@ -27,9 +26,26 @@ const orderSlice = createSlice({
       .addCase(getOrder.fulfilled, (state, { payload }) => {
         state.order = payload;
       })
-      .addMatcher(action => {
-        return action.type.endsWith('/rejected');
-      }, handleRejected);
+      .addCase(getOrder.rejected, (state, { payload }) => {
+        state.order = {
+          id: '',
+          deliveryAddress: 'none',
+          orderType: '',
+          items: [],
+          limitPerGuest: 'none',
+          total: '0',
+        };
+      })
+      .addCase(removeOrder.fulfilled, (state, { payload }) => {
+        state.order = {
+          id: '',
+          deliveryAddress: 'none',
+          orderType: '',
+          items: [],
+          limitPerGuest: 'none',
+          total: '0',
+        };
+      });
   },
 });
 

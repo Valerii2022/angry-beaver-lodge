@@ -87,3 +87,15 @@ export const updateOrder = createAsyncThunk(
     }
   }
 );
+
+export const removeOrder = createAsyncThunk(
+  'orders/removeOrder',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(`/orders/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);

@@ -5,3 +5,4 @@ export const getDeliveryAddress = state => state.orders.order.deliveryAddress;
 export const getGuestLimit = state => state.orders.order.limitPerGuest;
 export const getOrderId = state => state.orders.order._id;
 export const getItems = state => state.orders.order.items;
+export const getTotalPrice = state => state.orders.order.total;
