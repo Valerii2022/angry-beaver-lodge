@@ -2,7 +2,6 @@ import css from './Cart.module.css';
 import cards from '../../images/cards.webp';
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems, getOrderId } from 'redux/selectors';
-import { nanoid } from 'nanoid';
 import icons from '../../images/icons.svg';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
@@ -17,7 +16,8 @@ const Cart = ({ mobileOpening }) => {
 
   const [cancelLoading, setCancelLoading] = useState(false);
   const [cancelModalOpening, setCancelModalOpening] = useState(false);
-  const [checkoutLoading, setChackoutLoading] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutModalOpening, setCheckoutModalOpening] = useState(false);
   const [serverError, setServerError] = useState(false);
   const [workingDaysStatus, setWorkingDaysStatus] = useState(true);
   const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
@@ -63,9 +63,13 @@ const Cart = ({ mobileOpening }) => {
   };
 
   const handleCheckoutOrder = async () => {
-    setChackoutLoading(true);
+    setCheckoutLoading(true);
+    setCheckoutLoading(false);
+    setCheckoutModalOpening(true);
+  };
 
-    setChackoutLoading(false);
+  const handleRemoveItemFromCart = id => {
+    console.log(id);
   };
 
   const subtotal = cartItems.reduce((acc, item) => {
@@ -89,16 +93,33 @@ const Cart = ({ mobileOpening }) => {
               <ul className={css.cartList}>
                 {cartItems.map(el => {
                   return (
-                    <li key={nanoid()} className={css.cartItem}>
+                    <li key={el.id} className={css.cartItem}>
                       <div className={css.itemTitleWrapper}>
                         <span
                           className={css.itemTitle}
                         >{`${el.quantity} x ${el.title}`}</span>
                         <span>${el.price.toFixed(2)}</span>
-                        <svg className={css.icon} width={16} height={16}>
-                          <use href={`${icons}#remove`} />
-                        </svg>
+                        
+                            <svg
+                              id={el.id}
+                              className={css.icon}
+                              width={16}
+                              height={16}
+                              onClick={e =>
+                                handleRemoveItemFromCart(e.currentTarget.id)
+                              }
+                            >
+                              <use href={`${icons}#remove`} />
+                            </svg>
+                          
                       </div>
+                      {el.instructions && (
+                        <ul>
+                          <li className={css.instructions}>
+                            + Special Instructions
+                          </li>
+                        </ul>
+                      )}
                     </li>
                   );
                 })}
@@ -182,6 +203,14 @@ const Cart = ({ mobileOpening }) => {
             </button>
             {serverError && <p className={css.errorMessage}>* Server error</p>}
           </div>
+        </Modal>
+      )}
+      {checkoutModalOpening && (
+        <Modal modalIsOpen={setCheckoutModalOpening} title="Thank You!">
+          <p className={css.warningMessage}>Thank you for your order!</p>
+          <p className={css.successMessageMessage}>
+            Your order number is: <span>{orderId}</span>
+          </p>
         </Modal>
       )}
     </>

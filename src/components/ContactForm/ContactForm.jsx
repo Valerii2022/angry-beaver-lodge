@@ -170,7 +170,7 @@ const ContactForm = () => {
         )}
       </Formik>
       {successModal && (
-        <Modal modalIsOpen={setSuccessModal} title="Thank you!">
+        <Modal modalIsOpen={setSuccessModal} title="Thank You!">
           <div className={css.modalWrapper}>
             <p>
               Thank you for your request, <span>{name}</span>!{' '}

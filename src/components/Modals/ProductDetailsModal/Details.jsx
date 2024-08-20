@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getItems, getOrderId, getTotalPrice } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
 import { updateOrder } from 'redux/operations';
+import { nanoid } from 'nanoid';
 
 const Details = ({ item, closeModal }) => {
   const cartItems = useSelector(getItems);
@@ -34,7 +35,10 @@ const Details = ({ item, closeModal }) => {
   const handleAddedToCart = async () => {
     setLoading(true);
     const order = {
-      items: [{ title: item.title, quantity, price }, ...cartItems],
+      items: [
+        { id: nanoid(6), title: item.title, quantity, price, instructions },
+        ...cartItems,
+      ],
       total: totalPrice,
     };
 

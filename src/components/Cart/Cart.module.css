@@ -39,6 +39,8 @@
 }
 
 .itemTitleWrapper {
+  padding-right: 26px;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -52,7 +54,15 @@
 }
 
 .icon {
+  position: absolute;
+  right: 0;
+  top: 0;
   fill: var(--accent-color);
+}
+
+.instructions {
+  font-size: 12px;
+  padding-top: 8px;
 }
 
 .orderListWrapper {
@@ -141,13 +151,22 @@
   text-align: start;
 }
 
-.warningMessage {
-  padding-top: 16px;
+.warningMessage,
+.successMessageMessage {
   margin-bottom: 32px;
   text-align: center;
-  font-size: 20px;
   line-height: 1.5;
+}
+
+.warningMessage {
+  font-size: 20px;
   color: var(--accent-color);
+  padding-top: 16px;
+}
+
+.successMessageMessage span {
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .cancelBtnsWrapper {
