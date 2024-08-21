@@ -22,6 +22,8 @@ const Cart = ({ mobileOpening }) => {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutModalOpening, setCheckoutModalOpening] = useState(false);
   const [serverError, setServerError] = useState(false);
+  const [removeError, setRemoveError] = useState(false);
+  const [removeLoading, setRemoveLoading] = useState(false);
   const [workingDaysStatus, setWorkingDaysStatus] = useState(true);
   const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
   const [date, setDate] = useState('');
@@ -57,9 +59,10 @@ const Cart = ({ mobileOpening }) => {
     const { payload } = await dispatch(removeOrder(orderId));
     if (typeof payload !== 'object') {
       setServerError(true);
+    } else {
+      setCancelModalOpening(false);
     }
     setCancelLoading(false);
-    setCancelModalOpening(false);
     setTimeout(() => {
       setServerError(false);
     }, 3000);
@@ -73,13 +76,18 @@ const Cart = ({ mobileOpening }) => {
 
   const handleRemoveItemFromCart = async () => {
     const order = { items: cartItems.filter(el => el.id !== removeId) };
-
+    setRemoveLoading(true);
     const { payload } = await dispatch(updateOrder({ orderId, order }));
-
-    if (typeof payload === 'object') setItemRemoveModal(false);
+    if (typeof payload !== 'object') {
+      setRemoveError(true);
+    } else {
+      setItemRemoveModal(false);
+    }
+    setRemoveLoading(false);
+    setTimeout(() => {
+      setRemoveError(false);
+    }, 3000);
   };
-
-
 
   const subtotal = cartItems.reduce((acc, item) => {
     return acc + parseFloat(item.price);
@@ -156,6 +164,11 @@ const Cart = ({ mobileOpening }) => {
           ) : (
             <div className={css.emptyWrapper}>
               <p className={css.emptyText}>Your cart is empty.</p>
+              {orderId && (
+                <p className={css.orderIdText}>
+                  Order id: <span>{orderId}</span>
+                </p>
+              )}
               <img src={cards} alt="Logo" />
             </div>
           )}
@@ -173,7 +186,15 @@ const Cart = ({ mobileOpening }) => {
             </button>
           </li>
           <li className={css.checkoutBtnWrapper}>
-            <button className={css.checkoutBtn} onClick={handleCheckoutOrder}>
+            <button
+              disabled={!orderId || cartItems.length === 0}
+              className={
+                orderId && cartItems.length !== 0
+                  ? css.checkoutBtn
+                  : `${css.checkoutBtn} ${css.disabled}`
+              }
+              onClick={handleCheckoutOrder}
+            >
               {checkoutLoading ? (
                 <Loader modal={true} />
               ) : (
@@ -186,7 +207,10 @@ const Cart = ({ mobileOpening }) => {
           </li>
           <li className={css.cancelBtnWrapper}>
             <button
-              className={css.cancelBtn}
+              disabled={!orderId}
+              className={
+                orderId ? css.cancelBtn : `${css.cancelBtn} ${css.disabled}`
+              }
               onClick={() => setCancelModalOpening(true)}
             >
               Cancel
@@ -225,10 +249,23 @@ const Cart = ({ mobileOpening }) => {
       )}
       {itemRemoveModal && (
         <Modal modalIsOpen={setItemRemoveModal} title="Warning">
-          <p>Remove {removeItem} from your cart?</p>
-          <div>
-            <button onClick={() => setItemRemoveModal(false)}>No</button>
-            <button onClick={handleRemoveItemFromCart}>Yes</button>
+          <p className={css.removeModalText}>
+            Remove <span>{removeItem}</span> from your cart?
+          </p>
+          <div className={css.cancelBtnsWrapper}>
+            <button
+              className={css.noButton}
+              onClick={() => setItemRemoveModal(false)}
+            >
+              No
+            </button>
+            <button
+              className={css.cancelBtn}
+              onClick={handleRemoveItemFromCart}
+            >
+              {removeLoading ? <Loader modal={true} /> : 'Yes, Remove'}
+            </button>
+            {removeError && <p className={css.errorMessage}>* Server error</p>}
           </div>
         </Modal>
       )}

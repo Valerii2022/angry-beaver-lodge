@@ -89,7 +89,16 @@
 }
 
 .emptyText {
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  font-weight: 700;
+}
+
+.orderIdText {
+  margin-bottom: 40px;
+}
+
+.orderIdText span {
   font-weight: 700;
 }
 
@@ -125,6 +134,7 @@
 
 .closeBtn {
   background-color: var(--icon-color);
+  justify-content: center;
 }
 
 .checkoutBtn {
@@ -160,8 +170,8 @@
 
 .warningMessage {
   font-size: 20px;
-  color: var(--accent-color);
   padding-top: 16px;
+  padding-bottom: 40px;
 }
 
 .successMessageMessage span {
@@ -174,6 +184,12 @@
   gap: 16px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 38px;
+  box-shadow: var(--box-shadow);
+  padding: 16px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 .noButton {
@@ -183,6 +199,16 @@
   border: none;
   outline: none;
   border-radius: 4px;
+}
+
+.removeModalText {
+  font-size: 18px;
+  line-height: 1.5;
+  padding-bottom: 70px;
+}
+
+.removeModalText span {
+  font-weight: 700;
 }
 
 @media screen and (min-width: 768px) {
@@ -207,6 +233,12 @@
   .checkoutBtn:hover,
   .noButton:hover {
     opacity: 1;
+  }
+
+  .disabled,
+  .disabled:hover {
+    opacity: 0.7;
+    cursor: auto;
   }
 }
 
