@@ -331,7 +331,7 @@ const Order = () => {
         >
           <JoinGroupOrderModal
             modalIsOpen={setJoinGroupModalOpening}
-            orderId={true}
+            orderId={id}
           />
         </Modal>
       )}
