@@ -3,7 +3,7 @@ import css from './Details.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentGuest, getOrderDetails } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
-import { updateOrder } from 'redux/operations';
+import { addItem } from 'redux/operations';
 import { nanoid } from 'nanoid';
 
 const Details = ({ item, closeModal }) => {
@@ -68,7 +68,7 @@ const Details = ({ item, closeModal }) => {
       total: totalPrice,
     };
 
-    const { payload } = await dispatch(updateOrder({ orderId, order }));
+    const { payload } = await dispatch(addItem({ orderId, order }));
 
     if (typeof payload !== 'object') {
       setServerError(true);

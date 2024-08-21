@@ -1,21 +1,23 @@
 import css from './Cart.module.css';
 import cards from '../../images/cards.webp';
 import { useDispatch, useSelector } from 'react-redux';
-import { getItems, getOrderId } from 'redux/selectors';
+import { getItems, getOrderId, getTotalPrice } from 'redux/selectors';
 import icons from '../../images/icons.svg';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
-import { removeOrder, updateOrder } from 'redux/operations';
+import { removeOrder, removeItem } from 'redux/operations';
 import Modal from 'components/Modals/Modal/Modal';
 
 const Cart = ({ mobileOpening }) => {
   const cartItems = useSelector(getItems);
+  const total = useSelector(getTotalPrice);
   const orderId = useSelector(getOrderId);
 
   const dispatch = useDispatch();
 
   const [itemRemoveModal, setItemRemoveModal] = useState(false);
-  const [removeItem, setRemoveItem] = useState(null);
+  const [removeItemTitle, setRemoveItemTitle] = useState(null);
+  const [removeItemPrice, setRemoveItemPrice] = useState('');
   const [removeId, setRemoveId] = useState(null);
   const [cancelLoading, setCancelLoading] = useState(false);
   const [cancelModalOpening, setCancelModalOpening] = useState(false);
@@ -75,9 +77,12 @@ const Cart = ({ mobileOpening }) => {
   };
 
   const handleRemoveItemFromCart = async () => {
-    const order = { items: cartItems.filter(el => el.id !== removeId) };
+    const order = {
+      id: removeId,
+      total: (parseFloat(total) - removeItemPrice * 1.15).toFixed(2).toString(),
+    };
     setRemoveLoading(true);
-    const { payload } = await dispatch(updateOrder({ orderId, order }));
+    const { payload } = await dispatch(removeItem({ orderId, order }));
     if (typeof payload !== 'object') {
       setRemoveError(true);
     } else {
@@ -123,7 +128,8 @@ const Cart = ({ mobileOpening }) => {
                           width={16}
                           height={16}
                           onClick={e => {
-                            setRemoveItem(el.title);
+                            setRemoveItemPrice(el.price);
+                            setRemoveItemTitle(el.title);
                             setRemoveId(e.currentTarget.id);
                             setItemRemoveModal(true);
                           }}
@@ -250,7 +256,7 @@ const Cart = ({ mobileOpening }) => {
       {itemRemoveModal && (
         <Modal modalIsOpen={setItemRemoveModal} title="Warning">
           <p className={css.removeModalText}>
-            Remove <span>{removeItem}</span> from your cart?
+            Remove <span>{removeItemTitle}</span> from your cart?
           </p>
           <div className={css.cancelBtnsWrapper}>
             <button

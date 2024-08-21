@@ -1,4 +1,11 @@
-import { addOrder, getOrder, removeOrder, updateOrder } from 'redux/operations';
+import {
+  addItem,
+  addOrder,
+  getOrder,
+  removeItem,
+  removeOrder,
+  updateOrder,
+} from 'redux/operations';
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
@@ -29,8 +36,14 @@ const orderSlice = createSlice({
       .addCase(updateOrder.fulfilled, (state, { payload }) => {
         state.orderDetails = payload;
       })
+      .addCase(addItem.fulfilled, (state, { payload }) => {
+        state.orderDetails = payload;
+      })
+      .addCase(removeItem.fulfilled, (state, { payload }) => {
+        state.orderDetails = payload;
+      })
       .addCase(getOrder.fulfilled, (state, { payload }) => {
-        state.orderDetails = payload.orderDetails;
+        state.orderDetails = payload.result;
         state.currentGuestId = payload.guestId;
       })
       .addCase(getOrder.rejected, (state, { payload }) => {
@@ -46,19 +59,21 @@ const orderSlice = createSlice({
         };
         state.currentGuestId = '';
       })
-      // .addCase(updateOrder.rejected, (state, { payload }) => {
-      //   state.orderDetails = {
-      //     id: '',
-      //     deliveryAddress: 'none',
-      //     orderType: '',
-      //     items: [],
-      //     limitPerGuest: 'none',
-      //     total: '0',
-      //     status: 'pending',
-      //     guests: [],
-      //   };
-      //   state.currentGuestId = '';
-      // })
+      .addCase(updateOrder.rejected, (state, { payload }) => {
+        if (payload === 404) {
+          state.orderDetails = {
+            id: '',
+            deliveryAddress: 'none',
+            orderType: '',
+            items: [],
+            limitPerGuest: 'none',
+            total: '0',
+            status: 'pending',
+            guests: [],
+          };
+          state.currentGuestId = '';
+        }
+      })
       .addCase(removeOrder.fulfilled, (state, { payload }) => {
         state.orderDetails = {
           id: '',
@@ -72,19 +87,21 @@ const orderSlice = createSlice({
         };
         state.currentGuestId = '';
       })
-      // .addCase(removeOrder.rejected, (state, { payload }) => {
-      //   state.orderDetails = {
-      //     id: '',
-      //     deliveryAddress: 'none',
-      //     orderType: '',
-      //     items: [],
-      //     limitPerGuest: 'none',
-      //     total: '0',
-      //     status: 'pending',
-      //     guests: [],
-      //   };
-      //   state.currentGuestId = '';
-      // });
+      .addCase(removeOrder.rejected, (state, { payload }) => {
+        if (payload === 404) {
+          state.orderDetails = {
+            id: '',
+            deliveryAddress: 'none',
+            orderType: '',
+            items: [],
+            limitPerGuest: 'none',
+            total: '0',
+            status: 'pending',
+            guests: [],
+          };
+          state.currentGuestId = '';
+        }
+      });
   },
 });
 

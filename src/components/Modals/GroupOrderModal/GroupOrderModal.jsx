@@ -106,57 +106,52 @@ const GroupModal = () => {
             <p className={css.title}>Order limit per guest</p>
             <ul className={css.limitList}>
               <li onClick={handleLimitChange}>
-                <input
-                  id="No"
-                  type="radio"
-                  name="limit"
-                  checked={limit === 'No'}
-                />
+                <input id="No" type="radio" name="limit" defaultChecked />
                 <label htmlFor="No" className={css.limitLabel}>
                   No limit
                 </label>
               </li>
               <li onClick={handleLimitChange}>
                 <input
-                  id="$10"
+                  id="$25"
                   type="radio"
                   name="limit"
-                  checked={limit === '$10'}
+                  defaultChecked={limit === '$25'}
                 />
-                <label htmlFor="$10" className={css.limitLabel}>
+                <label htmlFor="$25" className={css.limitLabel}>
                   $25
                 </label>
               </li>
               <li onClick={handleLimitChange}>
                 <input
-                  id="$20"
+                  id="$40"
                   type="radio"
                   name="limit"
-                  checked={limit === '$20'}
+                  defaultChecked={limit === '$40'}
                 />
-                <label htmlFor="$20" className={css.limitLabel}>
+                <label htmlFor="$40" className={css.limitLabel}>
                   $40
                 </label>
               </li>
               <li onClick={handleLimitChange}>
                 <input
-                  id="$30"
+                  id="$50"
                   type="radio"
                   name="limit"
-                  checked={limit === '$30'}
+                  defaultChecked={limit === '$50'}
                 />
-                <label htmlFor="$30" className={css.limitLabel}>
+                <label htmlFor="$50" className={css.limitLabel}>
                   $50
                 </label>
               </li>
               <li className={css.custom} onClick={handleLimitChange}>
                 <input
-                  id="$50"
+                  id="$100"
                   type="radio"
                   name="limit"
-                  checked={limit === '$50'}
+                  defaultChecked={limit === '$100'}
                 />
-                <label htmlFor="$50" className={css.limitLabel}>
+                <label htmlFor="$100" className={css.limitLabel}>
                   $100
                 </label>
               </li>

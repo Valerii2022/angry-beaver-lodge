@@ -95,6 +95,30 @@ export const updateOrder = createAsyncThunk(
   }
 );
 
+export const addItem = createAsyncThunk(
+  'orders/addItem',
+  async ({ orderId, order }, thunkAPI) => {
+    try {
+      const { data } = await axios.put(`/orders/items/${orderId}`, order);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);
+
+export const removeItem = createAsyncThunk(
+  'orders/removeItem',
+  async ({ orderId, order }, thunkAPI) => {
+    try {
+      const { data } = await axios.put(`/orders/remove/${orderId}`, order);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);
+
 export const removeOrder = createAsyncThunk(
   'orders/removeOrder',
   async (id, thunkAPI) => {
