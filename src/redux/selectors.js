@@ -1,8 +1,9 @@
 export const getAllProducts = state => state.products.products;
 export const getImages = state => state.images.images;
-export const getOrderType = state => state.orders.order.orderType;
-export const getDeliveryAddress = state => state.orders.order.deliveryAddress;
-export const getGuestLimit = state => state.orders.order.limitPerGuest;
-export const getOrderId = state => state.orders.order._id;
-export const getItems = state => state.orders.order.items;
-export const getTotalPrice = state => state.orders.order.total;
+export const getOrderType = state => state.orders.orderDetails.orderType;
+export const getDeliveryAddress = state =>
+  state.orders.orderDetails.deliveryAddress;
+export const getGuestLimit = state => state.orders.orderDetails.limitPerGuest;
+export const getOrderId = state => state.orders.orderDetails._id;
+export const getItems = state => state.orders.orderDetails.items;
+export const getTotalPrice = state => state.orders.orderDetails.total;

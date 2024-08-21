@@ -66,7 +66,14 @@ export const getOrder = createAsyncThunk(
 export const addOrder = createAsyncThunk(
   'orders/addOrder',
   async (order, thunkAPI) => {
-    const newOrder = { ...order, items: [], limitPerGuest: 'none', total: '0' };
+    const newOrder = {
+      ...order,
+      items: [],
+      guests: [],
+      status: 'pending',
+      limitPerGuest: 'none',
+      total: '0',
+    };
     try {
       const { data } = await axios.post('/orders', newOrder);
       return data;
