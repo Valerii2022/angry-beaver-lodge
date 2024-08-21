@@ -124,7 +124,7 @@ const GroupModal = () => {
                   checked={limit === '$10'}
                 />
                 <label htmlFor="$10" className={css.limitLabel}>
-                  $10
+                  $25
                 </label>
               </li>
               <li onClick={handleLimitChange}>
@@ -135,7 +135,7 @@ const GroupModal = () => {
                   checked={limit === '$20'}
                 />
                 <label htmlFor="$20" className={css.limitLabel}>
-                  $20
+                  $40
                 </label>
               </li>
               <li onClick={handleLimitChange}>
@@ -146,7 +146,7 @@ const GroupModal = () => {
                   checked={limit === '$30'}
                 />
                 <label htmlFor="$30" className={css.limitLabel}>
-                  $30
+                  $50
                 </label>
               </li>
               <li className={css.custom} onClick={handleLimitChange}>
@@ -157,7 +157,7 @@ const GroupModal = () => {
                   checked={limit === '$50'}
                 />
                 <label htmlFor="$50" className={css.limitLabel}>
-                  $50
+                  $100
                 </label>
               </li>
             </ul>

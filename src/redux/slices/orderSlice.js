@@ -30,16 +30,47 @@ const orderSlice = createSlice({
         state.orderDetails = payload;
       })
       .addCase(getOrder.fulfilled, (state, { payload }) => {
-        state.orderDetails = payload;
+        state.orderDetails = payload.orderDetails;
+        state.currentGuestId = payload.guestId;
       })
       .addCase(getOrder.rejected, (state, { payload }) => {
-        state.order = initialState;
+        state.orderDetails = {
+          id: '',
+          deliveryAddress: 'none',
+          orderType: '',
+          items: [],
+          limitPerGuest: 'none',
+          total: '0',
+          status: 'pending',
+          guests: [],
+        };
+        state.currentGuestId = '';
       })
       .addCase(removeOrder.fulfilled, (state, { payload }) => {
-        state.order = initialState;
+        state.orderDetails = {
+          id: '',
+          deliveryAddress: 'none',
+          orderType: '',
+          items: [],
+          limitPerGuest: 'none',
+          total: '0',
+          status: 'pending',
+          guests: [],
+        };
+        state.currentGuestId = '';
       })
       .addCase(removeOrder.rejected, (state, { payload }) => {
-        state.order = initialState;
+        state.orderDetails = {
+          id: '',
+          deliveryAddress: 'none',
+          orderType: '',
+          items: [],
+          limitPerGuest: 'none',
+          total: '0',
+          status: 'pending',
+          guests: [],
+        };
+        state.currentGuestId = '';
       });
   },
 });
