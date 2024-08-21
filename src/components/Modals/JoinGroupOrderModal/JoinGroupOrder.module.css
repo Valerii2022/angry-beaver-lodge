@@ -1,60 +1,70 @@
-.overlay {
+.container {
+  padding-bottom: 60px;
+}
+.message {
+  padding-bottom: 16px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 16px;
+  box-shadow: var(--box-shadow);
+  padding: 16px;
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+}
+
+.buttonsWrapper button {
+  background-color: var(--accent-color);
+  width: 250px;
+  height: 38px;
+  border: none;
+  outline: none;
+  color: var(--primary-bg-color);
+  border-radius: 4px;
+  margin-left: auto;
+  opacity: 0.7;
+}
+
+.helpBtn {
+  display: flex;
+  margin-left: auto;
+  gap: 8px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 8px;
+  color: var(--icon-color);
+}
+
+.helpIcon {
+  height: 16px;
+  width: 16px;
+  font-size: 14px;
+  font-weight: 900;
+  background-color: var(--icon-color);
+  color: var(--primary-bg-color);
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--shadow-dark);
-  backdrop-filter: blur(3px);
-  z-index: 1200;
-  overflow: auto;
-  transition: opacity var(--transition), visibility var(--transition);
 }
 
-.modal {
-  width: 90%;
-  max-height: 90vh;
-  border-radius: 4px;
-  background-color: var(--primary-bg-color);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  overflow: auto;
+.bottomWrapper {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.modal::-webkit-scrollbar-track {
-  margin-top: 56px;
-}
+@media screen and (min-width: 768px) {
+  .button {
+    cursor: pointer;
+    transition: opacity var(--transition);
+  }
 
-.titleWrapper {
-  z-index: 5000;
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--primary-bg-color);
-  padding: 16px;
-  border-bottom: 1px solid var(--shadow-dark);
-  box-shadow: 0 1px 6px 0 var(--shadow-dark);
-}
-
-.title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  padding-right: 30px;
-}
-
-.content {
-  padding: 16px;
-}
-
-@media screen and (min-width: 680px) {
-  .modal {
-    max-width: 648px;
+  .button:hover {
+    opacity: 1;
   }
 }

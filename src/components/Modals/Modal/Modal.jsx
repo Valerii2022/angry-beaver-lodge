@@ -2,16 +2,22 @@ import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import icons from '../../../images/icons.svg';
 import css from './Modal.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ children, modalIsOpen, title }) => {
+const Modal = ({ children, modalIsOpen, title, orderId }) => {
   const [isActive, setIsActive] = useState(false);
+
+  const navigate = useNavigate();
 
   const closeModal = useCallback(() => {
     setIsActive(false);
     setTimeout(() => modalIsOpen(false), 300);
-  }, [modalIsOpen]);
+    if (orderId) {
+      navigate('/order')
+    }
+  }, [modalIsOpen, navigate, orderId]);
 
   useEffect(() => {
     setIsActive(true);

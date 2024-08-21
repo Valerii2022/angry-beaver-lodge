@@ -324,10 +324,16 @@ const Order = () => {
         </Modal>
       )}
       {joinGroupModalOpening && (
-        <JoinGroupOrderModal
+        <Modal
           modalIsOpen={setJoinGroupModalOpening}
-          orderId={id}
-        />
+          title="Let`s order together"
+          orderId={true}
+        >
+          <JoinGroupOrderModal
+            modalIsOpen={setJoinGroupModalOpening}
+            orderId={true}
+          />
+        </Modal>
       )}
     </>
   );
