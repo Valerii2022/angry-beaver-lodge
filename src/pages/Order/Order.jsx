@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getItems, getOrderType } from 'redux/selectors';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
@@ -12,13 +12,12 @@ import Cart from 'components/Cart/Cart';
 import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityModal';
 import icons from 'images/icons.svg';
 import css from './Order.module.css';
-import { getOrder } from 'redux/operations';
+import JoinGroupOrderModal from 'components/Modals/JoinGroupOrderModal/JoinGroupOrder';
 
 const Order = () => {
   const location = useLocation();
   const currentOrderType = useSelector(getOrderType);
   const cartItems = useSelector(getItems);
-  const dispatch = useDispatch();
   const { id } = useParams();
 
   const totalCartPrice = cartItems.reduce((acc, item) => {
@@ -40,19 +39,13 @@ const Order = () => {
   const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
   const [sundayHours, setSundayHours] = useState(true);
   const [date, setDate] = useState('');
-
-  const getGroupOrderDetails = useCallback(
-    async orderId => {
-      await dispatch(getOrder(orderId));
-    },
-    [dispatch]
-  );
+  const [joinGroupModalOpening, setJoinGroupModalOpening] = useState(false);
 
   useEffect(() => {
     if (id) {
-      getGroupOrderDetails(id);
+      setJoinGroupModalOpening(true);
     }
-  }, [getGroupOrderDetails, id]);
+  }, [id]);
 
   useEffect(() => {
     setOrderType(currentOrderType);
@@ -329,6 +322,12 @@ const Order = () => {
             </p>
           </div>
         </Modal>
+      )}
+      {joinGroupModalOpening && (
+        <JoinGroupOrderModal
+          modalIsOpen={setJoinGroupModalOpening}
+          orderId={id}
+        />
       )}
     </>
   );
