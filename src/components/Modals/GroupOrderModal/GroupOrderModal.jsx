@@ -1,10 +1,10 @@
-import css from './GrouporderModal.module.css';
-import icons from '../../../images/icons.svg';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import icons from '../../../images/icons.svg';
 import { getGuestLimit, getOrderId } from 'redux/selectors';
 import { updateOrder } from 'redux/operations';
 import Loader from 'components/Loader/Loader';
+import css from './GrouporderModal.module.css';
 
 const GroupModal = () => {
   const guestLimit = useSelector(getGuestLimit);
@@ -158,7 +158,7 @@ const GroupModal = () => {
             </ul>
             <button className={css.updateLimitBtn}>
               {loading ? (
-                <Loader />
+                <Loader modal={true} />
               ) : guestLimit === 'none' ? (
                 'Start Group Order'
               ) : (

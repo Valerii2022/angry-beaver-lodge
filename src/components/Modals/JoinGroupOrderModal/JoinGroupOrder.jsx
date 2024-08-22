@@ -1,14 +1,14 @@
 import css from './JoinGroupOrder.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getOrder } from 'redux/operations';
+import { getGuestsOrder } from 'redux/operations';
 
 const JoinGroupOrderModal = ({ modalIsOpen, orderId }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const getGroupOrderDetails = async () => {
-    await dispatch(getOrder({ orderId }));
+    await dispatch(getGuestsOrder({ orderId }));
     navigate('/order');
     modalIsOpen(false);
   };

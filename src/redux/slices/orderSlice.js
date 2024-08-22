@@ -2,6 +2,7 @@ import {
   addItem,
   addOrder,
   getOrder,
+  getGuestsOrder,
   removeItem,
   removeOrder,
   updateOrder,
@@ -43,10 +44,13 @@ const orderSlice = createSlice({
         state.orderDetails = payload;
       })
       .addCase(getOrder.fulfilled, (state, { payload }) => {
+        state.orderDetails = payload;
+      })
+      .addCase(getGuestsOrder.fulfilled, (state, { payload }) => {
         state.orderDetails = payload.result;
         state.currentGuestId = payload.guestId;
       })
-      .addCase(getOrder.rejected, (state, { payload }) => {
+      .addCase(getGuestsOrder.rejected, (state, { payload }) => {
         state.orderDetails = {
           id: '',
           deliveryAddress: 'none',
@@ -58,6 +62,21 @@ const orderSlice = createSlice({
           guests: [],
         };
         state.currentGuestId = '';
+      })
+      .addCase(getOrder.rejected, (state, { payload }) => {
+        if (payload === 404) {
+          state.orderDetails = {
+            id: '',
+            deliveryAddress: 'none',
+            orderType: '',
+            items: [],
+            limitPerGuest: 'none',
+            total: '0',
+            status: 'pending',
+            guests: [],
+          };
+          state.currentGuestId = '';
+        }
       })
       .addCase(updateOrder.rejected, (state, { payload }) => {
         if (payload === 404) {

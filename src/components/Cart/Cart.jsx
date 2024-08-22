@@ -1,17 +1,25 @@
 import css from './Cart.module.css';
 import cards from '../../images/cards.webp';
 import { useDispatch, useSelector } from 'react-redux';
-import { getItems, getOrderId, getTotalPrice } from 'redux/selectors';
+import {
+  getGuestLimit,
+  getItems,
+  getOrderDetails,
+  getOrderId,
+  getTotalPrice,
+} from 'redux/selectors';
 import icons from '../../images/icons.svg';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
-import { removeOrder, removeItem } from 'redux/operations';
+import { removeOrder, removeItem, getOrder } from 'redux/operations';
 import Modal from 'components/Modals/Modal/Modal';
 
 const Cart = ({ mobileOpening }) => {
   const cartItems = useSelector(getItems);
   const total = useSelector(getTotalPrice);
   const orderId = useSelector(getOrderId);
+  const groupOrder = useSelector(getGuestLimit);
+  const { guests } = useSelector(getOrderDetails);
 
   const dispatch = useDispatch();
 
@@ -26,6 +34,8 @@ const Cart = ({ mobileOpening }) => {
   const [serverError, setServerError] = useState(false);
   const [removeError, setRemoveError] = useState(false);
   const [removeLoading, setRemoveLoading] = useState(false);
+  const [refreshLoading, setRefreshLoading] = useState(false);
+  const [refreshError, setRefreshError] = useState(false);
   const [workingDaysStatus, setWorkingDaysStatus] = useState(true);
   const [workingHoursStatus, setWorkingHoursStatus] = useState(true);
   const [date, setDate] = useState('');
@@ -94,6 +104,18 @@ const Cart = ({ mobileOpening }) => {
     }, 3000);
   };
 
+  const handleUpdateGroupOrder = async () => {
+    setRefreshLoading(true);
+    const { payload } = await dispatch(getOrder({ orderId }));
+    if (typeof payload !== 'object') {
+      setRefreshError(true);
+    }
+    setRefreshLoading(false);
+    setTimeout(() => {
+      setRefreshError(false);
+    }, 3000);
+  };
+
   const subtotal = cartItems.reduce((acc, item) => {
     return acc + parseFloat(item.price);
   }, 0);
@@ -110,6 +132,30 @@ const Cart = ({ mobileOpening }) => {
                   orders until {workingDaysStatus ? 'Today' : 'Tomorrow'},{' '}
                   {date} 5:00 PM
                 </p>
+              )}
+              {groupOrder !== 'none' && (
+                <div className={css.groupOrderInfo}>
+                  <div className={css.groupOrderTitleWrapper}>
+                    <h2 className={css.title}>Group Order</h2>
+
+                    <buttton
+                      onClick={handleUpdateGroupOrder}
+                      className={css.refreshBtn}
+                    >
+                      {refreshLoading ? <Loader /> : 'Refresh'}
+                    </buttton>
+                  </div>
+                  <p className={css.groupStatistic}>
+                    <span>Group Members</span>
+                    <span>
+                      {guests.length}{' '}
+                      {guests.length === 1 ? 'person' : 'persons'}
+                    </span>
+                  </p>
+                  {refreshError && (
+                    <p className={css.errorMessage}>* Server error</p>
+                  )}
+                </div>
               )}
               <h2 className={css.title}>Your Items</h2>
               <ul className={css.cartList}>
