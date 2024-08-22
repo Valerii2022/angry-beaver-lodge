@@ -55,7 +55,9 @@ export const getGuestsOrder = createAsyncThunk(
   'orders/getGuestOrder',
   async ({ orderId, name }, thunkAPI) => {
     try {
-      const { data } = await axios.get(`/orders/guests/${orderId}`, name);
+      const { data } = await axios.post(`/orders/guests/${orderId}`, {
+        name: name,
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);

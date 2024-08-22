@@ -6,7 +6,6 @@ import {
   getItems,
   getOrderDetails,
   getOrderId,
-  getTotalPrice,
 } from 'redux/selectors';
 import icons from '../../images/icons.svg';
 import { useEffect, useState } from 'react';
@@ -16,7 +15,6 @@ import Modal from 'components/Modals/Modal/Modal';
 
 const Cart = ({ mobileOpening }) => {
   const cartItems = useSelector(getItems);
-  const total = useSelector(getTotalPrice);
   const orderId = useSelector(getOrderId);
   const groupOrder = useSelector(getGuestLimit);
   const { guests } = useSelector(getOrderDetails);
@@ -24,9 +22,7 @@ const Cart = ({ mobileOpening }) => {
   const dispatch = useDispatch();
 
   const [itemRemoveModal, setItemRemoveModal] = useState(false);
-  const [removeItemTitle, setRemoveItemTitle] = useState(null);
-  const [removeItemPrice, setRemoveItemPrice] = useState('');
-  const [removeId, setRemoveId] = useState(null);
+  const [removeItemDetails, setRemoveItemDetails] = useState(null);
   const [cancelLoading, setCancelLoading] = useState(false);
   const [cancelModalOpening, setCancelModalOpening] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
@@ -88,8 +84,8 @@ const Cart = ({ mobileOpening }) => {
 
   const handleRemoveItemFromCart = async () => {
     const order = {
-      id: removeId,
-      total: (parseFloat(total) - removeItemPrice * 1.15).toFixed(2).toString(),
+      id: removeItemDetails.id,
+      ownerId: removeItemDetails.guestId,
     };
     setRemoveLoading(true);
     const { payload } = await dispatch(removeItem({ orderId, order }));
@@ -138,12 +134,12 @@ const Cart = ({ mobileOpening }) => {
                   <div className={css.groupOrderTitleWrapper}>
                     <h2 className={css.title}>Group Order</h2>
 
-                    <buttton
+                    <button
                       onClick={handleUpdateGroupOrder}
                       className={css.refreshBtn}
                     >
                       {refreshLoading ? <Loader /> : 'Refresh'}
-                    </buttton>
+                    </button>
                   </div>
                   <div className={css.groupStatistic}>
                     <p>
@@ -168,12 +164,14 @@ const Cart = ({ mobileOpening }) => {
                 {cartItems.map(el => {
                   return (
                     <li key={el.id} className={css.cartItem}>
-                      {el.name && <p className={css.ownerName}>{el.name}</p>}
+                      {el.guestName && (
+                        <p className={css.ownerName}>* {el.guestName} order</p>
+                      )}
                       <div className={css.itemTitleWrapper}>
                         <span
                           className={css.itemTitle}
                         >{`${el.quantity} x ${el.title}`}</span>
-                        <span>${el.price.toFixed(2)}</span>
+                        <span>${parseFloat(el.price).toFixed(2)}</span>
 
                         <svg
                           id={el.id}
@@ -181,9 +179,7 @@ const Cart = ({ mobileOpening }) => {
                           width={16}
                           height={16}
                           onClick={e => {
-                            setRemoveItemPrice(el.price);
-                            setRemoveItemTitle(el.title);
-                            setRemoveId(e.currentTarget.id);
+                            setRemoveItemDetails(el);
                             setItemRemoveModal(true);
                           }}
                         >
@@ -228,12 +224,12 @@ const Cart = ({ mobileOpening }) => {
                   <div className={css.groupOrderTitleWrapper}>
                     <h2 className={css.title}>Group Order</h2>
 
-                    <buttton
+                    <button
                       onClick={handleUpdateGroupOrder}
                       className={css.refreshBtn}
                     >
                       {refreshLoading ? <Loader /> : 'Refresh'}
-                    </buttton>
+                    </button>
                   </div>
                   <div className={css.groupStatistic}>
                     <p>
@@ -258,7 +254,9 @@ const Cart = ({ mobileOpening }) => {
                   Order id: <span>{orderId}</span>
                 </p>
               )}
-              <div className={css.imageWrapper}><img src={cards} alt="Logo" /></div>
+              <div className={css.imageWrapper}>
+                <img src={cards} alt="Logo" />
+              </div>
             </div>
           )}
         </div>
@@ -339,7 +337,7 @@ const Cart = ({ mobileOpening }) => {
       {itemRemoveModal && (
         <Modal modalIsOpen={setItemRemoveModal} title="Warning">
           <p className={css.removeModalText}>
-            Remove <span>{removeItemTitle}</span> from your cart?
+            Remove <span>{removeItemDetails.title}</span> from your cart?
           </p>
           <div className={css.cancelBtnsWrapper}>
             <button

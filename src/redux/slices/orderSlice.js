@@ -18,11 +18,12 @@ const initialState = {
     orderType: '',
     items: [],
     limitPerGuest: 'none',
-    total: '0',
+    total: 0,
     status: 'pending',
     guests: [],
   },
   currentGuestId: '',
+  currentGuestName: '',
 };
 
 const orderSlice = createSlice({
@@ -33,6 +34,7 @@ const orderSlice = createSlice({
       .addCase(addOrder.fulfilled, (state, { payload }) => {
         state.orderDetails = payload.orderDetails;
         state.currentGuestId = payload.guestId;
+        state.currentGuestName = '';
       })
       .addCase(updateOrder.fulfilled, (state, { payload }) => {
         state.orderDetails = payload;
@@ -49,6 +51,7 @@ const orderSlice = createSlice({
       .addCase(getGuestsOrder.fulfilled, (state, { payload }) => {
         state.orderDetails = payload.result;
         state.currentGuestId = payload.guestId;
+        state.currentGuestName = payload.guestName;
       })
       .addCase(getGuestsOrder.rejected, (state, { payload }) => {
         state.orderDetails = {

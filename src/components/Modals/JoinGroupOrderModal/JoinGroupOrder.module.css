@@ -58,6 +58,49 @@
   justify-content: flex-end;
 }
 
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 18px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.input {
+  border-radius: 4px;
+  background-color: var(--primary-bg-color);
+  border: 1px solid var(--shadow-dark);
+  box-shadow: var(--box-shadow);
+  outline: none;
+  font-size: 16px;
+  color: var(--primary-color);
+  font-family: 'Roboto', sans-serif;
+  height: 38px;
+  padding: 6px 12px;
+}
+
+.input:focus {
+  box-shadow: 0 0 6px 0 var(--accent-color);
+}
+
+.inputError {
+  color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+
+.inputError:focus {
+  box-shadow: 0 0 6px 0 var(--warning-color);
+}
+
+.error {
+  line-height: 1.5;
+  font-size: 12px;
+  color: var(--warning-color);
+}
+
 @media screen and (min-width: 768px) {
   .button {
     cursor: pointer;
