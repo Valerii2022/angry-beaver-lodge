@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getCurrentGuest,
   getCurrentGuestName,
+  getGuestLimit,
   getOrderDetails,
 } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
@@ -11,10 +12,14 @@ import { addItem } from 'redux/operations';
 import { nanoid } from 'nanoid';
 
 const Details = ({ item, closeModal }) => {
-  const { _id: orderId } = useSelector(getOrderDetails);
+  const { _id: orderId, guests } = useSelector(getOrderDetails);
+  const groupOrder = useSelector(getGuestLimit);
   const currentGuestId = useSelector(getCurrentGuest);
   const currentGuestName = useSelector(getCurrentGuestName);
   const dispatch = useDispatch();
+
+  const currentGuest = guests.find(el => el.id === currentGuestId);
+  const limit = parseFloat(groupOrder.replace('$', ''));
 
   const [price, setPrice] = useState(parseFloat(item.price));
   const [quantity, setQuantity] = useState(1);
@@ -102,14 +107,18 @@ const Details = ({ item, closeModal }) => {
       </div>
       <div className={css.buttonWrapper}>
         {serverError && <p className={css.errorMessage}>* Server error</p>}
-        <button className={css.submitBtn} onClick={handleAddedToCart}>
-          {loading ? (
-            <Loader modal={true} />
-          ) : (
-            <span className={css.submitText}>Add to Cart</span>
-          )}
-          {!loading && <span>${price.toFixed(2)}</span>}
-        </button>
+        {currentGuest.guestTotal + price - limit > 0 ? (
+          <button className={css.overLimitBtn}>Over Limit</button>
+        ) : (
+          <button className={css.submitBtn} onClick={handleAddedToCart}>
+            {loading ? (
+              <Loader modal={true} />
+            ) : (
+              <span className={css.submitText}>Add to Cart</span>
+            )}
+            {!loading && <span>${price.toFixed(2)}</span>}
+          </button>
+        )}
       </div>
     </div>
   );

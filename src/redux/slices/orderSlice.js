@@ -29,6 +29,22 @@ const initialState = {
 const orderSlice = createSlice({
   name: 'orders',
   initialState,
+  reducers: {
+    leaveOrder(state, { payload }) {
+      state.orderDetails = {
+        id: '',
+        deliveryAddress: 'none',
+        orderType: '',
+        items: [],
+        limitPerGuest: 'none',
+        total: '0',
+        status: 'pending',
+        guests: [],
+      };
+      state.currentGuestId = '';
+      state.currentGuestName = '';
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(addOrder.fulfilled, (state, { payload }) => {
@@ -65,6 +81,7 @@ const orderSlice = createSlice({
           guests: [],
         };
         state.currentGuestId = '';
+        state.currentGuestName = '';
       })
       .addCase(getOrder.rejected, (state, { payload }) => {
         if (payload === 404) {
@@ -79,6 +96,7 @@ const orderSlice = createSlice({
             guests: [],
           };
           state.currentGuestId = '';
+          state.currentGuestName = '';
         }
       })
       .addCase(updateOrder.rejected, (state, { payload }) => {
@@ -94,6 +112,7 @@ const orderSlice = createSlice({
             guests: [],
           };
           state.currentGuestId = '';
+          state.currentGuestName = '';
         }
       })
       .addCase(removeOrder.fulfilled, (state, { payload }) => {
@@ -108,6 +127,7 @@ const orderSlice = createSlice({
           guests: [],
         };
         state.currentGuestId = '';
+        state.currentGuestName = '';
       })
       .addCase(removeOrder.rejected, (state, { payload }) => {
         if (payload === 404) {
@@ -122,6 +142,7 @@ const orderSlice = createSlice({
             guests: [],
           };
           state.currentGuestId = '';
+          state.currentGuestName = '';
         }
       });
   },
@@ -131,5 +152,7 @@ const persistConfig = {
   key: 'orders',
   storage,
 };
+
+export const { leaveOrder } = orderSlice.actions;
 
 export const orderReducer = persistReducer(persistConfig, orderSlice.reducer);

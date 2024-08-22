@@ -2,6 +2,8 @@ import css from './Cart.module.css';
 import cards from '../../images/cards.webp';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  getCurrentGuest,
+  getCurrentGuestName,
   getGuestLimit,
   getItems,
   getOrderDetails,
@@ -12,12 +14,17 @@ import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
 import { removeOrder, removeItem, getOrder } from 'redux/operations';
 import Modal from 'components/Modals/Modal/Modal';
+import { leaveOrder } from 'redux/slices/orderSlice';
 
 const Cart = ({ mobileOpening }) => {
   const cartItems = useSelector(getItems);
   const orderId = useSelector(getOrderId);
   const groupOrder = useSelector(getGuestLimit);
   const { guests } = useSelector(getOrderDetails);
+  const guestId = useSelector(getCurrentGuest);
+  const currentGuestName = useSelector(getCurrentGuestName);
+
+  const currentGuest = guests.find(el => el.id === guestId);
 
   const dispatch = useDispatch();
 
@@ -153,6 +160,20 @@ const Cart = ({ mobileOpening }) => {
                       <span>Limit Per Guest</span>
                       <span>{groupOrder}</span>
                     </p>
+                    {currentGuest && currentGuestName && (
+                      <p
+                        className={
+                          currentGuest.guestTotal /
+                            parseFloat(groupOrder.replace('$', '')) >
+                          0.9
+                            ? css.errorLimit
+                            : ''
+                        }
+                      >
+                        <span>Your Order</span>
+                        <span>${currentGuest.guestTotal}</span>
+                      </p>
+                    )}
                   </div>
                   {refreshError && (
                     <p className={css.errorMessage}>* Server error</p>
@@ -274,9 +295,9 @@ const Cart = ({ mobileOpening }) => {
           </li>
           <li className={css.checkoutBtnWrapper}>
             <button
-              disabled={!orderId || cartItems.length === 0}
+              disabled={!orderId || cartItems.length === 0 || currentGuestName}
               className={
-                orderId && cartItems.length !== 0
+                orderId && cartItems.length !== 0 && !currentGuestName
                   ? css.checkoutBtn
                   : `${css.checkoutBtn} ${css.disabled}`
               }
@@ -293,15 +314,24 @@ const Cart = ({ mobileOpening }) => {
             </button>
           </li>
           <li className={css.cancelBtnWrapper}>
-            <button
-              disabled={!orderId}
-              className={
-                orderId ? css.cancelBtn : `${css.cancelBtn} ${css.disabled}`
-              }
-              onClick={() => setCancelModalOpening(true)}
-            >
-              Cancel
-            </button>
+            {currentGuestName ? (
+              <button
+                className={css.cancelBtn}
+                onClick={() => dispatch(leaveOrder())}
+              >
+                Leave
+              </button>
+            ) : (
+              <button
+                disabled={!orderId}
+                className={
+                  orderId ? css.cancelBtn : `${css.cancelBtn} ${css.disabled}`
+                }
+                onClick={() => setCancelModalOpening(true)}
+              >
+                Cancel
+              </button>
+            )}
           </li>
         </ul>
       </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getItems, getOrderType } from 'redux/selectors';
+import { getCurrentGuestName, getItems, getOrderType } from 'redux/selectors';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
 import SignUpModal from 'components/Modals/SignUpModal/SignUpModal';
@@ -18,6 +18,7 @@ const Order = () => {
   const location = useLocation();
   const currentOrderType = useSelector(getOrderType);
   const cartItems = useSelector(getItems);
+  const currentGuestName = useSelector(getCurrentGuestName);
   const { id } = useParams();
 
   const totalCartPrice = cartItems.reduce((acc, item) => {
@@ -123,21 +124,23 @@ const Order = () => {
       <div className={css.container}>
         <div className={css.content}>
           <ul className={css.options}>
-            <li>
-              <button
-                className={css.optionsBtn}
-                type="button"
-                onClick={() => {
-                  if (orderType) {
-                    setGroupModalOpen(true);
-                  } else {
-                    setGroupModalPreOpen(true);
-                  }
-                }}
-              >
-                Group Order
-              </button>
-            </li>
+            {!currentGuestName && (
+              <li>
+                <button
+                  className={css.optionsBtn}
+                  type="button"
+                  onClick={() => {
+                    if (orderType) {
+                      setGroupModalOpen(true);
+                    } else {
+                      setGroupModalPreOpen(true);
+                    }
+                  }}
+                >
+                  Group Order
+                </button>
+              </li>
+            )}
             <li>
               <button
                 className={css.optionsBtn}
