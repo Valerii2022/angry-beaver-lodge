@@ -145,13 +145,19 @@ const Cart = ({ mobileOpening }) => {
                       {refreshLoading ? <Loader /> : 'Refresh'}
                     </buttton>
                   </div>
-                  <p className={css.groupStatistic}>
-                    <span>Group Members</span>
-                    <span>
-                      {guests.length}{' '}
-                      {guests.length === 1 ? 'person' : 'persons'}
-                    </span>
-                  </p>
+                  <div className={css.groupStatistic}>
+                    <p>
+                      <span>Group Members</span>
+                      <span>
+                        {guests.length}{' '}
+                        {guests.length === 1 ? 'person' : 'persons'}
+                      </span>
+                    </p>
+                    <p>
+                      <span>Limit Per Guest</span>
+                      <span>{groupOrder}</span>
+                    </p>
+                  </div>
                   {refreshError && (
                     <p className={css.errorMessage}>* Server error</p>
                   )}
@@ -162,6 +168,7 @@ const Cart = ({ mobileOpening }) => {
                 {cartItems.map(el => {
                   return (
                     <li key={el.id} className={css.cartItem}>
+                      {el.name && <p className={css.ownerName}>{el.name}</p>}
                       <div className={css.itemTitleWrapper}>
                         <span
                           className={css.itemTitle}
@@ -216,12 +223,42 @@ const Cart = ({ mobileOpening }) => {
           ) : (
             <div className={css.emptyWrapper}>
               <p className={css.emptyText}>Your cart is empty.</p>
+              {groupOrder !== 'none' && (
+                <div className={css.groupOrderInfo}>
+                  <div className={css.groupOrderTitleWrapper}>
+                    <h2 className={css.title}>Group Order</h2>
+
+                    <buttton
+                      onClick={handleUpdateGroupOrder}
+                      className={css.refreshBtn}
+                    >
+                      {refreshLoading ? <Loader /> : 'Refresh'}
+                    </buttton>
+                  </div>
+                  <div className={css.groupStatistic}>
+                    <p>
+                      <span>Group Members</span>
+                      <span>
+                        {guests.length}{' '}
+                        {guests.length === 1 ? 'person' : 'persons'}
+                      </span>
+                    </p>
+                    <p>
+                      <span>Limit Per Guest</span>
+                      <span>{groupOrder}</span>
+                    </p>
+                  </div>
+                  {refreshError && (
+                    <p className={css.errorMessage}>* Server error</p>
+                  )}
+                </div>
+              )}
               {orderId && (
                 <p className={css.orderIdText}>
                   Order id: <span>{orderId}</span>
                 </p>
               )}
-              <img src={cards} alt="Logo" />
+              <div className={css.imageWrapper}><img src={cards} alt="Logo" /></div>
             </div>
           )}
         </div>
