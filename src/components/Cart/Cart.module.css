@@ -227,6 +227,7 @@
   line-height: 1.5;
   margin-bottom: 64px;
   font-size: 20px;
+  padding: 16px;
 }
 
 .successMessage span {
@@ -260,7 +261,7 @@
 .removeModalText {
   font-size: 18px;
   line-height: 1.5;
-  padding-bottom: 70px;
+  padding: 16px 16px 86px;
 }
 
 .removeModalText span {

@@ -1,5 +1,4 @@
-import css from './Cart.module.css';
-import cards from '../../images/cards.webp';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCurrentGuest,
@@ -9,17 +8,18 @@ import {
   getOrderDetails,
   getOrderId,
 } from 'redux/selectors';
-import { useEffect, useState } from 'react';
-import Loader from 'components/Loader/Loader';
+import { leaveOrder } from 'redux/slices/orderSlice';
 import {
   removeOrder,
   removeItem,
   getOrder,
   updateOrder,
 } from 'redux/operations';
+import Loader from 'components/Loader/Loader';
 import Modal from 'components/Modals/Modal/Modal';
-import { leaveOrder } from 'redux/slices/orderSlice';
+import cards from '../../images/cards.webp';
 import CartDetails from './CartDetails';
+import css from './Cart.module.css';
 
 const Cart = ({ mobileOpening }) => {
   const cartItems = useSelector(getItems);

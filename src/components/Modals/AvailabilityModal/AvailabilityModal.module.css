@@ -1,7 +1,7 @@
 .container {
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  padding-bottom: 55px;
+  padding: 16px 16px 55px;
 }
 
 .title {

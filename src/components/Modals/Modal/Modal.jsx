@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import icons from '../../../images/icons.svg';
 import css from './Modal.module.css';
-import { useNavigate } from 'react-router-dom';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -15,7 +15,7 @@ const Modal = ({ children, modalIsOpen, title, orderId }) => {
     setIsActive(false);
     setTimeout(() => modalIsOpen(false), 300);
     if (orderId) {
-      navigate('/order')
+      navigate('/order');
     }
   }, [modalIsOpen, navigate, orderId]);
 

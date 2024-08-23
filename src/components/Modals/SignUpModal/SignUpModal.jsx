@@ -1,12 +1,12 @@
-import { emailPattern, namePattern } from 'Constants/patterns';
-import css from './SignUpModal.module.css';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { addSubscribe } from 'redux/operations';
-import icons from '../../../images/icons.svg';
+import { emailPattern, namePattern } from 'Constants/patterns';
 import Loader from 'components/Loader/Loader';
+import icons from '../../../images/icons.svg';
+import css from './SignUpModal.module.css';
 
 const SignUpModal = ({ modalIsOpen, setSuccessModal }) => {
   const [loading, setLoading] = useState(false);

@@ -1,12 +1,12 @@
-import Address from 'components/Address/Address';
-import css from './AvailabilityModal.module.css';
 import { useState } from 'react';
-import icons from '../../../images/icons.svg';
 import { useDispatch, useSelector } from 'react-redux';
+import Address from 'components/Address/Address';
 import { addOrder, updateOrder } from 'redux/operations';
 import { getDeliveryAddress, getOrderId, getOrderType } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
 import { namePattern } from 'Constants/patterns';
+import icons from '../../../images/icons.svg';
+import css from './AvailabilityModal.module.css';
 
 const AvailabilityModal = ({
   closeModal,

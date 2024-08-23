@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import css from './Details.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { addItem } from 'redux/operations';
 import {
   getCurrentGuest,
   getCurrentGuestName,
@@ -8,8 +9,7 @@ import {
   getOrderDetails,
 } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
-import { addItem } from 'redux/operations';
-import { nanoid } from 'nanoid';
+import css from './Details.module.css';
 
 const Details = ({ item, closeModal }) => {
   const { _id: orderId, guests } = useSelector(getOrderDetails);
@@ -80,7 +80,7 @@ const Details = ({ item, closeModal }) => {
           </div>
         )}
         <p className={css.description}>{item.description}</p>
-        <div className={css.modalSection}>
+        <div>
           <p className={css.title}>Quantity</p>
           <div className={css.optionsWrapper}>
             <button
