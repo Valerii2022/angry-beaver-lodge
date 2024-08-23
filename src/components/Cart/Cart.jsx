@@ -9,12 +9,12 @@ import {
   getOrderDetails,
   getOrderId,
 } from 'redux/selectors';
-import icons from '../../images/icons.svg';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
 import { removeOrder, removeItem, getOrder } from 'redux/operations';
 import Modal from 'components/Modals/Modal/Modal';
 import { leaveOrder } from 'redux/slices/orderSlice';
+import CartDetails from './CartDetails';
 
 const Cart = ({ mobileOpening }) => {
   const cartItems = useSelector(getItems);
@@ -160,82 +160,39 @@ const Cart = ({ mobileOpening }) => {
                       <span>Limit Per Guest</span>
                       <span>{groupOrder}</span>
                     </p>
-                    {currentGuest && currentGuestName && (
-                      <p
-                        className={
-                          currentGuest.guestTotal /
-                            parseFloat(groupOrder.replace('$', '')) >
-                          0.9
-                            ? css.errorLimit
-                            : ''
-                        }
-                      >
-                        <span>Your Order</span>
-                        <span>${currentGuest.guestTotal}</span>
-                      </p>
-                    )}
                   </div>
                   {refreshError && (
                     <p className={css.errorMessage}>* Server error</p>
                   )}
                 </div>
               )}
-              <h2 className={css.title}>Your Items</h2>
-              <ul className={css.cartList}>
-                {cartItems.map(el => {
-                  return (
-                    <li key={el.id} className={css.cartItem}>
-                      {el.guestName && (
-                        <p className={css.ownerName}>* {el.guestName} order</p>
-                      )}
-                      <div className={css.itemTitleWrapper}>
-                        <span
-                          className={css.itemTitle}
-                        >{`${el.quantity} x ${el.title}`}</span>
-                        <span>${parseFloat(el.price).toFixed(2)}</span>
-
-                        <svg
-                          id={el.id}
-                          className={css.icon}
-                          width={16}
-                          height={16}
-                          onClick={e => {
-                            setRemoveItemDetails(el);
-                            setItemRemoveModal(true);
-                          }}
-                        >
-                          <use href={`${icons}#remove`} />
-                        </svg>
-                      </div>
-                      {el.instructions && (
-                        <ul>
-                          <li className={css.instructions}>
-                            + Special Instructions
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-              <ul className={css.totalPriceSection}>
-                <li>
-                  <span>Subtotal:</span>
-                  <span>${subtotal.toFixed(2)}</span>
-                </li>
-                <li>
-                  <span>Convenience Fee:</span>
-                  <span>${(subtotal * 0.08).toFixed(2)}</span>
-                </li>
-                <li>
-                  <span>Estimated Tax:</span>
-                  <span>${(subtotal * 0.07).toFixed(2)}</span>
-                </li>
-                <li>
-                  <span>Total:</span>
-                  <span>${(subtotal * 1.15).toFixed(2)}</span>
-                </li>
-              </ul>
+              <CartDetails
+                name={currentGuestName}
+                items={cartItems}
+                guestId={guestId}
+                setRemoveItemDetails={setRemoveItemDetails}
+                setItemRemoveModal={setItemRemoveModal}
+              />
+              {!currentGuestName && (
+                <ul className={css.totalPriceSection}>
+                  <li>
+                    <span>Subtotal:</span>
+                    <span>${subtotal.toFixed(2)}</span>
+                  </li>
+                  <li>
+                    <span>Convenience Fee:</span>
+                    <span>${(subtotal * 0.08).toFixed(2)}</span>
+                  </li>
+                  <li>
+                    <span>Estimated Tax:</span>
+                    <span>${(subtotal * 0.07).toFixed(2)}</span>
+                  </li>
+                  <li>
+                    <span>Total:</span>
+                    <span>${(subtotal * 1.15).toFixed(2)}</span>
+                  </li>
+                </ul>
+              )}
             </div>
           ) : (
             <div className={css.emptyWrapper}>
@@ -305,6 +262,11 @@ const Cart = ({ mobileOpening }) => {
             >
               {checkoutLoading ? (
                 <Loader modal={true} />
+              ) : currentGuest && currentGuestName ? (
+                <p className={css.currentOrder}>
+                  <span>Your Order</span>
+                  <span>${currentGuest.guestTotal.toFixed(2)}</span>
+                </p>
               ) : (
                 <>
                   <span>Checkout</span>

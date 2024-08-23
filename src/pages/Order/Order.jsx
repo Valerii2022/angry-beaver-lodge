@@ -221,33 +221,35 @@ const Order = () => {
               </div>
             </li>
           </ul>
-          <div className={css.availability}>
-            <p className={css.availabilityTitle}>
+          {!currentGuestName && (
+            <div className={css.availability}>
+              <p className={css.availabilityTitle}>
+                {workingHoursStatus ? (
+                  'Start your order.'
+                ) : (
+                  <span
+                    className={css.warning}
+                    onClick={() => setAvailabilityModal(true)}
+                  >
+                    Closed until {workingDaysStatus ? 'Today' : 'Tomorrow'},{' '}
+                    {date} 5:00 PM
+                  </span>
+                )}
+              </p>
               {workingHoursStatus ? (
-                'Start your order.'
-              ) : (
-                <span
-                  className={css.warning}
+                <button
+                  className={css.availabilityBtn}
                   onClick={() => setAvailabilityModal(true)}
                 >
-                  Closed until {workingDaysStatus ? 'Today' : 'Tomorrow'},{' '}
-                  {date} 5:00 PM
-                </span>
+                  Check Availability
+                </button>
+              ) : (
+                <div className={css.closedMenu}>
+                  <p>{`Carryout / Delivery menu opens at ${date} 5:00 PM`}</p>
+                </div>
               )}
-            </p>
-            {workingHoursStatus ? (
-              <button
-                className={css.availabilityBtn}
-                onClick={() => setAvailabilityModal(true)}
-              >
-                Check Availability
-              </button>
-            ) : (
-              <div className={css.closedMenu}>
-                <p>{`Carryout / Delivery menu opens at ${date} 5:00 PM`}</p>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
           <Products
             availability={orderType}
             setPreOpen={setProductModalPreOpen}

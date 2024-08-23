@@ -69,27 +69,38 @@ const Details = ({ item, closeModal }) => {
 
   return (
     <div className={css.container}>
-      <p className={css.description}>{item.description}</p>
-      <div className={css.modalSection}>
-        <p className={css.title}>Quantity</p>
-        <div className={css.optionsWrapper}>
-          <button
-            className={
-              quantity === 1
-                ? `${css.optionBtn} ${css.disabled}`
-                : css.optionBtn
-            }
-            onClick={() => handleQuantity('decrease')}
-          >
-            --
-          </button>
-          <p className={css.optionText}>{quantity}</p>
-          <button
-            className={css.optionBtn}
-            onClick={() => handleQuantity('increase')}
-          >
-            +
-          </button>
+      <div className={css.topWrapper}>
+        {item.image && (
+          <div className={css.imageWrapper}>
+            <img
+              className={css.image}
+              src={item.image}
+              alt={item.description}
+            />
+          </div>
+        )}
+        <p className={css.description}>{item.description}</p>
+        <div className={css.modalSection}>
+          <p className={css.title}>Quantity</p>
+          <div className={css.optionsWrapper}>
+            <button
+              className={
+                quantity === 1
+                  ? `${css.optionBtn} ${css.disabled}`
+                  : css.optionBtn
+              }
+              onClick={() => handleQuantity('decrease')}
+            >
+              --
+            </button>
+            <p className={css.optionText}>{quantity}</p>
+            <button
+              className={css.optionBtn}
+              onClick={() => handleQuantity('increase')}
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
       <div className={css.modalSection}>

@@ -16,8 +16,19 @@
   margin-bottom: 8px;
 }
 
-.modalSection {
+.topWrapper {
   margin-bottom: 16px;
+}
+
+.imageWrapper {
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.image {
+  width: 100%;
+  display: block;
 }
 
 .optionsWrapper {
