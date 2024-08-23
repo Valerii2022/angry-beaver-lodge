@@ -58,9 +58,11 @@ const CartDetails = ({
                   );
                 })}
               </ul>
-              <p className={css.guestTotalText}>
-                Guest Total: ${counter.toFixed(2)}
-              </p>
+              {guestName !== 'Your Items' && (
+                <p className={css.guestTotalText}>
+                  Guest Total: ${counter.toFixed(2)}
+                </p>
+              )}
             </div>
           );
         })}

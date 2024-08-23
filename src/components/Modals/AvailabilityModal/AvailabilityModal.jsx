@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addOrder, updateOrder } from 'redux/operations';
 import { getDeliveryAddress, getOrderId, getOrderType } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
+import { namePattern } from 'Constants/patterns';
 
 const AvailabilityModal = ({
   closeModal,
@@ -34,7 +35,13 @@ const AvailabilityModal = ({
       return;
     }
 
-    if (orderType === 'delivery' && (!address || address === 'none')) {
+    if (
+      orderType === 'delivery' &&
+      (!address ||
+        address === 'none' ||
+        address.length < 10 ||
+        !address.match(namePattern))
+    ) {
       setAddressError(true);
       return;
     }
@@ -134,7 +141,9 @@ const AvailabilityModal = ({
           <p className={css.errorMessage}>* Choose Order Type Please</p>
         )}
         {addressError && orderType === 'delivery' && (
-          <p className={css.errorMessage}>* Type The Delivery Address</p>
+          <p className={css.errorMessage}>
+            * Type The Delivery Address, minimum 10 latin characters
+          </p>
         )}
         {serverError && <p className={css.errorMessage}>* Server error</p>}
         <div className={css.buttonWrapper}>
