@@ -118,7 +118,9 @@ const Details = ({ item, closeModal }) => {
       </div>
       <div className={css.buttonWrapper}>
         {serverError && <p className={css.errorMessage}>* Server error</p>}
-        {currentGuest && currentGuest.guestTotal + price - limit > 0 ? (
+        {currentGuestName &&
+        currentGuest &&
+        currentGuest.guestTotal + price - limit > 0 ? (
           <button className={css.overLimitBtn}>Over Limit</button>
         ) : (
           <button className={css.submitBtn} onClick={handleAddedToCart}>
