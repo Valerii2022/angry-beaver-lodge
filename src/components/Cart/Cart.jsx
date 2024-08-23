@@ -37,6 +37,7 @@ const Cart = ({ mobileOpening }) => {
   const [removeItemDetails, setRemoveItemDetails] = useState(null);
   const [cancelLoading, setCancelLoading] = useState(false);
   const [cancelModalOpening, setCancelModalOpening] = useState(false);
+  const [leaveModalOpening, setLeaveModalOpening] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutModalOpening, setCheckoutModalOpening] = useState(false);
   const [serverError, setServerError] = useState(false);
@@ -292,7 +293,7 @@ const Cart = ({ mobileOpening }) => {
             {currentGuestName ? (
               <button
                 className={css.cancelBtn}
-                onClick={() => dispatch(leaveOrder())}
+                onClick={() => setLeaveModalOpening(true)}
               >
                 Leave
               </button>
@@ -310,21 +311,49 @@ const Cart = ({ mobileOpening }) => {
           </li>
         </ul>
       </div>
-      {cancelModalOpening && (
-        <Modal modalIsOpen={setCancelModalOpening} title="Warning">
+      {(cancelModalOpening || leaveModalOpening) && (
+        <Modal
+          modalIsOpen={
+            cancelModalOpening ? setCancelModalOpening : setLeaveModalOpening
+          }
+          title="Warning"
+        >
           <p className={css.warningMessage}>
-            Are you sure you want to cancel the order?
+            Are you sure you want to {cancelModalOpening ? 'cancel' : 'leave'}{' '}
+            the order?
           </p>
           <div className={css.cancelBtnsWrapper}>
             <button
               className={css.noButton}
-              onClick={() => setCancelModalOpening(false)}
+              onClick={() => {
+                if (cancelModalOpening) {
+                  setCancelModalOpening(false);
+                } else {
+                  setLeaveModalOpening(false);
+                }
+              }}
             >
               No
             </button>
-            <button className={css.cancelBtn} onClick={handleCancelOrder}>
+            <button
+              className={css.cancelBtn}
+              onClick={() => {
+                if (cancelModalOpening) {
+                  handleCancelOrder();
+                } else {
+                  dispatch(leaveOrder());
+                  setLeaveModalOpening(false);
+                }
+              }}
+            >
               <span>
-                {cancelLoading ? <Loader modal={true} /> : 'Yes, Cancel'}
+                {cancelLoading ? (
+                  <Loader modal={true} />
+                ) : cancelModalOpening ? (
+                  'Yes, Cancel'
+                ) : (
+                  'Yes, Leave'
+                )}
               </span>
             </button>
             {serverError && <p className={css.errorMessage}>* Server error</p>}
