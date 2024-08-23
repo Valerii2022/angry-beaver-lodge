@@ -333,11 +333,16 @@ const Cart = ({ mobileOpening }) => {
       )}
       {checkoutModalOpening && (
         <Modal modalIsOpen={setCheckoutModalOpening} title="Thank You!">
-          <p className={css.warningMessage}>Thank you for your order!</p>
-          <p className={css.warningMessage}>Order accepted for processing!</p>
-          <p className={css.successMessage}>
-            Your order number is: <span>{localStorage.getItem('id')}</span>
-          </p>
+          <div className={css.modalWrapper}>
+            <p>Thank you for your order!</p>
+            <p>Order accepted for processing!</p>
+            <p className={css.successMessage}>
+              Your order number is: <span>{localStorage.getItem('id')}</span>
+            </p>
+            <p>
+              With best wishes, <span>Angry Beaver Lodge</span>!
+            </p>
+          </div>
         </Modal>
       )}
       {itemRemoveModal && (

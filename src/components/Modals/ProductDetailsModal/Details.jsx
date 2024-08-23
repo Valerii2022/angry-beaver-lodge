@@ -42,7 +42,7 @@ const Details = ({ item, closeModal }) => {
 
   const handleAddedToCart = async () => {
     setLoading(true);
-    
+
     const order = {
       item: {
         id: nanoid(6),
@@ -118,7 +118,7 @@ const Details = ({ item, closeModal }) => {
       </div>
       <div className={css.buttonWrapper}>
         {serverError && <p className={css.errorMessage}>* Server error</p>}
-        {currentGuest.guestTotal + price - limit > 0 ? (
+        {currentGuest && currentGuest.guestTotal + price - limit > 0 ? (
           <button className={css.overLimitBtn}>Over Limit</button>
         ) : (
           <button className={css.submitBtn} onClick={handleAddedToCart}>
