@@ -42,7 +42,7 @@ const Details = ({ item, closeModal }) => {
 
   const handleAddedToCart = async () => {
     setLoading(true);
-
+    
     const order = {
       item: {
         id: nanoid(6),

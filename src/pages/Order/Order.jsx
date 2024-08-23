@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getCurrentGuestName, getItems, getOrderType } from 'redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getCurrentGuestName,
+  getItems,
+  getOrderDetails,
+  getOrderType,
+} from 'redux/selectors';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
 import SignUpModal from 'components/Modals/SignUpModal/SignUpModal';
@@ -13,13 +18,17 @@ import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityM
 import icons from 'images/icons.svg';
 import css from './Order.module.css';
 import JoinGroupOrderModal from 'components/Modals/JoinGroupOrderModal/JoinGroupOrder';
+import { leaveOrder } from 'redux/slices/orderSlice';
 
 const Order = () => {
   const location = useLocation();
   const currentOrderType = useSelector(getOrderType);
   const cartItems = useSelector(getItems);
   const currentGuestName = useSelector(getCurrentGuestName);
+  const { status } = useSelector(getOrderDetails);
   const { id } = useParams();
+
+  const dispatch = useDispatch();
 
   const totalCartPrice = cartItems.reduce((acc, item) => {
     return acc + parseFloat(item.price);
@@ -41,6 +50,14 @@ const Order = () => {
   const [sundayHours, setSundayHours] = useState(true);
   const [date, setDate] = useState('');
   const [joinGroupModalOpening, setJoinGroupModalOpening] = useState(false);
+  const [completedOrder, setCompletedOrder] = useState(false);
+
+  useEffect(() => {
+    if (status === 'done' && currentGuestName) {
+      setCompletedOrder(true);
+      dispatch(leaveOrder());
+    }
+  }, [currentGuestName, dispatch, status]);
 
   useEffect(() => {
     if (id) {
@@ -338,6 +355,17 @@ const Order = () => {
             modalIsOpen={setJoinGroupModalOpening}
             orderId={id}
           />
+        </Modal>
+      )}
+      {completedOrder && (
+        <Modal modalIsOpen={setCompletedOrder} title="Warning!">
+          <div className={css.modalWrapper}>
+            <p>The order is already being processed!</p>
+            <p>Adding products is no longer possible!</p>
+            <p>
+              With best wishes, <span>Angry Beaver Lodge</span>!
+            </p>
+          </div>
         </Modal>
       )}
     </>

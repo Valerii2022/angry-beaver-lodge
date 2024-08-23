@@ -64,8 +64,14 @@
   margin-bottom: 8px;
 }
 
-.cartList {
+.cartListWrapper {
   margin-bottom: 32px;
+}
+
+.guestTotalText {
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: right;
 }
 
 .cartItem {
@@ -213,19 +219,18 @@
 }
 
 .warningMessage,
-.successMessageMessage {
-  margin-bottom: 32px;
+.successMessage {
+  margin-bottom: 16px;
   text-align: center;
   line-height: 1.5;
 }
 
 .warningMessage {
   font-size: 20px;
-  padding-top: 16px;
-  padding-bottom: 40px;
 }
 
-.successMessageMessage span {
+.successMessage span {
+  color: var(--accent-color);
   font-weight: 600;
   text-decoration: underline;
 }

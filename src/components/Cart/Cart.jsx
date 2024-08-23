@@ -11,7 +11,12 @@ import {
 } from 'redux/selectors';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
-import { removeOrder, removeItem, getOrder } from 'redux/operations';
+import {
+  removeOrder,
+  removeItem,
+  getOrder,
+  updateOrder,
+} from 'redux/operations';
 import Modal from 'components/Modals/Modal/Modal';
 import { leaveOrder } from 'redux/slices/orderSlice';
 import CartDetails from './CartDetails';
@@ -84,9 +89,17 @@ const Cart = ({ mobileOpening }) => {
   };
 
   const handleCheckoutOrder = async () => {
+    localStorage.setItem('id', orderId);
+    const order = {
+      status: 'done',
+    };
     setCheckoutLoading(true);
     setCheckoutLoading(false);
-    setCheckoutModalOpening(true);
+    const { payload } = await dispatch(updateOrder({ orderId, order }));
+    if (typeof payload === 'object') {
+      setCheckoutModalOpening(true);
+      dispatch(leaveOrder());
+    }
   };
 
   const handleRemoveItemFromCart = async () => {
@@ -321,8 +334,9 @@ const Cart = ({ mobileOpening }) => {
       {checkoutModalOpening && (
         <Modal modalIsOpen={setCheckoutModalOpening} title="Thank You!">
           <p className={css.warningMessage}>Thank you for your order!</p>
-          <p className={css.successMessageMessage}>
-            Your order number is: <span>{orderId}</span>
+          <p className={css.warningMessage}>Order accepted for processing!</p>
+          <p className={css.successMessage}>
+            Your order number is: <span>{localStorage.getItem('id')}</span>
           </p>
         </Modal>
       )}
