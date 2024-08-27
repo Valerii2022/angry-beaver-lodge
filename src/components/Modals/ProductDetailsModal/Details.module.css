@@ -55,6 +55,7 @@
   border: none;
   outline: none;
   background-color: transparent;
+  color: var(--primary-color);
   padding: 6px 12px;
   font-weight: 700;
   font-size: 24px;
