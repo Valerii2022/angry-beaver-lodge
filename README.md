@@ -34,6 +34,7 @@ This project uses the following technologies and libraries:
 
 ```sh
 git clone https://github.com/Valerii2022/angry-beaver-lodge.git
+cd angry-beaver-lodge
 ```
 
 2. Install dependencies:
