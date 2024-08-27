@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { getItems } from 'redux/selectors';
+import { scrollToTop } from 'helpers/scrollToTop';
 import logo from '../../images/logo.webp';
 import icons from '../../images/icons.svg';
-import { scrollToTop } from 'helpers/scrollToTop';
 import css from './Header.module.css';
-import { useSelector } from 'react-redux';
-import { getItems } from 'redux/selectors';
 
 const Header = () => {
   const [menuStatus, setMenuStatus] = useState(true);

@@ -1,13 +1,13 @@
-import { emailPattern, namePattern, phonePattern } from 'Constants/patterns';
-import icons from '../../images/icons.svg';
-import css from './ContactForm.module.css';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Modal from 'components/Modals/Modal/Modal';
-import { useState } from 'react';
-import Loader from 'components/Loader/Loader';
-import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
+import { emailPattern, namePattern, phonePattern } from 'Constants/patterns';
+import Modal from 'components/Modals/Modal/Modal';
+import Loader from 'components/Loader/Loader';
+import icons from '../../images/icons.svg';
+import css from './ContactForm.module.css';
 
 const ContactForm = () => {
   const [successModal, setSuccessModal] = useState(false);

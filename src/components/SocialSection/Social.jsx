@@ -1,7 +1,6 @@
 import Title from 'components/Title/Title';
-
-import css from './Social.module.css';
 import SocialLinks from 'components/SocialLinksList/SocialLinksList';
+import css from './Social.module.css';
 
 const Social = () => {
   return (

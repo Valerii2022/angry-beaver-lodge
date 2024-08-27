@@ -1,8 +1,8 @@
-import logo from '../../images/logo.webp';
 import Title from 'components/Title/Title';
 import ContactForm from 'components/ContactForm/ContactForm';
 import Address from 'components/Address/Address';
 import Schedule from 'components/WorkingHours/Schedule';
+import logo from '../../images/logo.webp';
 import css from './Contact.module.css';
 
 const Contact = () => {

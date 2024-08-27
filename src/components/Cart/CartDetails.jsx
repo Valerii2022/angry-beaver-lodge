@@ -1,5 +1,5 @@
-import css from './Cart.module.css';
 import icons from '../../images/icons.svg';
+import css from './Cart.module.css';
 
 const CartDetails = ({
   name,

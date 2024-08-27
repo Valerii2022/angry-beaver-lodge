@@ -7,6 +7,7 @@ import {
   getOrderDetails,
   getOrderType,
 } from 'redux/selectors';
+import { leaveOrder } from 'redux/slices/orderSlice';
 import Modal from 'components/Modals/Modal/Modal';
 import GroupModal from 'components/Modals/GroupOrderModal/GroupOrderModal';
 import SignUpModal from 'components/Modals/SignUpModal/SignUpModal';
@@ -15,10 +16,9 @@ import Schedule from 'components/WorkingHours/Schedule';
 import Products from 'components/ProductsList/Products';
 import Cart from 'components/Cart/Cart';
 import AvailabilityModal from 'components/Modals/AvailabilityModal/AvailabilityModal';
+import JoinGroupOrderModal from 'components/Modals/JoinGroupOrderModal/JoinGroupOrder';
 import icons from 'images/icons.svg';
 import css from './Order.module.css';
-import JoinGroupOrderModal from 'components/Modals/JoinGroupOrderModal/JoinGroupOrder';
-import { leaveOrder } from 'redux/slices/orderSlice';
 
 const Order = () => {
   const location = useLocation();

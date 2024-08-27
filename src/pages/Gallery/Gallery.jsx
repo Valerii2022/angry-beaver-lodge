@@ -1,10 +1,10 @@
-import Title from 'components/Title/Title';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGallery } from 'redux/operations';
 import { getImages } from 'redux/selectors';
-import css from './Gallery.module.css';
 import Loader from 'components/Loader/Loader';
+import Title from 'components/Title/Title';
+import css from './Gallery.module.css';
 
 const Gallery = () => {
   const [loading, setloading] = useState(false);
