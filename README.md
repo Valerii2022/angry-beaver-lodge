@@ -15,6 +15,7 @@ Links:
 
 - [Technologies and Libraries](#technologies-and-libraries)
 - [Installation](#installation)
+- [Contacts](#contacts)
 - [Technology Stack](#technology-stack)
 - [Usage](#usage)
 
@@ -52,6 +53,10 @@ npm start
 ```
 
 The app will be available at http://localhost:3000.
+
+## Contact
+
+For any questions or feedback, please open an issue on GitHub.
 
 ## Technology Stack:
 
