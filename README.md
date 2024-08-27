@@ -7,7 +7,8 @@ we’re serious about around here is the food. Whether you’re having a juicy s
 grilled to perfection, our award-winning ribs, or our signature double double
 burger- there’s no doubt you’re going to be glad you had dinner with us tonight!
 
-Click link: [Angry Beaver Lodge](https://angry-beaver-lodge.vercel.app/)
+Website: [Angry Beaver Lodge](https://angry-beaver-lodge.vercel.app/)
+Server repository:(https://github.com/Valerii2022/angry-beaver-oakes-BE)
 
 ## Table of Contents
 
