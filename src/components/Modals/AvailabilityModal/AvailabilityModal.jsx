@@ -4,7 +4,7 @@ import Address from 'components/Address/Address';
 import { addOrder, updateOrder } from 'redux/operations';
 import { getDeliveryAddress, getOrderId, getOrderType } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
-import { namePattern } from 'Constants/patterns';
+import { addressPattern } from 'Constants/patterns';
 import icons from '../../../images/icons.svg';
 import css from './AvailabilityModal.module.css';
 
@@ -40,7 +40,7 @@ const AvailabilityModal = ({
       (!address ||
         address === 'none' ||
         address.length < 10 ||
-        !address.match(namePattern))
+        !address.match(addressPattern))
     ) {
       setAddressError(true);
       return;
