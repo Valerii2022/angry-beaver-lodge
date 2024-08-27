@@ -278,7 +278,7 @@ const Cart = ({ mobileOpening }) => {
                 <Loader modal={true} />
               ) : currentGuest && currentGuestName ? (
                 <p className={css.currentOrder}>
-                  <span>Your Order</span>
+                  <span>Total</span>
                   <span>${currentGuest.guestTotal.toFixed(2)}</span>
                 </p>
               ) : (
