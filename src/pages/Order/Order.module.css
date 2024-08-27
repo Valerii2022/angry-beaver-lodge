@@ -39,6 +39,7 @@
 
 .detailsBtn {
   background-color: transparent;
+  color: var(--primary-color);
   border: none;
   outline: none;
   padding: 0;
