@@ -342,7 +342,7 @@
 
 @media screen and (min-width: 992px) {
   .btnList {
-    width: 25%;
+    width: 30%;
     grid-template-columns: 4fr 1fr;
   }
 

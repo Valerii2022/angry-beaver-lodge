@@ -9,6 +9,7 @@ import {
   getOrderDetails,
 } from 'redux/selectors';
 import Loader from 'components/Loader/Loader';
+import icons from '../../../images/icons.svg';
 import css from './Details.module.css';
 
 const Details = ({ item, closeModal }) => {
@@ -91,14 +92,18 @@ const Details = ({ item, closeModal }) => {
               }
               onClick={() => handleQuantity('decrease')}
             >
-              --
+              <svg className={css.icon} width={12} height={12}>
+                <use href={`${icons}#minus`} />
+              </svg>
             </button>
             <p className={css.optionText}>{quantity}</p>
             <button
               className={css.optionBtn}
               onClick={() => handleQuantity('increase')}
             >
-              +
+              <svg className={css.icon} width={12} height={12}>
+                <use href={`${icons}#plus`} />
+              </svg>
             </button>
           </div>
         </div>

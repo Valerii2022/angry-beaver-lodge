@@ -72,6 +72,10 @@
   color: var(--shadow-dark);
 }
 
+.icon {
+  fill: currentColor;
+}
+
 .instructions {
   resize: none;
   width: 100%;
@@ -145,10 +149,19 @@
 @media screen and (min-width: 768px) {
   .optionBtn {
     cursor: pointer;
+    transition: color var(--transition);
+  }
+
+  .optionBtn:hover {
+    color: var(--accent-color);
   }
 
   .optionBtn.disabled {
     cursor: auto;
+  }
+
+  .disabled:hover {
+    color: var(--shadow-dark);
   }
 
   .submitBtn,
