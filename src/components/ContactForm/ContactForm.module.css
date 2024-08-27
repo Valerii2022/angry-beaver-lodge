@@ -66,6 +66,7 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  text-align: center;
   transition: color var(--transition), border var(--transition);
 }
 
