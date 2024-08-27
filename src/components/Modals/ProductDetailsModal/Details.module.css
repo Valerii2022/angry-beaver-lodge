@@ -25,6 +25,7 @@
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 16px;
+  min-height: 300px;
 }
 
 .image {
