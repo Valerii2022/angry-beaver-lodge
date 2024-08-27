@@ -15,7 +15,7 @@ Links:
 
 - [Technologies and Libraries](#technologies-and-libraries)
 - [Installation](#installation)
-- [Contacts](#contacts)
+- [Contact](#contact)
 - [Technology Stack](#technology-stack)
 
 ## Technologies and Libraries
