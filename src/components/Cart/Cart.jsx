@@ -9,17 +9,13 @@ import {
   getOrderId,
 } from 'redux/selectors';
 import { leaveOrder } from 'redux/slices/orderSlice';
-import {
-  removeOrder,
-  removeItem,
-  getOrder,
-  updateOrder,
-} from 'redux/operations';
+import { removeOrder, removeItem, getOrder } from 'redux/operations';
 import Loader from 'components/Loader/Loader';
 import Modal from 'components/Modals/Modal/Modal';
 import cards from '../../images/cards.webp';
 import CartDetails from './CartDetails';
 import css from './Cart.module.css';
+import EmailForm from 'components/EmailForm/EmailForm';
 
 const Cart = ({ mobileOpening }) => {
   const cartItems = useSelector(getItems);
@@ -38,8 +34,8 @@ const Cart = ({ mobileOpening }) => {
   const [cancelLoading, setCancelLoading] = useState(false);
   const [cancelModalOpening, setCancelModalOpening] = useState(false);
   const [leaveModalOpening, setLeaveModalOpening] = useState(false);
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutModalOpening, setCheckoutModalOpening] = useState(false);
+  const [checkoutEmail, setCheckoutEmail] = useState(false);
   const [serverError, setServerError] = useState(false);
   const [removeError, setRemoveError] = useState(false);
   const [removeLoading, setRemoveLoading] = useState(false);
@@ -87,20 +83,6 @@ const Cart = ({ mobileOpening }) => {
     setTimeout(() => {
       setServerError(false);
     }, 3000);
-  };
-
-  const handleCheckoutOrder = async () => {
-    localStorage.setItem('id', orderId);
-    const order = {
-      status: 'done',
-    };
-    setCheckoutLoading(true);
-    setCheckoutLoading(false);
-    const { payload } = await dispatch(updateOrder({ orderId, order }));
-    if (typeof payload === 'object') {
-      setCheckoutModalOpening(true);
-      dispatch(leaveOrder());
-    }
   };
 
   const handleRemoveItemFromCart = async () => {
@@ -272,11 +254,9 @@ const Cart = ({ mobileOpening }) => {
                   ? css.checkoutBtn
                   : `${css.checkoutBtn} ${css.disabled}`
               }
-              onClick={handleCheckoutOrder}
+              onClick={() => setCheckoutEmail(true)}
             >
-              {checkoutLoading ? (
-                <Loader modal={true} />
-              ) : currentGuest && currentGuestName ? (
+              {currentGuest && currentGuestName ? (
                 <p className={css.currentOrder}>
                   <span>Total</span>
                   <span>${currentGuest.guestTotal.toFixed(2)}</span>
@@ -360,14 +340,21 @@ const Cart = ({ mobileOpening }) => {
           </div>
         </Modal>
       )}
+      {checkoutEmail && (
+        <Modal modalIsOpen={setCheckoutEmail} title="Contact information">
+          <EmailForm
+            orderId={orderId}
+            setCheckoutEmail={setCheckoutEmail}
+            setCheckoutModalOpening={setCheckoutModalOpening}
+          />
+        </Modal>
+      )}
       {checkoutModalOpening && (
         <Modal modalIsOpen={setCheckoutModalOpening} title="Thank You!">
           <div className={css.modalWrapper}>
             <p>Thank you for your order!</p>
             <p>Order accepted for processing!</p>
-            <p className={css.successMessage}>
-              Your order number is: <span>{localStorage.getItem('id')}</span>
-            </p>
+            <p>The order number has been sent to you by mail.</p>
             <p>
               With best wishes, <span>Angry Beaver Lodge</span>!
             </p>
